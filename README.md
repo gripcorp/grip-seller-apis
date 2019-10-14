@@ -90,6 +90,7 @@ POST /api/product/category
 | category     | List<Category>        | 카테고리 정보 |
 
 - Category
+
 | 이름    | 타입           | 설명        | 
 | -----------  | ------------ |------------ | 
 | categorySeq     | Integer        | 카테고리 번호 |
