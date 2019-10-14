@@ -65,15 +65,15 @@ public String makeFingerprint(String method, String uri, long timestamp) throws 
 ```
 POST /api/product/images
 ```
-| 파라메터 이름    | 타입           | 필수    | 설명        | 비고            |
-| :-----------  | :------------ |:-----------|------------ | --------------- |
-| image     | multipart        | Y    | 업로드할 이미지| |
+| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| -----------  | ------------ |-----------|------------ | --------------- |
+| image | multipart | Y | 업로드할 이미지| |
 
 - Response
 
-| 결과 이름    | 타입           | 설명        | 
+| 결과 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
-| image     | String        | 업로드한 이미지 URL |
+| image | String | 업로드한 이미지 URL |
 
 ### 카테고리 목록
 - 상품에 설정할 수 있는 카테고리 목록입니다.
@@ -85,21 +85,41 @@ POST /api/product/category
 
 - Response
 
-| 결과 이름    | 타입           | 설명        | 
-| -----------  | ------------ |------------ | 
-| category     | List&lt;Category&gt;        | 카테고리 정보 |
+| 결과 이름 | 타입 | 설명 | 
+| ----------- | ------------ |------------ | 
+| category | List&lt;Category&gt; | 카테고리 정보 |
 
 - Category
 
-| 이름    | 타입           | 설명        | 
-| -----------  | ------------ |------------ | 
-| categorySeq     | Integer        | 카테고리 번호 |
-| parentCategorySeq     | Integer        | 부모 카테고리 번호 |
-| level     | Integer        | 카테고리 레벨 |
-| categoryName     | String        | 카테고리 이름 |
+| 이름 | 타입 | 설명 | 
+| ----------- | ------------ |------------ | 
+| categorySeq | Integer | 카테고리 번호 |
+| parentCategorySeq | Integer | 부모 카테고리 번호 |
+| level | Integer | 카테고리 레벨 |
+| categoryName | String | 카테고리 이름 |
 
 
 ### 상품정보 제공고시 목록
+- 상품에 설정할 수 있는 상품정보 제공고시 목록입니다.
+- Request
+
+```
+POST /api/product/legal
+```
+
+- Response
+
+| 결과 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| legal | List&lt;Legal&gt; | 상품정보 제공고시 정보 |
+
+- Legal
+
+| 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| legalSeq | Integer | 상품정보 제공고시 번호 |
+| legalName | String | 상품정보 제공고시 이름 |
+| items | List&lt;LegalItem&gt; | 세부 항목 |
 
 ## 주문/반품/교환 목록
 
