@@ -61,6 +61,7 @@ public String makeFingerprint(String method, String uri, long timestamp) throws 
 - 상품을 등록하기 전에 미리 이미지를 업로드 해야 합니다.
 - Content-Type은 multipart/form-data 로 설정해야 합니다.
 - Request
+
 ```
 POST /api/product/images
 ```
@@ -69,6 +70,7 @@ POST /api/product/images
 | image     | multipart        | Y    | 업로드할 이미지| |
 
 - Response
+
 | 결과 이름    | 타입           | 설명        | 
 | -----------  | ------------ |------------ | 
 | image     | String        | 업로드한 이미지 URL |
