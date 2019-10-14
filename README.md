@@ -80,7 +80,7 @@ POST /api/product/images
 - Request
 
 ```
-POST /api/product/category
+GET /api/product/category
 ```
 
 - Response
@@ -104,7 +104,7 @@ POST /api/product/category
 - Request
 
 ```
-POST /api/product/legal
+GET /api/product/legal
 ```
 
 - Response
@@ -120,6 +120,34 @@ POST /api/product/legal
 | legalSeq | Integer | 상품정보 제공고시 번호 |
 | legalName | String | 상품정보 제공고시 이름 |
 | items | List&lt;LegalItem&gt; | 세부 항목 |
+
+- LegalItem
+
+| 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| itemSeq | Integer | 세부 항목 번호 |
+| title | String | 세부 항목 이름 |
+| body | String | 세부 항목 설명 |
+
+### 상품 개수
+- 상품 개수를 조회합니다.
+- Request
+
+| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| -----------  | ------------ |-----------|------------ | --------------- |
+| searchTarget | String | N | 검색 대상 | 상품명(productName) |
+| searchQuery | String | N | 검색어 | 식품 |
+
+```
+GET /api/product/count
+```
+
+- Response
+
+| 결과 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| productCount | Integer | 상품 개수 |
+
 
 ## 주문/반품/교환 목록
 
