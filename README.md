@@ -87,7 +87,16 @@ POST /api/product/category
 
 | 결과 이름    | 타입           | 설명        | 
 | -----------  | ------------ |------------ | 
-| category     | Category        | 카테고리 정보 |
+| category     | List<Category>        | 카테고리 정보 |
+
+- Category
+| 이름    | 타입           | 설명        | 
+| -----------  | ------------ |------------ | 
+| categorySeq     | Integer        | 카테고리 번호 |
+| parentCategorySeq     | Integer        | 부모 카테고리 번호 |
+| level     | Integer        | 카테고리 레벨 |
+| categoryName     | String        | 카테고리 이름 |
+
 
 ### 상품정보 제공고시 목록
 
