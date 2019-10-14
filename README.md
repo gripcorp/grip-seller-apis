@@ -87,7 +87,7 @@ POST /api/product/category
 
 | 결과 이름    | 타입           | 설명        | 
 | -----------  | ------------ |------------ | 
-| category     | List<Category>        | 카테고리 정보 |
+| category     | List&lt;Category&gt;        | 카테고리 정보 |
 
 - Category
 
