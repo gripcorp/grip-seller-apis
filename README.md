@@ -54,6 +54,8 @@ public String makeFingerprint(String method, String uri, long timestamp) throws 
 		return encodeBase64String;
 }
 ```
+## 공통
+
 
 ## 상품 관리
 
