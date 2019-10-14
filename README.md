@@ -2,6 +2,7 @@
 - Grip 판매자센터 API는 Grip에 연동하여 서비스를 제공하기 위한 서드파티 솔루션 사용자를 위한 API 입니다.
 - RESTful API 형태의 표준 HTTP Request Method - GET, POST, PUT, DELETE 를 사용합니다.
 - API 요청과 응답은 JSON Format 으로 되어 있습니다.
+- Date 타입은 milliseconds로 변환하여 Long 타입으로 사용합니다.
 
 # 판매자센터 API 이용 신청하기
 - 판매자센터 우상단에 있는 프로필을 클릭하여 API 사용을 시작합니다.
@@ -135,8 +136,9 @@ GET /api/product/legal
 
 | 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
-| searchTarget | String | N | 검색 대상 | 상품명(productName) |
+| searchTarget | String | N | 검색 대상 | 상품명:productName |
 | searchQuery | String | N | 검색어 | 식품 |
+| searchStatus | String | N | 검색할 상품 상태. 콤마(,)로 구분해서 여러개 가능 | 판매대기:1, 판매중:2, 품절임박:3, 품절:4, 판매중지: 5 |
 
 ```
 GET /api/product/count
@@ -154,10 +156,11 @@ GET /api/product/count
 
 | 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
-| start | Integer | N | 페이지 시작 번호. 디폴트 0 |  |
+| start | Integer | N | 페이지 시작 번호. 디폴트 0 | 페이지 사이즈가 20이면 다음 시작 번호는 20 |
 | length | Integer | N | 페이지 사이즈. 디폴트 20 |  |
-| searchTarget | String | N | 검색 대상 | 상품명(productName) |
+| searchTarget | String | N | 검색 대상 | 상품명:productName |
 | searchQuery | String | N | 검색어 | 식품 |
+| searchStatus | String | N | 검색할 상품 상태. 콤마(,)로 구분해서 여러개 가능 | 판매대기:1, 판매중:2, 품절임박:3, 품절:4, 판매중지: 5 |
 
 ```
 GET /api/product
@@ -359,8 +362,8 @@ GET /api/product/{productId}
 | as | ProductAfterService | N | 상품 A/S 정보 | customAs가 Y면 필수 |
 | supportMarketing | Boolean | Y | 그리퍼 지원 요청 여부 | |
 | tags | List&lt;String&gt; | Y | 태그 목록 | |
-| previewImageUrls | List&lt;String&gt; | Y | 상품 상단 이미지 URL 목록 | 최대 10개 |
-| detailImageUrls | List&lt;String&gt; | Y | 상품 상세 이미지 URL 목록 | 최대 15개 |
+| previewImageUrls | List&lt;String&gt; | Y | 상품 상단 이미지 URL 목록 | 이미지를 미리 업로드하고 받은 URL 사용. 최대 10개 |
+| detailImageUrls | List&lt;String&gt; | Y | 상품 상세 이미지 URL 목록 | 이미지를 미리 업로드하고 받은 URL 사용. 최대 15개 |
 
 
 ```
@@ -428,7 +431,297 @@ PUT /api/product/{productId}/stop
 
 
 ## 주문/반품/교환 목록
+반품 및 교환은 Grip 판매자센터에서 직접 처리해야 합니다. API를 통해서는 조회만 가능합니다.
 
+### 주문 개수
+- 주문 개수를 조회합니다.
+- Request
+
+| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| -----------  | ------------ |-----------|------------ | --------------- |
+| searchTarget | String | N | 검색 대상 | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq |
+| searchQuery | String | N | 검색어 | 구매자 |
+| searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 여러개 가능 | 결제완료:1, 배송준비중:10, 배송중:11, 배송완료:13, 발송지연:12, 구매확정:90, 반품신청:40, 교환신청:50, 환불완료:42, 판매취소:60, 주문취소:80, 입금대기중:2  |
+| searchStartAt | Date | N | 검색할 주문/결제 시작일시  | |
+| searchEndAt | Date | N | 검색할 주문/결제 종료일시  | |
+
+```
+GET /api/order/count
+```
+
+- Response
+
+| 결과 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| orderCount | Integer | 주문 개수 |
+
+### 주문 목록
+- 주문 목록을 조회합니다.
+- Request
+
+| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| -----------  | ------------ |-----------|------------ | --------------- |
+| start | Integer | N | 페이지 시작 번호. 디폴트 0 | 페이지 사이즈가 20이면 다음 시작 번호는 20 |
+| length | Integer | N | 페이지 사이즈. 디폴트 20 |  |
+| searchTarget | String | N | 검색 대상 | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq |
+| searchQuery | String | N | 검색어 | 구매자 |
+| searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 여러개 가능 | 결제완료:1, 배송준비중:10, 배송중:11, 배송완료:13, 발송지연:12, 구매확정:90, 반품신청:40, 교환신청:50, 환불완료:42, 판매취소:60, 주문취소:80, 입금대기중:2  |
+| searchStartAt | Date | N | 검색할 주문/결제 시작일시  | |
+| searchEndAt | Date | N | 검색할 주문/결제 종료일시  | |
+
+```
+GET /api/order
+```
+
+- Response
+
+| 결과 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| orderList | List&lt;OrderList&gt; | 주문 목록 |
+
+- OrderList
+
+| 결과 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| orderSeq | Long | 주문 번호 |
+| orderProductSeq | Long | 주문 상품 번호 |
+| orderedAt | Date | 주문결제일시 |
+| orderState | OrderProductState | 주문 상태 |
+| yourProductId | String | 자체 상품 아이디 |
+| productId | String | Grip 상품 아이디 |
+| productName | String | 주문 당시 상품명 |
+| optionName | String | 주문 당시 옵션명 |
+| price | Double | 구매가 |
+| quanity | Integer | 수량 |
+| shippingAmount | Double | 배송비 |
+| shippingExtraAmount | Double | 도서/산간지역 추가 배송비 |
+| productAmount | Double | 상품 주문 금액 |
+| couponAmount | Double | 쿠폰 할인 금액 |
+| buyerNickname | String | 구매자 닉네임 |
+| buyerName | String | 구매자 이름 |
+| buyerPhoneNumber | String | 구매자 전화번호 |
+| recipientName | String | 수령인 이름 |
+| recipientPhoneNumber | String | 수령인 전화번호 |
+| recipientPostalCode | String | 수령인 우편번호 |
+| recipientAddress | String | 수령인 주소 |
+| deliveryRequest | String | 배송 메시지 |
+| dawnDeliveryRequest | String | 새벽 배송 메시지 |
+
+- OrderProductState
+| 설명 | 값 | 비고 |
+| -----------  | ------------ | ------------ |
+| 결제완료 | 1 | |
+| 입금대기중 | 2 | |
+| 결제실패(미입금) | 3 | |
+| 배송준비중 | 10 | |
+| 배송중 | 11 | |
+| 발송지연 | 12 | |
+| 배송완료 | 13 | |
+| 반품진행중(반품신청) | 40 | |
+| 반품진행중(상품대기) | 41 | |
+| 반품진행중(상품확인) | 42 | |
+| 반품완료 | 43 | |
+| 반품완료(환불완료) | 44 | |
+| 반품완료(환불계좌 입력대기) | 45 | |
+| 반품진행중(환불대기) | 46 | Grip에서 구매자에게 입금전 |
+| 반품취소(구매자) | 47 | |
+| 반품취소(판매자) | 48 | |
+| 교환신청 | 50 | |
+| 교환진행중 | 51 | |
+| 교환취소(판매자) | 52 | |
+| 교환(배송중) | 53 | |
+| 교환(배송완료) | 54 | |
+| 교환취소(구매자) | 55 | |
+| 판매취소 | 60 | |
+| 판매취소(환불완료) | 61 | |
+| 판매취소(미입금) | 62 | |
+| 판매취소(환불계좌 입력대기) | 63 | |
+| 판매취소(환불대기) | 64 | Grip에서 구매자에게 입금전 |
+| 주문취소 | 80 | |
+| 주문취소(환불완료) | 81 | |
+| 주문취소(미입금) | 82 | |
+| 주문취소(환불계좌 입력대기) | 83 |  |
+| 주문취소(환불대기) | 84 | Grip에서 구매자에게 입금전 |
+| 구매확정 | 90 | |
+| 구매확정(리뷰작성) | 91 | |
+
+### 주문 취소(판매 취소)
+- 재고 부족과 같은 사유로 판매자가 주문을 취소합니다.
+- Request
+
+| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| -----------  | ------------ |-----------|------------ | --------------- |
+| orderKeys | List&lt;OrderKey&gt; | Y | 대상 주문 | |
+| reason | String | Y | 주문 취소 사유 | |
+
+- OrderKey
+
+| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| -----------  | ------------ |-----------|------------ | --------------- |
+| orderSeq | Long | Y | 주문 번호 | |
+| orderProductSeq | Long | Y | 주문 상품 번호 | |
+
+```
+POST /api/order/cancel
+```
+
+- Response
+
+| 결과 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| affected | Integer | 취소 성공한 주문 수 |
+
+### 반품 개수
+- 반품 개수를 조회합니다.
+- Request
+
+| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| -----------  | ------------ |-----------|------------ | --------------- |
+| searchTarget | String | N | 검색 대상 | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq, 송장번호:trackingNumber |
+| searchQuery | String | N | 검색어 | 구매자 |
+| searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 여러개 가능 | 반품신청:40, 반품진행중(상품대기):41, 반품진행중(상품확인):42, 반품취소(판매자):48, 반품완료(환불완료):44, 반품완료(환불대기):46  |
+| searchStartAt | Date | N | 검색할 반품신청 시작일시  | |
+| searchEndAt | Date | N | 검색할 반품신청 종료일시  | |
+
+```
+GET /api/return/count
+```
+
+- Response
+
+| 결과 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| returnCount | Integer | 반품 개수 |
+
+### 반품 목록
+- 반품 목록을 조회합니다.
+- Request
+
+| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| -----------  | ------------ |-----------|------------ | --------------- |
+| start | Integer | N | 페이지 시작 번호. 디폴트 0 | 페이지 사이즈가 20이면 다음 시작 번호는 20 |
+| length | Integer | N | 페이지 사이즈. 디폴트 20 |  |
+| searchTarget | String | N | 검색 대상 | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq, 송장번호:trackingNumber |
+| searchQuery | String | N | 검색어 | 구매자 |
+| searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 여러개 가능 | 반품신청:40, 반품진행중(상품대기):41, 반품진행중(상품확인):42, 반품취소(판매자):48, 반품완료(환불완료):44, 반품완료(환불대기):46  |
+| searchStartAt | Date | N | 검색할 반품신청 시작일시  | |
+| searchEndAt | Date | N | 검색할 반품신청 종료일시  | |
+
+```
+GET /api/return
+```
+
+- Response
+
+| 결과 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| returnList | List&lt;ReturnList&gt; | 반품 목록 |
+
+- ReturnList
+
+| 결과 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| orderSeq | Long | 주문 번호 |
+| orderProductSeq | Long | 주문 상품 번호 |
+| orderedAt | Date | 주문결제일시 |
+| orderState | OrderProductState | 주문 상태 |
+| returnRequestAt | Date | 반품신청일시 |
+| buyerReturnReasonType | Integer | 반품사유. 단순변심:1, 다른 상품 잘못 주문:3, 서비스 불만족:4, 배송 지연:5, 상품 파손 및 불량:7, 상품정보 상이:8, 다른 상품 잘못 배송:10 |
+| buyerReturnReason | String | 구매자 반품 사유 |
+| sellerReturnReason | String | 판매자 반품 불가 메시지 |
+| sellerPermitMessage | String | 판매자 반품 접수 안내 메시지 |
+| yourProductId | String | 자체 상품 아이디 |
+| productId | String | Grip 상품 아이디 |
+| productName | String | 주문 당시 상품명 |
+| optionName | String | 주문 당시 옵션명 |
+| price | Double | 구매가 |
+| quanity | Integer | 수량 |
+| shippingAmount | Double | 배송비 |
+| shippingExtraAmount | Double | 도서/산간지역 추가 배송비 |
+| productAmount | Double | 상품 주문 금액 |
+| couponAmount | Double | 쿠폰 할인 금액 |
+| buyerNickname | String | 구매자 닉네임 |
+| buyerName | String | 구매자 이름 |
+| buyerPhoneNumber | String | 구매자 전화번호 |
+| recipientName | String | 수령인 이름 |
+| recipientPhoneNumber | String | 수령인 전화번호 |
+| recipientPostalCode | String | 수령인 우편번호 |
+| recipientAddress | String | 수령인 주소 |
+
+### 교환 개수
+- 교환 개수를 조회합니다.
+- Request
+
+| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| -----------  | ------------ |-----------|------------ | --------------- |
+| searchTarget | String | N | 검색 대상 | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq, 송장번호:trackingNumber |
+| searchQuery | String | N | 검색어 | 구매자 |
+| searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 여러개 가능 | 교환신청:50, 교환진행중:51, 교환(배송중):53, 교환(배송완료):54, 교환불가:52  |
+| searchStartAt | Date | N | 검색할 교환신청 시작일시  | |
+| searchEndAt | Date | N | 검색할 교환신청 종료일시  | |
+
+```
+GET /api/exchange/count
+```
+
+- Response
+
+| 결과 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| exchangeCount | Integer | 교환 개수 |
+
+### 교환 목록
+- 교환 목록을 조회합니다.
+- Request
+
+| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| -----------  | ------------ |-----------|------------ | --------------- |
+| start | Integer | N | 페이지 시작 번호. 디폴트 0 | 페이지 사이즈가 20이면 다음 시작 번호는 20 |
+| length | Integer | N | 페이지 사이즈. 디폴트 20 |  |
+| searchTarget | String | N | 검색 대상 | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq, 송장번호:trackingNumber |
+| searchQuery | String | N | 검색어 | 구매자 |
+| searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 여러개 가능 | 교환신청:50, 교환진행중:51, 교환(배송중):53, 교환(배송완료):54, 교환불가:52  |
+| searchStartAt | Date | N | 검색할 교환신청 시작일시  | |
+| searchEndAt | Date | N | 검색할 교환신청 종료일시  | |
+
+```
+GET /api/exchange
+```
+
+- Response
+
+| 결과 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| exchangeList | List&lt;ExchangeList&gt; | 교환 목록 |
+
+- ReturnList
+
+| 결과 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| orderSeq | Long | 주문 번호 |
+| orderProductSeq | Long | 주문 상품 번호 |
+| orderedAt | Date | 주문결제일시 |
+| orderState | OrderProductState | 주문 상태 |
+| exchangeRequestAt | Date | 교환신청일시 |
+| buyerChangeReasonType | Integer | 교환사유. 색상 및 사이즈 변경:2, 다른 상품 잘못 주문:3, 상품 파손 및 불량:7, 다른 상품 잘못 배송:10 |
+| buyerChangeReason | String | 구매자 교환 사유 |
+| yourProductId | String | 자체 상품 아이디 |
+| productId | String | Grip 상품 아이디 |
+| productName | String | 주문 당시 상품명 |
+| optionName | String | 주문 당시 옵션명 |
+| price | Double | 구매가 |
+| quanity | Integer | 수량 |
+| shippingAmount | Double | 배송비 |
+| shippingExtraAmount | Double | 도서/산간지역 추가 배송비 |
+| productAmount | Double | 상품 주문 금액 |
+| couponAmount | Double | 쿠폰 할인 금액 |
+| buyerNickname | String | 구매자 닉네임 |
+| buyerName | String | 구매자 이름 |
+| buyerPhoneNumber | String | 구매자 전화번호 |
+| recipientName | String | 수령인 이름 |
+| recipientPhoneNumber | String | 수령인 전화번호 |
+| recipientPostalCode | String | 수령인 우편번호 |
+| recipientAddress | String | 수령인 주소 |
 
 ## 배송 관리
 
