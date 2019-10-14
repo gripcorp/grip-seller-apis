@@ -37,7 +37,7 @@ public String makeFingerprint(String method, String uri, long timestamp) throws 
 		String message = new StringBuilder() //
 				.append(method) // 'GET'
 				.append(space) //
-				.append(uri) // '/api/product/count?searchTarget=productName&searchQuery=Test
+				.append(uri) // '/api/product/count?searchTarget=productName&searchQuery=Test'
 				.append(newLine) //
 				.append(timestamp) //
 				.append(newLine) //
@@ -54,3 +54,21 @@ public String makeFingerprint(String method, String uri, long timestamp) throws 
 		return encodeBase64String;
 }
 ```
+
+## 상품 관리
+
+
+## 주문/반품/교환 목록
+
+
+## 배송 관리
+
+
+## 1:1 문의 관리
+
+
+## 리뷰 관리
+
+
+
+
