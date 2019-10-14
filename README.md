@@ -28,7 +28,7 @@
 | X-Fingerprint-Timestamp | Fingerprint를 암호화할때 사용한 timestamp. Grip 서버와 시간차가 10분 이상 나는 경우 유효하지 않은 요청으로 간주 |
 
 - Fingerprint는 아래와 같이 생성할 수 있습니다. uri는 QueryString을 포함합니다.
-- QueryString의 value 부분은 URLEncoder(https://docs.oracle.com/javase/8/docs/api/java/net/URLEncoder.html)를 이용하여 Encoding 하는 것이 안전합니다.
+- QueryString의 value 부분은 URLEncoder( https://docs.oracle.com/javase/8/docs/api/java/net/URLEncoder.html )를 이용하여 Encoding 하는 것이 안전합니다.
 ```java
 public String makeFingerprint(String method, String uri, long timestamp) throws Exception {
 		String space = " "; // one space
