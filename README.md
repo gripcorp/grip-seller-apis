@@ -371,15 +371,61 @@ POST /api/product
 
 | 결과 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
-| product | Product | 상품 상세 |
+| productId | String | 상품 아이디 |
 
-- Product
+### 상품 수정
+- 상품을 수정 합니다.
+- Request는 상품 등록과 동일합니다.
+
+```
+PUT /api/product/{productId}
+```
+
+- Response
 
 | 결과 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
-| yourProductId | String | 자체 상품 아이디 |
-| productId | String | Grip 상품 아이디 |
-| productName | String | 상품명 |
+| productId | String | 상품 아이디 |
+
+### 상품 삭제
+- 상품을 삭제 합니다.
+
+```
+DELETE /api/product/{productId}
+```
+
+- Response
+
+| 결과 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| productId | String | 상품 아이디 |
+
+### 상품 판매 시작
+- 상품을 판매 시작 합니다.
+
+```
+PUT /api/product/{productId}/start
+```
+
+- Response
+
+| 결과 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| productId | String | 상품 아이디 |
+
+### 상품 판매 중지
+- 상품을 판매 중지 합니다.
+
+```
+PUT /api/product/{productId}/stop
+```
+
+- Response
+
+| 결과 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| productId | String | 상품 아이디 |
+
 
 ## 주문/반품/교환 목록
 
