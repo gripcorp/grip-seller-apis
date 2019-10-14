@@ -322,6 +322,65 @@ GET /api/product/{productId}
 | returnChargePrice | Double | 반품 택배비 |
 | exchangeChargePrice | Double | 교환 택배비 |
 
+### 상품 등록
+- 상품을 등록 합니다.
+- Request
+
+| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| -----------  | ------------ |-----------|------------ | --------------- |
+| yourProductId | String | N | 자체 상품 아이디 | |
+| productName | String | Y | 상품명 | |
+| categorySeq | Integer | Y | 상품 카테고리 번호 | 말단 카테고리의 번호만 허용 |
+| legalSeq | Integer | Y | 상품정보 제공고시 번호 | |
+| legalItems | List&lt;LegalItem&gt; | Y | 상품정보 제공고시 상세 | |
+| introduction | String | Y | 상품 설명 | |
+| useOption | Boolean | Y | 옵션 사용 여부 | |
+| option | ProductOption | N | 옵션 정보 | useOption이 Y면 필수 |
+| costPrice | Double | Y | 원가 | |
+| sellingPrice | Double | Y | 판매가 | |
+| liveSellingPrice | Double | Y | 라이브 판매가 | |
+| originName | String | Y | 원산지 | |
+| manufacturer | String | N | 제조사 | |
+| brandName | String | N | 브랜드 | |
+| modelName | String | N | 모델명 | |
+| ondemand | Boolean | Y | 주문제작 여부 | |
+| returnImpossible | Boolean | N | 반품 불가 여부 | returnImpossible이 Y면 필수 |
+| taxType | Integer | Y | 부가세. 과세상품:1, 면세상품:2, 영세상품: 3 | |
+| startAt | Date | Y | 판매 시작일시 | |
+| endAt | Date | Y | 판매 종료일시 | |
+| stockCount | Integer | Y | 재고 수량 | |
+| useMinOrderQuantity | Boolean | Y | 최소 구매 개수 사용 여부 | |
+| useMaxOrderQuantity | Boolean | Y | 최대 구매 개수 사용 여부 | |
+| minOrderQuantity | Integer | N | 최소 구매 개수 | useMinOrderQuantity가 Y면 필수 |
+| maxOrderQuantity | Integer | N | 최대 구매 개수 | useMaxOrderQuantity가 Y면 필수 |
+| customDelivery | Boolean | Y | 커스텀 배송 정보 사용 여부 | N이면 판매자 기본 배송 정보 사용|
+| delivery | ProductDelivery | N | 상품 배송 정보 | customDelivery가 Y면 필수 |
+| customAs | Boolean | Y | 커스텀 A/S 사용 여부 | N이면 판매자 기본 A/S 정보 사용 |
+| as | ProductAfterService | N | 상품 A/S 정보 | customAs가 Y면 필수 |
+| supportMarketing | Boolean | Y | 그리퍼 지원 요청 여부 | |
+| tags | List&lt;String&gt; | Y | 태그 목록 | |
+| previewImageUrls | List&lt;String&gt; | Y | 상품 상단 이미지 URL 목록 | 최대 10개 |
+| detailImageUrls | List&lt;String&gt; | Y | 상품 상세 이미지 URL 목록 | 최대 15개 |
+
+
+```
+POST /api/product
+```
+
+- Response
+
+| 결과 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| product | Product | 상품 상세 |
+
+- Product
+
+| 결과 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| yourProductId | String | 자체 상품 아이디 |
+| productId | String | Grip 상품 아이디 |
+| productName | String | 상품명 |
+
 ## 주문/반품/교환 목록
 
 
