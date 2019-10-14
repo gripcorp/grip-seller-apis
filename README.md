@@ -75,9 +75,19 @@ POST /api/product/images
 | -----------  | ------------ |------------ | 
 | image     | String        | 업로드한 이미지 URL |
 
-
-
 ### 카테고리 목록
+- 상품에 설정할 수 있는 카테고리 목록입니다.
+- Request
+
+```
+POST /api/product/category
+```
+
+- Response
+
+| 결과 이름    | 타입           | 설명        | 
+| -----------  | ------------ |------------ | 
+| category     | Category        | 카테고리 정보 |
 
 ### 상품정보 제공고시 목록
 
