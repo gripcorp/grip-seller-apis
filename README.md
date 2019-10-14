@@ -179,7 +179,7 @@ GET /api/product
 | mainImageUrl | String | 대표 이미지 URL |
 | categorySeq | Integer | 상품 카테고리 번호 |
 | legalSeq | Integer | 상품정보 제공고시 번호 |
-| expose | Boolean | 판매여부 |
+| expose | Boolean | 판매 여부 |
 | useOption | Boolean | 옵션 사용 여부 |
 | costPrice | Double | 원가 |
 | sellingPrice | Double | 판매가 |
@@ -199,6 +199,61 @@ GET /api/product
 | minOrderQuantity | Integer | 최소 구매 개수 |
 | maxOrderQuantity | Integer | 최대 구매 개수 |
 | supportMarketing | Boolean | 그리퍼 지원 요청 여부 |
+| createdAt | Date | 등록일시 |
+| modifiedAt | Date | 수정일시 |
+
+### 상품 상세
+- 상품 상세 정보를 조회합니다.
+
+```
+GET /api/product/{productId}
+```
+
+- Response
+
+| 결과 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| product | Product | 상품 상세 |
+
+- Product
+
+| 결과 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| yourProductId | String | 자체 상품 아이디 |
+| productId | String | Grip 상품 아이디 |
+| productName | String | 상품명 |
+| categorySeq | Integer | 상품 카테고리 번호 |
+| legalSeq | Integer | 상품정보 제공고시 번호 |
+| legalItems | List&lt;LegalItem&gt; | 상품정보 제공고시 상세 |
+| introduction | String | 상품 설명 |
+| expose | Boolean | 판매 여부 |
+| useOption | Boolean | 옵션 사용 여부 |
+| option | ProductOption | 옵션 정보 |
+| costPrice | Double | 원가 |
+| sellingPrice | Double | 판매가 |
+| liveSellingPrice | Double | 라이브 판매가 |
+| originName | String | 원산지 |
+| manufacturer | String | 제조사 |
+| brandName | String | 브랜드 |
+| modelName | String | 모델명 |
+| ondemand | Boolean | 주문제작 여부 |
+| returnImpossible | Boolean | 반품 불가 여부 |
+| taxType | Integer | 부가세. 과세상품:1, 면세상품:2, 영세상품: 3 |
+| startAt | Date | 판매 시작일시 |
+| endAt | Date | 판매 종료일시 |
+| stockCount | Integer | 재고 수량 |
+| useMinOrderQuantity | Boolean | 최소 구매 개수 사용 여부 |
+| useMaxOrderQuantity | Boolean | 최대 구매 개수 사용 여부 |
+| minOrderQuantity | Integer | 최소 구매 개수 |
+| maxOrderQuantity | Integer | 최대 구매 개수 |
+| customDelivery | Boolean | 커스텀 배송 정보 사용 여부 |
+| delivery | ProductDelivery | 상품 배송 정보 |
+| customAs | Boolean | 커스텀 A/S 사용 여부 |
+| as | ProductAfterService | 상품 A/S 정보 |
+| supportMarketing | Boolean | 그리퍼 지원 요청 여부 |
+| tags | List&lt;String&gt; | 태그 목록 |
+| previewImageUrls | List&lt;String&gt; | 상품 상단 이미지 URL 목록 |
+| detailImageUrls | List&lt;String&gt; | 상품 상세 이미지 URL 목록 |
 | createdAt | Date | 등록일시 |
 | modifiedAt | Date | 수정일시 |
 
