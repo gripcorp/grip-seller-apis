@@ -257,6 +257,70 @@ GET /api/product/{productId}
 | createdAt | Date | 등록일시 |
 | modifiedAt | Date | 수정일시 |
 
+- ProductOption
+
+| 결과 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| types | List&lt;ProductOptionType&gt; | 옵션 종류 목록 |
+| names | List&lt;ProductOptionName&gt; | 옵션 종류별 항목 목록 |
+| combinations | List&lt;ProductOptionCombination&gt; | 옵션 종류를 조합한 최종 옵션 정보 목록 |
+
+- ProductOptionType
+
+| 결과 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| typeSeq | Integer | 옵션 종류 번호 |
+| optionType | String | 옵션 종류 명칭 |
+
+- ProductOptionName
+
+| 결과 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| typeSeq | Integer | 옵션 종류 번호 |
+| nameSeq | Integer | 옵션 종류별 항목 번호 |
+| optionName | String | 옵션 항목 명칭 |
+
+- ProductOptionCombination
+
+| 결과 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| nameSeqs | List&lt;Integer&gt; | 조합된 옵션 항목 번호 목록 |
+| price | Double | 추가 가격 |
+| stockCount | Integer | 재고 수량 |
+| expose | Boolean | 판매 여부 |
+
+- ProductAfterService
+
+| 결과 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| asTelephone | String | A/S 전화번호 |
+| asPolicy | String | A/S 안내 |
+| etc | String | 판매자 특이사항 |
+
+- ProductDelivery
+
+| 결과 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| serviceType | Integer | 택배배송:1, 새벽배송:2, 배송없음:4, 직접배송:5 |
+| chargeType | Integer | 무료배송:1, 조건부 무료배송:2, 유료배송: 3, 수량별 배송비 부과: 4 |
+| chargeTimeType | Integer | 선결제:1 |
+| bundleType | Integer | 선결제:1 |
+| chargePrice | Double | 배송비 |
+| deliveryExternal | Boolean | 도서산간지역 배송 여부 |
+| chargePriceExternal | Double | 도서산간지역 추가 배송비 |
+| chargeFreeCondition | Double | 무료 배송 조건 금액 |
+| chargeByQuantity | Integer | 수량별 배송비 부과 선택시 수량 |
+| deliveryCompanySeq | Integer | 택배 회사 번호 |
+| sendEstimatedTime | Integer | 발송 예정일 |
+| originPostalCode | String | 출고지 우편번호 |
+| originAddress1 | String | 출고지 주소 |
+| originAddress2 | String | 출고지 상세 주소 |
+| returnPostalCode | String | 반품/교환 주소지 우편번호 |
+| returnAddress1 | String | 반품/교환 주소지 주소 |
+| returnAddress2 | String | 반품/교환 주소지 상세 주소 |
+| returnCompanySeq | Integer | 반품/교환 택배 회사 번호 |
+| returnChargePrice | Double | 반품 택배비 |
+| exchangeChargePrice | Double | 교환 택배비 |
 
 ## 주문/반품/교환 목록
 
