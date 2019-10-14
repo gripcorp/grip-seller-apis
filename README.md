@@ -508,6 +508,7 @@ GET /api/order
 | dawnDeliveryRequest | String | 새벽 배송 메시지 |
 
 - OrderProductState
+
 | 설명 | 값 | 비고 |
 | -----------  | ------------ | ------------ |
 | 결제완료 | 1 | |
