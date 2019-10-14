@@ -19,6 +19,7 @@
 
 # API 호출하기
 - Grip 판매자센터 API를 통해서 상품 관리, 주문/반품/교환 조회, 배송 관리, 1:1문의 관리, 리뷰 관리를 할 수 있습니다.
+- 이미지 업로드를 제외한 모든 API의 Content-Type은 application/json 입니다.
 - 모든 API는 아래의 Header를 포함해야 합니다.
 
 | Header  | 설명 |
@@ -27,7 +28,7 @@
 | X-Fingerprint | SecretKey로 암호화한 Fingerprint. HMAC 암호화 알고리즘은 HmacSHA256 사용 |
 | X-Fingerprint-Timestamp | Fingerprint를 암호화할때 사용한 timestamp. Grip 서버와 시간차가 10분 이상 나는 경우 유효하지 않은 요청으로 간주 |
 
-- Fingerprint는 아래와 같이 생성할 수 있습니다. uri는 QueryString을 포함합니다.
+- Fingerprint는 아래와 같이 생성할 수 있습니다. (uri는 QueryString을 포함합니다.)
 - QueryString의 value 부분은 URLEncoder( https://docs.oracle.com/javase/8/docs/api/java/net/URLEncoder.html )를 이용하여 Encoding 하는 것이 안전합니다.
 ```java
 public String makeFingerprint(String method, String uri, long timestamp) throws Exception {
@@ -54,11 +55,27 @@ public String makeFingerprint(String method, String uri, long timestamp) throws 
 		return encodeBase64String;
 }
 ```
-## 공통
-
 
 ## 상품 관리
+### 이미지 업로드
+- 상품을 등록하기 전에 미리 이미지를 업로드 해야 합니다.
+- Content-Type은 multipart/form-data 로 설정해야 합니다.
+```
+POST /api/product/images
+```
+| 파라메터 이름    | 타입           | 필수    | 설명        | 비고            |
+| :-----------  | :------------ |:-----------|------------ | --------------- |
+| image     | multipart        | Y    | 업로드할 이미지| |
 
+| 결과 이름    | 타입           | 설명        | 비고            |
+| :-----------  | :------------ |------------ | --------------- |
+| image     | String        | 업로드한 이미지 URL | |
+
+
+
+### 카테고리 목록
+
+### 상품정보 제공고시 목록
 
 ## 주문/반품/교환 목록
 
