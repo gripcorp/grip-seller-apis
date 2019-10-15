@@ -1250,6 +1250,7 @@ GET /api/review
 | productName | String | 주문 당시 상품명 |
 | createdAt | Date | 작성일시 |
 | replyAt | Date | 답변일시 |
+| imageUrls | List&lt;String&gt; | 이미지 있는 경우 URL 목록 |
 
 ### 리뷰 답변 등록
 - 리뷰의 답변을 등록합니다.
