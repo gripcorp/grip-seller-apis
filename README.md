@@ -3,6 +3,7 @@
 - RESTful API 형태의 표준 HTTP Request Method - GET, POST, PUT, DELETE 를 사용합니다.
 - API 요청과 응답은 JSON Format 으로 되어 있습니다.
 - Date 타입은 milliseconds로 변환하여 Long 타입으로 사용합니다.
+- API의 성능을 보장하기 위해 검색 범위는 최근 90일까지만 가능합니다.
 
 # 판매자센터 API 이용 신청하기
 - 판매자센터 우상단에 있는 프로필을 클릭하여 API 사용을 시작합니다.
@@ -139,15 +140,15 @@ GET /api/product/legal
 - 상품 개수를 조회합니다.
 - Request
 
+```
+GET /api/product/count
+```
+
 | 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
 | searchTarget | String | N | 검색 대상 | 상품명:productName |
 | searchQuery | String | N | 검색어 | 식품 |
 | searchStatus | String | N | 검색할 상품 상태. 콤마(,)로 구분해서 여러개 가능 | 판매대기:1, 판매중:2, 품절임박:3, 품절:4, 판매중지: 5 |
-
-```
-GET /api/product/count
-```
 
 - Response
 
@@ -159,17 +160,17 @@ GET /api/product/count
 - 상품 목록을 조회합니다.
 - Request
 
-| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
-| -----------  | ------------ |-----------|------------ | --------------- |
-| start | Integer | N | 페이지 시작 번호. 디폴트 0 | 페이지 사이즈가 20이면 다음 시작 번호는 20 |
-| length | Integer | N | 페이지 사이즈. 디폴트 20 |  |
-| searchTarget | String | N | 검색 대상 | 상품명:productName |
-| searchQuery | String | N | 검색어 | 식품 |
-| searchStatus | String | N | 검색할 상품 상태. 콤마(,)로 구분해서 여러개 가능 | 판매대기:1, 판매중:2, 품절임박:3, 품절:4, 판매중지: 5 |
-
 ```
 GET /api/product
 ```
+
+| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| -----------  | ------------ |-----------|------------ | --------------- |
+| start | Integer | N | 페이지 시작 번호. 디폴트 0 | 페이지 사이즈가 20이면 다음 시작 번호는 20 |
+| length | Integer | N | 페이지 사이즈. 디폴트 20, 최대 100 |  |
+| searchTarget | String | N | 검색 대상 | 상품명:productName |
+| searchQuery | String | N | 검색어 | 식품 |
+| searchStatus | String | N | 검색할 상품 상태. 콤마(,)로 구분해서 여러개 가능 | 판매대기:1, 판매중:2, 품절임박:3, 품절:4, 판매중지: 5 |
 
 - Response
 
@@ -334,6 +335,10 @@ GET /api/product/{productId}
 - 상품을 등록 합니다.
 - Request
 
+```
+POST /api/product
+```
+
 | 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
 | yourProductId | String | N | 자체 상품 아이디 | |
@@ -369,11 +374,6 @@ GET /api/product/{productId}
 | tags | List&lt;String&gt; | Y | 태그 목록 | |
 | previewImageUrls | List&lt;String&gt; | Y | 상품 상단 이미지 URL 목록 | 이미지를 미리 업로드하고 받은 URL 사용. 최대 10개 |
 | detailImageUrls | List&lt;String&gt; | Y | 상품 상세 이미지 URL 목록 | 이미지를 미리 업로드하고 받은 URL 사용. 최대 15개 |
-
-
-```
-POST /api/product
-```
 
 - Response
 
@@ -437,22 +437,23 @@ PUT /api/product/{productId}/stop
 
 ## 주문/반품/교환 목록
 - 반품 및 교환은 Grip 판매자센터에서 직접 처리해야 합니다. API를 통해서는 조회만 가능합니다.
+- 하나의 주문은 하나 이상의 상품 구매 정보로 구성되므로 '주문 번호'와 '주문 상품 번호'를 키 값으로 사용합니다.
 
 ### 주문 개수
 - 주문 개수를 조회합니다.
 - Request
+
+```
+GET /api/order/count
+```
 
 | 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
 | searchTarget | String | N | 검색 대상 | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq |
 | searchQuery | String | N | 검색어 | 구매자 |
 | searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 여러개 가능 | 결제완료:1, 배송준비중:10, 배송중:11, 배송완료:13, 발송지연:12, 구매확정:90, 반품신청:40, 교환신청:50, 환불완료:42, 판매취소:60, 주문취소:80, 입금대기중:2  |
-| searchStartAt | Date | N | 검색할 주문/결제 시작일시  | |
-| searchEndAt | Date | N | 검색할 주문/결제 종료일시  | |
-
-```
-GET /api/order/count
-```
+| searchStartAt | Date | N | 검색할 주문/결제 시작일시. 디폴트 30일전 | |
+| searchEndAt | Date | N | 검색할 주문/결제 종료일시. 디폴트 오늘 | |
 
 - Response
 
@@ -464,19 +465,19 @@ GET /api/order/count
 - 주문 목록을 조회합니다.
 - Request
 
-| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
-| -----------  | ------------ |-----------|------------ | --------------- |
-| start | Integer | N | 페이지 시작 번호. 디폴트 0 | 페이지 사이즈가 20이면 다음 시작 번호는 20 |
-| length | Integer | N | 페이지 사이즈. 디폴트 20 |  |
-| searchTarget | String | N | 검색 대상 | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq |
-| searchQuery | String | N | 검색어 | 구매자 |
-| searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 여러개 가능 | 결제완료:1, 배송준비중:10, 배송중:11, 배송완료:13, 발송지연:12, 구매확정:90, 반품신청:40, 교환신청:50, 환불완료:42, 판매취소:60, 주문취소:80, 입금대기중:2  |
-| searchStartAt | Date | N | 검색할 주문/결제 시작일시  | |
-| searchEndAt | Date | N | 검색할 주문/결제 종료일시  | |
-
 ```
 GET /api/order
 ```
+
+| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| -----------  | ------------ |-----------|------------ | --------------- |
+| start | Integer | N | 페이지 시작 번호. 디폴트 0 | 페이지 사이즈가 20이면 다음 시작 번호는 20 |
+| length | Integer | N | 페이지 사이즈. 디폴트 20, 최대 100 |  |
+| searchTarget | String | N | 검색 대상 | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq |
+| searchQuery | String | N | 검색어 | 구매자 |
+| searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 여러개 가능 | 결제완료:1, 배송준비중:10, 배송중:11, 배송완료:13, 발송지연:12, 구매확정:90, 반품신청:40, 교환신청:50, 환불완료:42, 판매취소:60, 주문취소:80, 입금대기중:2  |
+| searchStartAt | Date | N | 검색할 주문/결제 시작일시. 디폴트 30일전 | |
+| searchEndAt | Date | N | 검색할 주문/결제 종료일시. 디폴트 오늘 | |
 
 - Response
 
@@ -490,14 +491,14 @@ GET /api/order
 | -----------  | ------------ |------------ | 
 | orderSeq | Long | 주문 번호 |
 | orderProductSeq | Long | 주문 상품 번호 |
-| orderedAt | Date | 주문결제일시 |
+| orderedAt | Date | 주문 결제 일시 |
 | orderState | OrderProductState | 주문 상태 |
 | yourProductId | String | 자체 상품 아이디 |
 | productId | String | Grip 상품 아이디 |
 | productName | String | 주문 당시 상품명 |
 | optionName | String | 주문 당시 옵션명 |
 | price | Double | 구매가 |
-| quanity | Integer | 수량 |
+| quantity | Integer | 수량 |
 | shippingAmount | Double | 배송비 |
 | shippingExtraAmount | Double | 도서/산간지역 추가 배송비 |
 | productAmount | Double | 상품 주문 금액 |
@@ -555,6 +556,10 @@ GET /api/order
 - 재고 부족과 같은 사유로 판매자가 주문을 취소합니다.
 - Request
 
+```
+POST /api/order/cancel
+```
+
 | 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
 | orderKeys | List&lt;OrderKey&gt; | Y | 대상 주문 | |
@@ -567,31 +572,27 @@ GET /api/order
 | orderSeq | Long | Y | 주문 번호 | |
 | orderProductSeq | Long | Y | 주문 상품 번호 | |
 
-```
-POST /api/order/cancel
-```
-
 - Response
 
 | 결과 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
-| affected | Integer | 취소 성공한 주문 수 |
+| affected | Integer | 취소 성공한 주문 상품 수 |
 
 ### 반품 개수
 - 반품 개수를 조회합니다.
 - Request
+
+```
+GET /api/return/count
+```
 
 | 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
 | searchTarget | String | N | 검색 대상 | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq, 송장번호:trackingNumber |
 | searchQuery | String | N | 검색어 | 구매자 |
 | searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 여러개 가능 | 반품신청:40, 반품진행중(상품대기):41, 반품진행중(상품확인):42, 반품취소(판매자):48, 반품완료(환불완료):44, 반품완료(환불대기):46  |
-| searchStartAt | Date | N | 검색할 반품신청 시작일시  | |
-| searchEndAt | Date | N | 검색할 반품신청 종료일시  | |
-
-```
-GET /api/return/count
-```
+| searchStartAt | Date | N | 검색할 반품신청 시작일시. 디폴트 30일전 | |
+| searchEndAt | Date | N | 검색할 반품신청 종료일시. 디폴트 오늘 | |
 
 - Response
 
@@ -603,6 +604,10 @@ GET /api/return/count
 - 반품 목록을 조회합니다.
 - Request
 
+```
+GET /api/return
+```
+
 | 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
 | start | Integer | N | 페이지 시작 번호. 디폴트 0 | 페이지 사이즈가 20이면 다음 시작 번호는 20 |
@@ -610,12 +615,8 @@ GET /api/return/count
 | searchTarget | String | N | 검색 대상 | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq, 송장번호:trackingNumber |
 | searchQuery | String | N | 검색어 | 구매자 |
 | searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 여러개 가능 | 반품신청:40, 반품진행중(상품대기):41, 반품진행중(상품확인):42, 반품취소(판매자):48, 반품완료(환불완료):44, 반품완료(환불대기):46  |
-| searchStartAt | Date | N | 검색할 반품신청 시작일시  | |
-| searchEndAt | Date | N | 검색할 반품신청 종료일시  | |
-
-```
-GET /api/return
-```
+| searchStartAt | Date | N | 검색할 반품신청 시작일시. 디폴트 30일전 | |
+| searchEndAt | Date | N | 검색할 반품신청 종료일시. 디폴트 오늘 | |
 
 - Response
 
@@ -629,7 +630,7 @@ GET /api/return
 | -----------  | ------------ |------------ | 
 | orderSeq | Long | 주문 번호 |
 | orderProductSeq | Long | 주문 상품 번호 |
-| orderedAt | Date | 주문결제일시 |
+| orderedAt | Date | 주문 결제 일시 |
 | orderState | OrderProductState | 주문 상태 |
 | returnRequestAt | Date | 반품신청일시 |
 | buyerReturnReasonType | Integer | 반품사유. 단순변심:1, 다른 상품 잘못 주문:3, 서비스 불만족:4, 배송 지연:5, 상품 파손 및 불량:7, 상품정보 상이:8, 다른 상품 잘못 배송:10 |
@@ -641,7 +642,7 @@ GET /api/return
 | productName | String | 주문 당시 상품명 |
 | optionName | String | 주문 당시 옵션명 |
 | price | Double | 구매가 |
-| quanity | Integer | 수량 |
+| quantity | Integer | 수량 |
 | shippingAmount | Double | 배송비 |
 | shippingExtraAmount | Double | 도서/산간지역 추가 배송비 |
 | productAmount | Double | 상품 주문 금액 |
@@ -658,17 +659,17 @@ GET /api/return
 - 교환 개수를 조회합니다.
 - Request
 
+```
+GET /api/exchange/count
+```
+
 | 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
 | searchTarget | String | N | 검색 대상 | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq, 송장번호:trackingNumber |
 | searchQuery | String | N | 검색어 | 구매자 |
 | searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 여러개 가능 | 교환신청:50, 교환진행중:51, 교환(배송중):53, 교환(배송완료):54, 교환불가:52  |
-| searchStartAt | Date | N | 검색할 교환신청 시작일시  | |
-| searchEndAt | Date | N | 검색할 교환신청 종료일시  | |
-
-```
-GET /api/exchange/count
-```
+| searchStartAt | Date | N | 검색할 교환신청 시작일시. 디폴트 30일전 | |
+| searchEndAt | Date | N | 검색할 교환신청 종료일시. 디폴트 오늘 | |
 
 - Response
 
@@ -680,6 +681,10 @@ GET /api/exchange/count
 - 교환 목록을 조회합니다.
 - Request
 
+```
+GET /api/exchange
+```
+
 | 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
 | start | Integer | N | 페이지 시작 번호. 디폴트 0 | 페이지 사이즈가 20이면 다음 시작 번호는 20 |
@@ -687,12 +692,8 @@ GET /api/exchange/count
 | searchTarget | String | N | 검색 대상 | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq, 송장번호:trackingNumber |
 | searchQuery | String | N | 검색어 | 구매자 |
 | searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 여러개 가능 | 교환신청:50, 교환진행중:51, 교환(배송중):53, 교환(배송완료):54, 교환불가:52  |
-| searchStartAt | Date | N | 검색할 교환신청 시작일시  | |
-| searchEndAt | Date | N | 검색할 교환신청 종료일시  | |
-
-```
-GET /api/exchange
-```
+| searchStartAt | Date | N | 검색할 교환신청 시작일시. 디폴트 30일전 | |
+| searchEndAt | Date | N | 검색할 교환신청 종료일시. 디폴트 오늘 | |
 
 - Response
 
@@ -706,7 +707,7 @@ GET /api/exchange
 | -----------  | ------------ |------------ | 
 | orderSeq | Long | 주문 번호 |
 | orderProductSeq | Long | 주문 상품 번호 |
-| orderedAt | Date | 주문결제일시 |
+| orderedAt | Date | 주문 결제 일시 |
 | orderState | OrderProductState | 주문 상태 |
 | exchangeRequestAt | Date | 교환신청일시 |
 | buyerChangeReasonType | Integer | 교환사유. 색상 및 사이즈 변경:2, 다른 상품 잘못 주문:3, 상품 파손 및 불량:7, 다른 상품 잘못 배송:10 |
@@ -716,7 +717,7 @@ GET /api/exchange
 | productName | String | 주문 당시 상품명 |
 | optionName | String | 주문 당시 옵션명 |
 | price | Double | 구매가 |
-| quanity | Integer | 수량 |
+| quantity | Integer | 수량 |
 | shippingAmount | Double | 배송비 |
 | shippingExtraAmount | Double | 도서/산간지역 추가 배송비 |
 | productAmount | Double | 상품 주문 금액 |
@@ -760,6 +761,10 @@ GET /api/delivery/company
 - 구매자의 요청으로 배송 주소를 변경합니다.
 - Request
 
+```
+PUT /api/delivery/info
+```
+
 | 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
 | orderSeq | Long | Y | 주문 번호 | |
@@ -769,16 +774,316 @@ GET /api/delivery/company
 | recipientAddress1 | String | Y | 수령지 주소 | 서울특별시 서초구 서초동 강남대로 373 |
 | recipientAddress2 | String | Y | 수령지 세부 주소 | 홍우빌딩 10층 |
 
+- Response
+
+| 결과 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| affected | Integer | 주소 변경에 영향 받은 주문 수 |
+
+### 배송 지연 안내
+- 재고 부족이나 연휴가 긴 경우에 판매자가 배송 지연을 안내 합니다.
+- 배송 지연 안내는 1회만 가능합니다.
+- Request
+
 ```
-PUT /api/delivery/info
+PUT /api/delivery/postpone
 ```
+
+| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| -----------  | ------------ |-----------|------------ | --------------- |
+| orderKeys | List&lt;OrderKey&gt; | Y | 대상 주문 | |
+| reason | String | Y | 배송 지연 사유 | |
 
 - Response
 
 | 결과 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
-| affected | Integer | 주소 변경에 영향 받은 주문 상품 수 |
+| affected | Integer | 배송 지연 안내 성공한 주문 수 |
 
+### 발주가 필요한 주문 개수
+- 발주가 필요한 주문 개수를 조회합니다.
+- Request
+
+```
+GET /api/delivery/prepare/count
+```
+
+| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| -----------  | ------------ |-----------|------------ | --------------- |
+| searchTarget | String | N | 검색 대상 | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq |
+| searchQuery | String | N | 검색어 | 구매자 |
+| searchStartAt | Date | N | 검색할 주문/결제 시작일시. 디폴트 30일전 | |
+| searchEndAt | Date | N | 검색할 주문/결제 종료일시. 디폴트 오늘 | |
+
+- Response
+
+| 결과 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| prepareCount | Integer | 발주가 필요한 주문 수 |
+
+### 발주할 주문 목록
+- 발주가 필요한 주문 목록을 조회합니다.
+- Request
+
+```
+GET /api/delivery/prepare
+```
+
+| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| -----------  | ------------ |-----------|------------ | --------------- |
+| start | Integer | N | 페이지 시작 번호. 디폴트 0 | 페이지 사이즈가 20이면 다음 시작 번호는 20 |
+| length | Integer | N | 페이지 사이즈. 디폴트 20, 최대 100 |  |
+| searchTarget | String | N | 검색 대상 | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq |
+| searchQuery | String | N | 검색어 | 구매자 |
+| searchStartAt | Date | N | 검색할 주문/결제 시작일시. 디폴트 30일전 | |
+| searchEndAt | Date | N | 검색할 주문/결제 종료일시. 디폴트 오늘 | |
+
+- Response
+
+| 결과 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| prepareList | List&lt;DeliveryPrepareList&gt; | 발주가 필요한 주문 목록 |
+
+- DeliveryPrepareList
+
+| 결과 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| orderSeq | Long | 주문 번호 |
+| orderProductSeq | Long | 주문 상품 번호 |
+| orderedAt | Date | 주문 결제 일시 |
+| postponedAt | Date | 배송 지연 안내 일시 |
+| postponedReason | String | 배송 지연 사유 |
+| yourProductId | String | 자체 상품 아이디 |
+| productId | String | Grip 상품 아이디 |
+| productName | String | 주문 당시 상품명 |
+| optionName | String | 주문 당시 옵션명 |
+| price | Double | 구매가 |
+| quantity | Integer | 수량 |
+| originPostalCode | String | 상품 출고지 우편번호 |
+| originAddress | String | 상품 출고지 주소 |
+| buyerNickname | String | 구매자 닉네임 |
+| buyerName | String | 구매자 이름 |
+| buyerPhoneNumber | String | 구매자 전화번호 |
+| recipientName | String | 수령인 이름 |
+| recipientPhoneNumber | String | 수령인 전화번호 |
+| recipientPostalCode | String | 수령인 우편번호 |
+| recipientAddress | String | 수령인 주소 |
+| deliveryRequest | String | 배송 메시지 |
+| dawnDeliveryRequest | String | 새벽 배송 메시지 |
+
+### 발주 요청
+- 배송이 필요한 주문을 발주 요청 합니다.
+- 발주 요청을 하면 구매자는 '배송준비중' 안내를 받고 주문취소를 할 수 없게 됩니다.
+- Request
+
+```
+PUT /api/delivery/prepare
+```
+
+| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| -----------  | ------------ |-----------|------------ | --------------- |
+| orderKeys | List&lt;OrderKey&gt; | Y | 대상 주문 | |
+
+- Response
+
+| 결과 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| affected | Integer | 발주 요청 성공한 주문 수 |
+
+### 발송할 주문 개수
+- 발송이 필요한 주문 개수를 조회합니다.
+- Request
+
+```
+GET /api/delivery/start/count
+```
+
+| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| -----------  | ------------ |-----------|------------ | --------------- |
+| searchTarget | String | N | 검색 대상 | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq |
+| searchQuery | String | N | 검색어 | 구매자 |
+| searchStartAt | Date | N | 검색할 주문/결제 시작일시. 디폴트 30일전 | |
+| searchEndAt | Date | N | 검색할 주문/결제 종료일시. 디폴트 오늘 | |
+
+- Response
+
+| 결과 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| startCount | Integer | 발송이 필요한 주문 수 |
+
+### 발송이 필요한 주문 목록
+- 발송이 필요한 주문 목록을 조회합니다.
+- Request
+
+```
+GET /api/delivery/start
+```
+
+| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| -----------  | ------------ |-----------|------------ | --------------- |
+| start | Integer | N | 페이지 시작 번호. 디폴트 0 | 페이지 사이즈가 20이면 다음 시작 번호는 20 |
+| length | Integer | N | 페이지 사이즈. 디폴트 20, 최대 100 |  |
+| searchTarget | String | N | 검색 대상 | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq |
+| searchQuery | String | N | 검색어 | 구매자 |
+| searchStartAt | Date | N | 검색할 주문/결제 시작일시. 디폴트 30일전 | |
+| searchEndAt | Date | N | 검색할 주문/결제 종료일시. 디폴트 오늘 | |
+
+- Response
+
+| 결과 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| startList | List&lt;DeliveryStartList&gt; | 발송이 필요한 주문 목록 |
+
+- DeliveryStartList
+
+| 결과 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| orderSeq | Long | 주문 번호 |
+| orderProductSeq | Long | 주문 상품 번호 |
+| orderedAt | Date | 주문 결제 일시 |
+| deliveryCompanySeq | Integer | 택배 회사 번호 |
+| deliveryTrackingNumber | String | 송장 번호 |
+| yourProductId | String | 자체 상품 아이디 |
+| productId | String | Grip 상품 아이디 |
+| productName | String | 주문 당시 상품명 |
+| optionName | String | 주문 당시 옵션명 |
+| price | Double | 구매가 |
+| quantity | Integer | 수량 |
+| originPostalCode | String | 상품 출고지 우편번호 |
+| originAddress | String | 상품 출고지 주소 |
+| buyerNickname | String | 구매자 닉네임 |
+| buyerName | String | 구매자 이름 |
+| buyerPhoneNumber | String | 구매자 전화번호 |
+| recipientName | String | 수령인 이름 |
+| recipientPhoneNumber | String | 수령인 전화번호 |
+| recipientPostalCode | String | 수령인 우편번호 |
+| recipientAddress | String | 수령인 주소 |
+| deliveryRequest | String | 배송 메시지 |
+| dawnDeliveryRequest | String | 새벽 배송 메시지 |
+
+### 택배 정보 설정
+- 택배회사 및 운송장 번호를 설정합니다.
+- 택배 정보를 설정해야 발송 요청을 성공할 수 있습니다.
+- 운송장 번호를 잘못 설정한 경우에 배송중 상태이면 다시 설정할 수 있습니다.
+- Request
+
+```
+PUT /api/delivery/shipping
+```
+
+| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| -----------  | ------------ |-----------|------------ | --------------- |
+| shippings | List&lt;DeliveryShipping&gt; | Y | 대상 주문 | |
+
+- OrderKey
+
+| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| -----------  | ------------ |-----------|------------ | --------------- |
+| orderSeq | Long | Y | 주문 번호 | |
+| orderProductSeq | Long | Y | 주문 상품 번호 | |
+| companySeq | Integer | Y | 택배 회사 번호 | |
+| trackingNumber | String | Y | 운송장 번호 | |
+
+- Response
+
+| 결과 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| affected | Integer | 설정 성공한 주문 수 |
+
+### 발송 요청
+- 택배사에 물건을 전달한 후에 발송 요청을 합니다.
+- 직접배송이나 배송없음 상품이 아닌 경우에는 택배 정보 설정부터 해야 합니다.
+- 발송 요청을 하면 구매자는 '배송중' 안내를 받고 배송추적 및 구매확정이 가능해집니다.
+- 배송없음 상품인 경우에는 즉시 구매확정이 됩니다.
+- Request
+
+```
+PUT /api/delivery/start
+```
+
+| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| -----------  | ------------ |-----------|------------ | --------------- |
+| orderKeys | List&lt;OrderKey&gt; | Y | 대상 주문 | |
+
+- Response
+
+| 결과 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| affected | Integer | 발송 요청 성공한 주문 수 |
+
+### 배송 현황 확인이 가능한 주문 개수
+- 배송 현황 확인이 가능한 주문 개수를 조회합니다.
+- Request
+
+```
+GET /api/delivery/status/count
+```
+
+| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| -----------  | ------------ |-----------|------------ | --------------- |
+| searchTarget | String | N | 검색 대상 | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq |
+| searchQuery | String | N | 검색어 | 구매자 |
+| searchStartAt | Date | N | 검색할 주문/결제 시작일시. 디폴트 30일전 | |
+| searchEndAt | Date | N | 검색할 주문/결제 종료일시. 디폴트 오늘 | |
+
+- Response
+
+| 결과 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| statusCount | Integer | 확인 가능한 주문 수 |
+
+### 배송 현황 확인이 가능한 주문 목록
+- 배송 현황 확인이 가능한 주문 목록을 조회합니다.
+- 발송 요청한 주문을 여기서 확인할 수 있습니다.
+- Request
+
+```
+GET /api/delivery/status
+```
+
+| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| -----------  | ------------ |-----------|------------ | --------------- |
+| start | Integer | N | 페이지 시작 번호. 디폴트 0 | 페이지 사이즈가 20이면 다음 시작 번호는 20 |
+| length | Integer | N | 페이지 사이즈. 디폴트 20, 최대 100 |  |
+| searchTarget | String | N | 검색 대상 | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq, 송장번호:trackingNumber |
+| searchQuery | String | N | 검색어 | 구매자 |
+| searchStartAt | Date | N | 검색할 주문/결제 시작일시. 디폴트 30일전 | |
+| searchEndAt | Date | N | 검색할 주문/결제 종료일시. 디폴트 오늘 | |
+
+- Response
+
+| 결과 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| statusList | List&lt;DeliveryStatusList&gt; | 확인이 가능한 주문 목록 |
+
+- DeliveryStatusList
+
+| 결과 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| orderSeq | Long | 주문 번호 |
+| orderProductSeq | Long | 주문 상품 번호 |
+| orderedAt | Date | 주문 결제 일시 |
+| deliveryCompanySeq | Integer | 택배 회사 번호 |
+| deliveryTrackingNumber | String | 송장 번호 |
+| startAt | Date | 발송 시작 일시 |
+| orderState | OrderProductState | 주문 상태 |
+| yourProductId | String | 자체 상품 아이디 |
+| productId | String | Grip 상품 아이디 |
+| productName | String | 주문 당시 상품명 |
+| optionName | String | 주문 당시 옵션명 |
+| price | Double | 구매가 |
+| quantity | Integer | 수량 |
+| originPostalCode | String | 상품 출고지 우편번호 |
+| originAddress | String | 상품 출고지 주소 |
+| buyerNickname | String | 구매자 닉네임 |
+| buyerName | String | 구매자 이름 |
+| buyerPhoneNumber | String | 구매자 전화번호 |
+| recipientName | String | 수령인 이름 |
+| recipientPhoneNumber | String | 수령인 전화번호 |
+| recipientPostalCode | String | 수령인 우편번호 |
+| recipientAddress | String | 수령인 주소 |
+| deliveryRequest | String | 배송 메시지 |
+| dawnDeliveryRequest | String | 새벽 배송 메시지 |
 
 ## 1:1 문의 관리
 
