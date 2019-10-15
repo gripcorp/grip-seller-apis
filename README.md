@@ -72,13 +72,13 @@ public String makeFingerprint(String method, String uri, long timestamp) throws 
 ```
 POST /api/product/images
 ```
-| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
 | image | multipart | Y | 업로드할 이미지| |
 
 - Response
 
-| 결과 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
 | image | String | 업로드한 이미지 URL |
 
@@ -92,7 +92,7 @@ GET /api/product/category
 
 - Response
 
-| 결과 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 
 | ----------- | ------------ |------------ | 
 | category | List&lt;Category&gt; | 카테고리 정보 |
 
@@ -116,7 +116,7 @@ GET /api/product/legal
 
 - Response
 
-| 결과 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
 | legal | List&lt;Legal&gt; | 상품정보 제공고시 정보 |
 
@@ -144,7 +144,7 @@ GET /api/product/legal
 GET /api/product/count
 ```
 
-| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
 | searchTarget | String | N | 검색 대상 | 상품명:productName |
 | searchQuery | String | N | 검색어 | 식품 |
@@ -152,7 +152,7 @@ GET /api/product/count
 
 - Response
 
-| 결과 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
 | productCount | Integer | 상품 개수 |
 
@@ -164,7 +164,7 @@ GET /api/product/count
 GET /api/product
 ```
 
-| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
 | start | Integer | N | 페이지 시작 번호. 디폴트 0 | 페이지 사이즈가 20이면 다음 시작 번호는 20 |
 | length | Integer | N | 페이지 사이즈. 디폴트 20, 최대 100 |  |
@@ -174,13 +174,13 @@ GET /api/product
 
 - Response
 
-| 결과 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
 | productList | List&lt;ProductList&gt; | 상품 목록 |
 
 - ProductList
 
-| 결과 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
 | yourProductId | String | 자체 상품 아이디 |
 | productId | String | Grip 상품 아이디 |
@@ -220,13 +220,13 @@ GET /api/product/{productId}
 
 - Response
 
-| 결과 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
 | product | Product | 상품 상세 |
 
 - Product
 
-| 결과 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
 | yourProductId | String | 자체 상품 아이디 |
 | productId | String | Grip 상품 아이디 |
@@ -268,7 +268,7 @@ GET /api/product/{productId}
 
 - ProductOption
 
-| 결과 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
 | types | List&lt;ProductOptionType&gt; | 옵션 종류 목록 |
 | names | List&lt;ProductOptionName&gt; | 옵션 종류별 항목 목록 |
@@ -276,14 +276,14 @@ GET /api/product/{productId}
 
 - ProductOptionType
 
-| 결과 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
 | typeSeq | Integer | 옵션 종류 번호 |
 | optionType | String | 옵션 종류 명칭 |
 
 - ProductOptionName
 
-| 결과 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
 | typeSeq | Integer | 옵션 종류 번호 |
 | nameSeq | Integer | 옵션 종류별 항목 번호 |
@@ -291,7 +291,7 @@ GET /api/product/{productId}
 
 - ProductOptionCombination
 
-| 결과 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
 | nameSeqs | List&lt;Integer&gt; | 조합된 옵션 항목 번호 목록 |
 | price | Double | 추가 가격 |
@@ -300,7 +300,7 @@ GET /api/product/{productId}
 
 - ProductAfterService
 
-| 결과 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
 | asTelephone | String | A/S 전화번호 |
 | asPolicy | String | A/S 안내 |
@@ -308,7 +308,7 @@ GET /api/product/{productId}
 
 - ProductDelivery
 
-| 결과 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
 | serviceType | Integer | 택배배송:1, 새벽배송:2, 배송없음:4, 직접배송:5 |
 | chargeType | Integer | 무료배송:1, 조건부 무료배송:2, 유료배송: 3, 수량별 배송비 부과: 4 |
@@ -339,7 +339,7 @@ GET /api/product/{productId}
 POST /api/product
 ```
 
-| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
 | yourProductId | String | N | 자체 상품 아이디 | |
 | productName | String | Y | 상품명 | |
@@ -377,7 +377,7 @@ POST /api/product
 
 - Response
 
-| 결과 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
 | productId | String | 상품 아이디 |
 
@@ -391,7 +391,7 @@ PUT /api/product/{productId}
 
 - Response
 
-| 결과 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
 | productId | String | 상품 아이디 |
 
@@ -404,7 +404,7 @@ DELETE /api/product/{productId}
 
 - Response
 
-| 결과 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
 | productId | String | 상품 아이디 |
 
@@ -417,7 +417,7 @@ PUT /api/product/{productId}/start
 
 - Response
 
-| 결과 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
 | productId | String | 상품 아이디 |
 
@@ -430,7 +430,7 @@ PUT /api/product/{productId}/stop
 
 - Response
 
-| 결과 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
 | productId | String | 상품 아이디 |
 
@@ -447,7 +447,7 @@ PUT /api/product/{productId}/stop
 GET /api/order/count
 ```
 
-| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
 | searchTarget | String | N | 검색 대상 | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq |
 | searchQuery | String | N | 검색어 | 구매자 |
@@ -457,7 +457,7 @@ GET /api/order/count
 
 - Response
 
-| 결과 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
 | orderCount | Integer | 주문 개수 |
 
@@ -469,7 +469,7 @@ GET /api/order/count
 GET /api/order
 ```
 
-| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
 | start | Integer | N | 페이지 시작 번호. 디폴트 0 | 페이지 사이즈가 20이면 다음 시작 번호는 20 |
 | length | Integer | N | 페이지 사이즈. 디폴트 20, 최대 100 |  |
@@ -481,13 +481,13 @@ GET /api/order
 
 - Response
 
-| 결과 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
 | orderList | List&lt;OrderList&gt; | 주문 목록 |
 
 - OrderList
 
-| 결과 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
 | orderSeq | Long | 주문 번호 |
 | orderProductSeq | Long | 주문 상품 번호 |
@@ -560,21 +560,21 @@ GET /api/order
 POST /api/order/cancel
 ```
 
-| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
 | orderKeys | List&lt;OrderKey&gt; | Y | 대상 주문 | |
 | reason | String | Y | 주문 취소 사유 | |
 
 - OrderKey
 
-| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
 | orderSeq | Long | Y | 주문 번호 | |
 | orderProductSeq | Long | Y | 주문 상품 번호 | |
 
 - Response
 
-| 결과 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
 | affected | Integer | 취소 성공한 주문 상품 수 |
 
@@ -586,7 +586,7 @@ POST /api/order/cancel
 GET /api/return/count
 ```
 
-| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
 | searchTarget | String | N | 검색 대상 | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq, 송장번호:trackingNumber |
 | searchQuery | String | N | 검색어 | 구매자 |
@@ -596,7 +596,7 @@ GET /api/return/count
 
 - Response
 
-| 결과 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
 | returnCount | Integer | 반품 개수 |
 
@@ -608,7 +608,7 @@ GET /api/return/count
 GET /api/return
 ```
 
-| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
 | start | Integer | N | 페이지 시작 번호. 디폴트 0 | 페이지 사이즈가 20이면 다음 시작 번호는 20 |
 | length | Integer | N | 페이지 사이즈. 디폴트 20 |  |
@@ -620,13 +620,13 @@ GET /api/return
 
 - Response
 
-| 결과 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
 | returnList | List&lt;ReturnList&gt; | 반품 목록 |
 
 - ReturnList
 
-| 결과 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
 | orderSeq | Long | 주문 번호 |
 | orderProductSeq | Long | 주문 상품 번호 |
@@ -663,7 +663,7 @@ GET /api/return
 GET /api/exchange/count
 ```
 
-| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
 | searchTarget | String | N | 검색 대상 | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq, 송장번호:trackingNumber |
 | searchQuery | String | N | 검색어 | 구매자 |
@@ -673,7 +673,7 @@ GET /api/exchange/count
 
 - Response
 
-| 결과 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
 | exchangeCount | Integer | 교환 개수 |
 
@@ -685,7 +685,7 @@ GET /api/exchange/count
 GET /api/exchange
 ```
 
-| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
 | start | Integer | N | 페이지 시작 번호. 디폴트 0 | 페이지 사이즈가 20이면 다음 시작 번호는 20 |
 | length | Integer | N | 페이지 사이즈. 디폴트 20 |  |
@@ -697,13 +697,13 @@ GET /api/exchange
 
 - Response
 
-| 결과 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
 | exchangeList | List&lt;ExchangeList&gt; | 교환 목록 |
 
 - ReturnList
 
-| 결과 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
 | orderSeq | Long | 주문 번호 |
 | orderProductSeq | Long | 주문 상품 번호 |
@@ -744,7 +744,7 @@ GET /api/delivery/company
 
 - Response
 
-| 결과 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 
 | ----------- | ------------ |------------ | 
 | deliveryCompanies | List&lt;DeliveryCompany&gt; | 택배회사 목록 |
 
@@ -765,7 +765,7 @@ GET /api/delivery/company
 PUT /api/delivery/info
 ```
 
-| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
 | orderSeq | Long | Y | 주문 번호 | |
 | recipientName | String | Y | 수령인 이름 | |
@@ -776,7 +776,7 @@ PUT /api/delivery/info
 
 - Response
 
-| 결과 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
 | affected | Integer | 주소 변경에 영향 받은 주문 수 |
 
@@ -789,14 +789,14 @@ PUT /api/delivery/info
 PUT /api/delivery/postpone
 ```
 
-| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
 | orderKeys | List&lt;OrderKey&gt; | Y | 대상 주문 | |
 | reason | String | Y | 배송 지연 사유 | |
 
 - Response
 
-| 결과 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
 | affected | Integer | 배송 지연 안내 성공한 주문 수 |
 
@@ -808,7 +808,7 @@ PUT /api/delivery/postpone
 GET /api/delivery/prepare/count
 ```
 
-| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
 | searchTarget | String | N | 검색 대상 | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq |
 | searchQuery | String | N | 검색어 | 구매자 |
@@ -817,7 +817,7 @@ GET /api/delivery/prepare/count
 
 - Response
 
-| 결과 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
 | prepareCount | Integer | 발주가 필요한 주문 수 |
 
@@ -829,7 +829,7 @@ GET /api/delivery/prepare/count
 GET /api/delivery/prepare
 ```
 
-| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
 | start | Integer | N | 페이지 시작 번호. 디폴트 0 | 페이지 사이즈가 20이면 다음 시작 번호는 20 |
 | length | Integer | N | 페이지 사이즈. 디폴트 20, 최대 100 |  |
@@ -840,13 +840,13 @@ GET /api/delivery/prepare
 
 - Response
 
-| 결과 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
 | prepareList | List&lt;DeliveryPrepareList&gt; | 발주가 필요한 주문 목록 |
 
 - DeliveryPrepareList
 
-| 결과 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
 | orderSeq | Long | 주문 번호 |
 | orderProductSeq | Long | 주문 상품 번호 |
@@ -880,13 +880,13 @@ GET /api/delivery/prepare
 PUT /api/delivery/prepare
 ```
 
-| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
 | orderKeys | List&lt;OrderKey&gt; | Y | 대상 주문 | |
 
 - Response
 
-| 결과 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
 | affected | Integer | 발주 요청 성공한 주문 수 |
 
@@ -898,7 +898,7 @@ PUT /api/delivery/prepare
 GET /api/delivery/start/count
 ```
 
-| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
 | searchTarget | String | N | 검색 대상 | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq |
 | searchQuery | String | N | 검색어 | 구매자 |
@@ -907,7 +907,7 @@ GET /api/delivery/start/count
 
 - Response
 
-| 결과 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
 | startCount | Integer | 발송이 필요한 주문 수 |
 
@@ -919,7 +919,7 @@ GET /api/delivery/start/count
 GET /api/delivery/start
 ```
 
-| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
 | start | Integer | N | 페이지 시작 번호. 디폴트 0 | 페이지 사이즈가 20이면 다음 시작 번호는 20 |
 | length | Integer | N | 페이지 사이즈. 디폴트 20, 최대 100 |  |
@@ -930,13 +930,13 @@ GET /api/delivery/start
 
 - Response
 
-| 결과 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
 | startList | List&lt;DeliveryStartList&gt; | 발송이 필요한 주문 목록 |
 
 - DeliveryStartList
 
-| 결과 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
 | orderSeq | Long | 주문 번호 |
 | orderProductSeq | Long | 주문 상품 번호 |
@@ -971,13 +971,13 @@ GET /api/delivery/start
 PUT /api/delivery/shipping
 ```
 
-| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
 | shippings | List&lt;DeliveryShipping&gt; | Y | 대상 주문 | |
 
 - OrderKey
 
-| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
 | orderSeq | Long | Y | 주문 번호 | |
 | orderProductSeq | Long | Y | 주문 상품 번호 | |
@@ -986,7 +986,7 @@ PUT /api/delivery/shipping
 
 - Response
 
-| 결과 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
 | affected | Integer | 설정 성공한 주문 수 |
 
@@ -1001,13 +1001,13 @@ PUT /api/delivery/shipping
 PUT /api/delivery/start
 ```
 
-| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
 | orderKeys | List&lt;OrderKey&gt; | Y | 대상 주문 | |
 
 - Response
 
-| 결과 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
 | affected | Integer | 발송 요청 성공한 주문 수 |
 
@@ -1019,7 +1019,7 @@ PUT /api/delivery/start
 GET /api/delivery/status/count
 ```
 
-| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
 | searchTarget | String | N | 검색 대상 | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq |
 | searchQuery | String | N | 검색어 | 구매자 |
@@ -1028,7 +1028,7 @@ GET /api/delivery/status/count
 
 - Response
 
-| 결과 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
 | statusCount | Integer | 확인 가능한 주문 수 |
 
@@ -1041,7 +1041,7 @@ GET /api/delivery/status/count
 GET /api/delivery/status
 ```
 
-| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
 | start | Integer | N | 페이지 시작 번호. 디폴트 0 | 페이지 사이즈가 20이면 다음 시작 번호는 20 |
 | length | Integer | N | 페이지 사이즈. 디폴트 20, 최대 100 |  |
@@ -1052,13 +1052,13 @@ GET /api/delivery/status
 
 - Response
 
-| 결과 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
 | statusList | List&lt;DeliveryStatusList&gt; | 확인이 가능한 주문 목록 |
 
 - DeliveryStatusList
 
-| 결과 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
 | orderSeq | Long | 주문 번호 |
 | orderProductSeq | Long | 주문 상품 번호 |
@@ -1086,10 +1086,209 @@ GET /api/delivery/status
 | dawnDeliveryRequest | String | 새벽 배송 메시지 |
 
 ## 1:1 문의 관리
+### 1:1 문의 개수
+- 1:1 문의 개수를 조회합니다.
+- Request
 
+```
+GET /api/inquiry/count
+```
+
+- Response
+
+| 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| inquiryCount | Integer | 1:1 문의 개수 |
+
+### 1:1 문의 목록
+- 1:1 문의 목록을 조회합니다.
+- Request
+
+```
+GET /api/inquiry
+```
+
+| 이름 | 타입 | 필수 | 설명 | 비고 |
+| -----------  | ------------ |-----------|------------ | --------------- |
+| start | Integer | N | 페이지 시작 번호. 디폴트 0 | 페이지 사이즈가 20이면 다음 시작 번호는 20 |
+| length | Integer | N | 페이지 사이즈. 디폴트 20 |  |
+
+- Response
+
+| 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| inquiryList | List&lt;InquiryList&gt; | 1:1 문의 목록 |
+
+- InquiryList
+
+| 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| inquirySeq | Long | 문의 번호 |
+| title | String | 문의 제목 |
+| userName | String | 문의한 사용자 닉네임 |
+| yourProductId | String | 자체 상품 아이디 |
+| productId | String | Grip 상품 아이디 |
+| productName | String | 주문 당시 상품명 |
+| email | String | 문의한 사용자 이메일 |
+| createdAt | Date | 문의일시 |
+| replyAt | Date | 답변일시 |
+
+### 1:1 문의 조회
+- 1:1 문의를 조회합니다.
+- Request
+
+```
+GET /api/inquiry/{inquirySeq}
+```
+
+- Response
+
+| 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| inquiry | Inquiry | 1:1 문의 |
+
+- Inquiry
+
+| 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| inquirySeq | Long | 문의 번호 |
+| title | String | 문의 제목 |
+| content | String | 문의 내용 |
+| reply | String | 답변 내용 |
+| userName | String | 문의한 사용자 닉네임 |
+| yourProductId | String | 자체 상품 아이디 |
+| productId | String | Grip 상품 아이디 |
+| productName | String | 주문 당시 상품명 |
+| email | String | 문의한 사용자 이메일 |
+| createdAt | Date | 문의일시 |
+| replyAt | Date | 답변일시 |
+
+### 1:1 문의 답변 등록
+- 1:1 문의 답변을 등록합니다.
+- 답변이 등록되는 즉시 문의자에게 알림이 나갑니다.
+- Request
+
+```
+POST /api/inquiry/{inquirySeq}
+```
+
+| 이름 | 타입 | 필수 | 설명 | 비고 |
+| -----------  | ------------ |-----------|------------ | --------------- |
+| reply | String | Y | 답변 내용 | |
+
+- Response
+
+| 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| inquirySeq | Long | 1:1 문의 번호 |
+
+### 1:1 문의 답변 수정
+- 1:1 문의 답변을 수정합니다.
+- 수정하는 경우에는 문의자에게 수정 사항에 대해서 알려줄지 선택할 수 있습니다.
+- Request
+
+```
+PUT /api/inquiry/{inquirySeq}
+```
+
+| 이름 | 타입 | 필수 | 설명 | 비고 |
+| -----------  | ------------ |-----------|------------ | --------------- |
+| reply | String | Y | 답변 내용 | |
+| noti | Boolean | Y | 답변 수정 알림 여부 | |
+
+- Response
+
+| 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| inquirySeq | Long | 1:1 문의 번호 |
 
 ## 리뷰 관리
+### 리뷰 개수
+- 리뷰 개수를 조회합니다.
+- Request
 
+```
+GET /api/review/count
+```
+
+- Response
+
+| 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| reviewCount | Integer | 리뷰 개수 |
+
+### 리뷰 목록
+- 리뷰 목록을 조회합니다.
+- Request
+
+```
+GET /api/review
+```
+
+| 이름 | 타입 | 필수 | 설명 | 비고 |
+| -----------  | ------------ |-----------|------------ | --------------- |
+| start | Integer | N | 페이지 시작 번호. 디폴트 0 | 페이지 사이즈가 20이면 다음 시작 번호는 20 |
+| length | Integer | N | 페이지 사이즈. 디폴트 20 |  |
+
+- Response
+
+| 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| reviewList | List&lt;ReviewList&gt; | 리뷰 목록 |
+
+- ReviewList
+
+| 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| reviewSeq | Long | 리뷰 번호 |
+| grade | Float | 별점 |
+| review | String | 리뷰 내용 |
+| reply | String | 답변 내용 |
+| userName | String | 리뷰 작성한 사용자 닉네임 |
+| yourProductId | String | 자체 상품 아이디 |
+| productId | String | Grip 상품 아이디 |
+| productName | String | 주문 당시 상품명 |
+| createdAt | Date | 작성일시 |
+| replyAt | Date | 답변일시 |
+
+### 리뷰 답변 등록
+- 리뷰의 답변을 등록합니다.
+- 답변이 등록되는 즉시 리뷰 작성자에게 알림이 나갑니다.
+- Request
+
+```
+POST /api/review/{reviewSeq}
+```
+
+| 이름 | 타입 | 필수 | 설명 | 비고 |
+| -----------  | ------------ |-----------|------------ | --------------- |
+| reply | String | Y | 답변 내용 | |
+
+- Response
+
+| 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| reviewSeq | Long | 리뷰 번호 |
+
+### 리뷰 답변 수정
+- 리뷰의 답변을 수정합니다.
+- 수정하는 경우에는 리뷰 작성자에게 수정 사항에 대해서 알려줄지 선택할 수 있습니다.
+- Request
+
+```
+PUT /api/review/{reviewSeq}
+```
+
+| 이름 | 타입 | 필수 | 설명 | 비고 |
+| -----------  | ------------ |-----------|------------ | --------------- |
+| reply | String | Y | 답변 내용 | |
+| noti | Boolean | Y | 답변 수정 알림 여부 | |
+
+- Response
+
+| 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| reviewSeq | Long | 리뷰 번호 |
 
 
 
