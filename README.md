@@ -58,8 +58,13 @@ public String makeFingerprint(String method, String uri, long timestamp) throws 
 ```
 
 ## 상품 관리
+- 배송/반품/교환 정보와 A/S 및 특이사항 정보는 Grip 판매자센터에서 설정한 판매자 기본 설정을 사용할 수 있습니다.
+- 기본으로 설정한 정보와 상이한 경우에만 설정하는 것을 권장합니다.
+
 ### 이미지 업로드
 - 상품을 등록하기 전에 미리 이미지를 업로드 해야 합니다.
+- 이미지의 크기는 5M 이하여야 합니다.
+- JPG, PNG, GIF만 지원합니다.
 - Content-Type은 multipart/form-data 로 설정해야 합니다.
 - Request
 
@@ -431,7 +436,7 @@ PUT /api/product/{productId}/stop
 
 
 ## 주문/반품/교환 목록
-반품 및 교환은 Grip 판매자센터에서 직접 처리해야 합니다. API를 통해서는 조회만 가능합니다.
+- 반품 및 교환은 Grip 판매자센터에서 직접 처리해야 합니다. API를 통해서는 조회만 가능합니다.
 
 ### 주문 개수
 - 주문 개수를 조회합니다.
@@ -725,6 +730,54 @@ GET /api/exchange
 | recipientAddress | String | 수령인 주소 |
 
 ## 배송 관리
+- 배송을 하기 위해서는 발주(배송준비중)부터 하고 발송을 해야 합니다.
+- 발주를 하면 구매자는 주문취소를 할 수 없고 '배송준비중' 안내 푸시를 받습니다.
+
+### 택배회사 목록
+- 배송정보에 설정할 수 있는 택배회사 목록입니다.
+- Request
+
+```
+GET /api/delivery/company
+```
+
+- Response
+
+| 결과 이름 | 타입 | 설명 | 
+| ----------- | ------------ |------------ | 
+| deliveryCompanies | List&lt;DeliveryCompany&gt; | 택배회사 목록 |
+
+- DeliveryCompany
+
+| 이름 | 타입 | 설명 | 
+| ----------- | ------------ |------------ | 
+| companySeq | Integer | 택배회사 번호 |
+| companyName | String | 택배회사 이름 |
+| serviceType | Integer | 일반배송:1, 새벽배송:2 |
+| tracking | Boolean | 배송추적 가능 여부 |
+
+### 배송지 변경
+- 구매자의 요청으로 배송 주소를 변경합니다.
+- Request
+
+| 파라메터 이름 | 타입 | 필수 | 설명 | 비고 |
+| -----------  | ------------ |-----------|------------ | --------------- |
+| orderSeq | Long | Y | 주문 번호 | |
+| recipientName | String | Y | 수령인 이름 | |
+| recipientPhoneNumber | String | Y | 수령인 연락처 | |
+| recipientPostalCode | String | Y | 수령지 우편번호 | |
+| recipientAddress1 | String | Y | 수령지 주소 | 서울특별시 서초구 서초동 강남대로 373 |
+| recipientAddress2 | String | Y | 수령지 세부 주소 | 홍우빌딩 10층 |
+
+```
+PUT /api/delivery/info
+```
+
+- Response
+
+| 결과 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| affected | Integer | 주소 변경에 영향 받은 주문 상품 수 |
 
 
 ## 1:1 문의 관리
