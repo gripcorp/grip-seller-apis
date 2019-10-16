@@ -70,7 +70,7 @@ public String makeFingerprint(String method, String uri, long timestamp) throws 
 - Request
 
 ```
-POST /api/product/images
+POST /api/product/image
 ```
 | 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
