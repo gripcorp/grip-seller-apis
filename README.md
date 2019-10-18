@@ -207,6 +207,7 @@ GET /api/product
 | useMaxOrderQuantity | Boolean | 최대 구매 개수 사용 여부 |
 | minOrderQuantity | Integer | 최소 구매 개수 |
 | maxOrderQuantity | Integer | 최대 구매 개수 |
+| allowCoupon | Boolean | 쿠폰 사용 허용 여부 |
 | supportMarketing | Boolean | 그리퍼 지원 요청 여부 |
 | createdAt | Date | 등록일시 |
 | modifiedAt | Date | 수정일시 |
@@ -255,6 +256,7 @@ GET /api/product/{productId}
 | useMaxOrderQuantity | Boolean | 최대 구매 개수 사용 여부 |
 | minOrderQuantity | Integer | 최소 구매 개수 |
 | maxOrderQuantity | Integer | 최대 구매 개수 |
+| allowCoupon | Boolean | 쿠폰 사용 허용 여부 |
 | customDelivery | Boolean | 커스텀 배송 정보 사용 여부 |
 | delivery | ProductDelivery | 상품 배송 정보 |
 | customAs | Boolean | 커스텀 A/S 사용 여부 |
@@ -366,6 +368,7 @@ POST /api/product
 | useMaxOrderQuantity | Boolean | Y | 최대 구매 개수 사용 여부 | |
 | minOrderQuantity | Integer | N | 최소 구매 개수 | useMinOrderQuantity가 Y면 필수 |
 | maxOrderQuantity | Integer | N | 최대 구매 개수 | useMaxOrderQuantity가 Y면 필수 |
+| allowCoupon | Boolean | Y | 쿠폰 사용 허용 여부 | |
 | customDelivery | Boolean | Y | 커스텀 배송 정보 사용 여부 | N이면 판매자 기본 배송 정보 사용|
 | delivery | ProductDelivery | N | 상품 배송 정보 | customDelivery가 Y면 필수 |
 | customAs | Boolean | Y | 커스텀 A/S 사용 여부 | N이면 판매자 기본 A/S 정보 사용 |
