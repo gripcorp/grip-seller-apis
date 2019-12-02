@@ -361,8 +361,8 @@ POST /api/product
 | ondemand | Boolean | Y | 주문제작 여부 | |
 | returnImpossible | Boolean | N | 반품 불가 여부 | returnImpossible이 Y면 필수 |
 | taxType | Integer | Y | 부가세. 과세상품:1, 면세상품:2, 영세상품: 3 | |
-| startAt | Date | Y | 판매 시작일시 | |
-| endAt | Date | Y | 판매 종료일시 | |
+| startAt | Date | Y | 판매 시작일시 | 최소 2019-02-01 00:00:00. 현재시간 권장 |
+| endAt | Date | Y | 판매 종료일시 | 최대 2048-12-31 23:59:59 |
 | stockCount | Integer | Y | 재고 수량 | |
 | useMinOrderQuantity | Boolean | Y | 최소 구매 개수 사용 여부 | |
 | useMaxOrderQuantity | Boolean | Y | 최대 구매 개수 사용 여부 | |
