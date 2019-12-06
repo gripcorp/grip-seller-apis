@@ -502,9 +502,9 @@ GET /api/order
 | optionName | String | 주문 당시 옵션명 |
 | price | Double | 구매가 |
 | quantity | Integer | 수량 |
+| productAmount | Double | 상품 주문 금액 |
 | shippingAmount | Double | 배송비 |
 | shippingExtraAmount | Double | 도서/산간지역 추가 배송비 |
-| productAmount | Double | 상품 주문 금액 |
 | couponAmount | Double | 쿠폰 할인 금액 |
 | buyerNickname | String | 구매자 닉네임 |
 | buyerName | String | 구매자 이름 |
@@ -646,9 +646,9 @@ GET /api/return
 | optionName | String | 주문 당시 옵션명 |
 | price | Double | 구매가 |
 | quantity | Integer | 수량 |
+| productAmount | Double | 상품 주문 금액 |
 | shippingAmount | Double | 배송비 |
 | shippingExtraAmount | Double | 도서/산간지역 추가 배송비 |
-| productAmount | Double | 상품 주문 금액 |
 | couponAmount | Double | 쿠폰 할인 금액 |
 | buyerNickname | String | 구매자 닉네임 |
 | buyerName | String | 구매자 이름 |
@@ -721,9 +721,9 @@ GET /api/exchange
 | optionName | String | 주문 당시 옵션명 |
 | price | Double | 구매가 |
 | quantity | Integer | 수량 |
+| productAmount | Double | 상품 주문 금액 |
 | shippingAmount | Double | 배송비 |
 | shippingExtraAmount | Double | 도서/산간지역 추가 배송비 |
-| productAmount | Double | 상품 주문 금액 |
 | couponAmount | Double | 쿠폰 할인 금액 |
 | buyerNickname | String | 구매자 닉네임 |
 | buyerName | String | 구매자 이름 |
@@ -862,6 +862,9 @@ GET /api/delivery/prepare
 | optionName | String | 주문 당시 옵션명 |
 | price | Double | 구매가 |
 | quantity | Integer | 수량 |
+| productAmount | Double | 상품 주문 금액 |
+| shippingAmount | Double | 배송비 |
+| shippingExtraAmount | Double | 도서/산간지역 추가 배송비 |
 | originPostalCode | String | 상품 출고지 우편번호 |
 | originAddress | String | 상품 출고지 주소 |
 | buyerNickname | String | 구매자 닉네임 |
@@ -952,6 +955,9 @@ GET /api/delivery/start
 | optionName | String | 주문 당시 옵션명 |
 | price | Double | 구매가 |
 | quantity | Integer | 수량 |
+| productAmount | Double | 상품 주문 금액 |
+| shippingAmount | Double | 배송비 |
+| shippingExtraAmount | Double | 도서/산간지역 추가 배송비 |
 | originPostalCode | String | 상품 출고지 우편번호 |
 | originAddress | String | 상품 출고지 주소 |
 | buyerNickname | String | 구매자 닉네임 |
@@ -1076,6 +1082,9 @@ GET /api/delivery/status
 | optionName | String | 주문 당시 옵션명 |
 | price | Double | 구매가 |
 | quantity | Integer | 수량 |
+| productAmount | Double | 상품 주문 금액 |
+| shippingAmount | Double | 배송비 |
+| shippingExtraAmount | Double | 도서/산간지역 추가 배송비 |
 | originPostalCode | String | 상품 출고지 우편번호 |
 | originAddress | String | 상품 출고지 주소 |
 | buyerNickname | String | 구매자 닉네임 |
