@@ -198,7 +198,7 @@ GET /api/product
 | brandName | String | 브랜드 |
 | modelName | String | 모델명 |
 | ondemand | Boolean | 주문제작 여부 |
-| returnImpossible | Boolean | 반품 불가 여부 |
+| returnImpossible | Boolean | 반품 불가 여부. 주문제작 여부가 true인 경우에만 사용. |
 | taxType | Integer | 부가세. 과세상품:1, 면세상품:2, 영세상품: 3 |
 | startAt | Date | 판매 시작일시 |
 | endAt | Date | 판매 종료일시 |
