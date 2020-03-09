@@ -207,7 +207,8 @@ GET /api/product
 | useMaxOrderQuantity | Boolean | 최대 구매 개수 사용 여부 |
 | minOrderQuantity | Integer | 최소 구매 개수 |
 | maxOrderQuantity | Integer | 최대 구매 개수 |
-| allowCoupon | Boolean | 쿠폰 사용 허용 여부 |
+| allowCoupon | Boolean | 쿠폰 적용 불가 상품 여부. 쿠폰 사용 가능이면 Y, 불가면 N |
+| overseasDirect | Boolean | 해외배송 여부 |
 | supportMarketing | Boolean | 그리퍼 지원 요청 여부 |
 | createdAt | Date | 등록일시 |
 | modifiedAt | Date | 수정일시 |
@@ -256,7 +257,8 @@ GET /api/product/{productId}
 | useMaxOrderQuantity | Boolean | 최대 구매 개수 사용 여부 |
 | minOrderQuantity | Integer | 최소 구매 개수 |
 | maxOrderQuantity | Integer | 최대 구매 개수 |
-| allowCoupon | Boolean | 쿠폰 사용 허용 여부 |
+| allowCoupon | Boolean | 쿠폰 적용 불가 상품 여부. 쿠폰 사용 가능이면 Y, 불가면 N |
+| overseasDirect | Boolean | 해외배송 여부 |
 | customDelivery | Boolean | 커스텀 배송 정보 사용 여부 |
 | delivery | ProductDelivery | 상품 배송 정보 |
 | customAs | Boolean | 커스텀 A/S 사용 여부 |
@@ -368,7 +370,8 @@ POST /api/product
 | useMaxOrderQuantity | Boolean | Y | 최대 구매 개수 사용 여부 | |
 | minOrderQuantity | Integer | N | 최소 구매 개수 | useMinOrderQuantity가 Y면 필수 |
 | maxOrderQuantity | Integer | N | 최대 구매 개수 | useMaxOrderQuantity가 Y면 필수 |
-| allowCoupon | Boolean | Y | 쿠폰 사용 허용 여부 | |
+| allowCoupon | Boolean | N | 쿠폰 적용 불가 상품 여부. 디폴트 Y | 쿠폰허용이면 Y, 불가면 N|
+| overseasDirect | Boolean | N | 해외배송 여부. 디폴트 N |
 | customDelivery | Boolean | Y | 커스텀 배송 정보 사용 여부 | N이면 판매자 기본 배송 정보 사용|
 | delivery | ProductDelivery | N | 상품 배송 정보 | customDelivery가 Y면 필수 |
 | customAs | Boolean | Y | 커스텀 A/S 사용 여부 | N이면 판매자 기본 A/S 정보 사용 |
@@ -515,6 +518,7 @@ GET /api/order
 | recipientAddress | String | 수령인 주소 |
 | deliveryRequest | String | 배송 메시지 |
 | dawnDeliveryRequest | String | 새벽 배송 메시지 |
+| clearanceCode | String | 개인 통관 번호 |
 
 - OrderProductState
 
@@ -657,6 +661,7 @@ GET /api/return
 | recipientPhoneNumber | String | 수령인 전화번호 |
 | recipientPostalCode | String | 수령인 우편번호 |
 | recipientAddress | String | 수령인 주소 |
+| clearanceCode | String | 개인 통관 번호 |
 
 ### 교환 개수
 - 교환 개수를 조회합니다.
@@ -732,6 +737,7 @@ GET /api/exchange
 | recipientPhoneNumber | String | 수령인 전화번호 |
 | recipientPostalCode | String | 수령인 우편번호 |
 | recipientAddress | String | 수령인 주소 |
+| clearanceCode | String | 개인 통관 번호 |
 
 ## 배송 관리
 - 배송을 하기 위해서는 발주(배송준비중)부터 하고 발송을 해야 합니다.
@@ -757,7 +763,7 @@ GET /api/delivery/company
 | ----------- | ------------ |------------ | 
 | companySeq | Integer | 택배회사 번호 |
 | companyName | String | 택배회사 이름 |
-| serviceType | Integer | 일반배송:1, 새벽배송:2 |
+| serviceType | Integer | 일반배송:1, 새벽배송:2, 해외배송: 3 |
 | tracking | Boolean | 배송추적 가능 여부 |
 
 ### 배송지 변경
@@ -876,6 +882,7 @@ GET /api/delivery/prepare
 | recipientAddress | String | 수령인 주소 |
 | deliveryRequest | String | 배송 메시지 |
 | dawnDeliveryRequest | String | 새벽 배송 메시지 |
+| clearanceCode | String | 개인 통관 번호 |
 
 ### 발주 요청
 - 배송이 필요한 주문을 발주 요청 합니다.
@@ -969,6 +976,7 @@ GET /api/delivery/start
 | recipientAddress | String | 수령인 주소 |
 | deliveryRequest | String | 배송 메시지 |
 | dawnDeliveryRequest | String | 새벽 배송 메시지 |
+| clearanceCode | String | 개인 통관 번호 |
 
 ### 택배 정보 설정
 - 택배회사 및 운송장 번호를 설정합니다.
@@ -1096,6 +1104,7 @@ GET /api/delivery/status
 | recipientAddress | String | 수령인 주소 |
 | deliveryRequest | String | 배송 메시지 |
 | dawnDeliveryRequest | String | 새벽 배송 메시지 |
+| clearanceCode | String | 개인 통관 번호 |
 
 ## 1:1 문의 관리
 ### 1:1 문의 개수
