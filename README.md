@@ -570,6 +570,7 @@ POST /api/order/cancel
 | 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
 | orderKeys | List&lt;OrderKey&gt; | Y | 대상 주문 | |
+| reasonType | Integer | Y | 주문 취소 유형 | 고객요청-단순변심:1, 고객요청-서비스불만족:2, 재고부족:3, 상품문제발생:4, 배송문제발생:5 |
 | reason | String | Y | 주문 취소 사유 | |
 
 - OrderKey
