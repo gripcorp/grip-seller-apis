@@ -1116,6 +1116,15 @@ GET /api/delivery/status
 GET /api/inquiry/count
 ```
 
+| 이름 | 타입 | 필수 | 설명 | 비고 |
+| -----------  | ------------ |-----------|------------ | --------------- |
+| inquiryType | InquiryType | N | 검색할 문의 유형 | |
+| searchTarget | String | N | 검색 대상 | 문의자 닉네임:username, 문의 제목:title, 주문번호:orderSeq |
+| searchQuery | String | N | 검색어 | |
+| searchStartAt | Date | N | 검색할 문의 등록 시작일시. 디폴트 30일전 | |
+| searchEndAt | Date | N | 검색할 문의 등록 종료일시. 디폴트 오늘 | |
+| needReply | Boolean | N | 답변 필요. 디폴트 false | |
+
 - Response
 
 | 이름 | 타입 | 설명 | 
@@ -1132,6 +1141,12 @@ GET /api/inquiry
 
 | 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
+| inquiryType | InquiryType | N | 검색할 문의 유형 | |
+| searchTarget | String | N | 검색 대상 | 문의자 닉네임:username, 문의 제목:title, 주문번호:orderSeq |
+| searchQuery | String | N | 검색어 | |
+| searchStartAt | Date | N | 검색할 문의 등록 시작일시. 디폴트 30일전 | |
+| searchEndAt | Date | N | 검색할 문의 등록 종료일시. 디폴트 오늘 | |
+| needReply | Boolean | N | 답변 필요. 디폴트 false | |
 | start | Integer | N | 페이지 시작 번호. 디폴트 0 | 페이지 사이즈가 20이면 다음 시작 번호는 20 |
 | length | Integer | N | 페이지 사이즈. 디폴트 20 |  |
 
@@ -1146,6 +1161,7 @@ GET /api/inquiry
 | 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
 | inquirySeq | Long | 문의 번호 |
+| inquiryType | InquiryType | 문의 유형 |
 | title | String | 문의 제목 |
 | userName | String | 문의한 사용자 닉네임 |
 | yourProductId | String | 자체 상품 아이디 |
@@ -1154,6 +1170,22 @@ GET /api/inquiry
 | email | String | 문의한 사용자 이메일 |
 | createdAt | Date | 문의일시 |
 | replyAt | Date | 답변일시 |
+| imageUrls | List&lt;String&gt; | 이미지 있는 경우 URL 목록 |
+
+- InquiryType
+
+| 설명 | 값 | 비고 |
+| -----------  | ------------ | ------------ |
+| 상품 문의 | 1 | |
+| 주문 확인 | 2 | |
+| 배송일/배송지연 | 3 | |
+| 누락 및 오배송 | 4 | |
+| 배송전 취소요청 | 5 | |
+| 반품/교환 지연 | 6 | |
+| 반품/교환 철회 | 7 | |
+| 환불 문의 | 8 | |
+| 이벤트/사은품 문의 | 9 | |
+| 기타 | 10 | |
 
 ### 1:1 문의 조회
 - 1:1 문의를 조회합니다.
@@ -1174,6 +1206,7 @@ GET /api/inquiry/{inquirySeq}
 | 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
 | inquirySeq | Long | 문의 번호 |
+| inquiryType | InquiryType | 문의 유형 |
 | title | String | 문의 제목 |
 | content | String | 문의 내용 |
 | reply | String | 답변 내용 |
@@ -1184,6 +1217,7 @@ GET /api/inquiry/{inquirySeq}
 | email | String | 문의한 사용자 이메일 |
 | createdAt | Date | 문의일시 |
 | replyAt | Date | 답변일시 |
+| imageUrls | List&lt;String&gt; | 이미지 있는 경우 URL 목록 |
 
 ### 1:1 문의 답변 등록
 - 1:1 문의 답변을 등록합니다.
@@ -1233,6 +1267,11 @@ PUT /api/inquiry/{inquirySeq}
 GET /api/review/count
 ```
 
+| searchQuery | String | N | 검색할 작성자 닉네임 | |
+| searchStartAt | Date | N | 검색할 문의 등록 시작일시. 디폴트 30일전 | |
+| searchEndAt | Date | N | 검색할 문의 등록 종료일시. 디폴트 오늘 | |
+| needReply | Boolean | N | 답변 필요. 디폴트 false | |
+
 - Response
 
 | 이름 | 타입 | 설명 | 
@@ -1249,6 +1288,10 @@ GET /api/review
 
 | 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
+| searchQuery | String | N | 검색할 작성자 닉네임 | |
+| searchStartAt | Date | N | 검색할 문의 등록 시작일시. 디폴트 30일전 | |
+| searchEndAt | Date | N | 검색할 문의 등록 종료일시. 디폴트 오늘 | |
+| needReply | Boolean | N | 답변 필요. 디폴트 false | |
 | start | Integer | N | 페이지 시작 번호. 디폴트 0 | 페이지 사이즈가 20이면 다음 시작 번호는 20 |
 | length | Integer | N | 페이지 사이즈. 디폴트 20 |  |
 
