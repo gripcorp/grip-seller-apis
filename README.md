@@ -509,6 +509,7 @@ GET /api/order
 | shippingAmount | Double | 배송비 |
 | shippingExtraAmount | Double | 도서/산간지역 추가 배송비 |
 | couponAmount | Double | 쿠폰 할인 금액 |
+| paymentMethod | Integer | 결제 수단 |
 | buyerNickname | String | 구매자 닉네임 |
 | buyerName | String | 구매자 이름 |
 | buyerPhoneNumber | String | 구매자 전화번호 |
@@ -558,6 +559,18 @@ GET /api/order
 | 주문취소(환불대기) | 84 | Grip에서 구매자에게 입금전 |
 | 구매확정 | 90 | |
 | 구매확정(리뷰작성) | 91 | |
+
+- PaymentMethod
+
+| 설명 | 값 | 비고 |
+| -----------  | ------------ | ------------ |
+| 신용카드 | 1 | |
+| 실시간 계좌이체 | 2 | |
+| 가상계좌 | 3 | |
+| 카카오페이 | 4 | |
+| 네이버페이 | 5 | |
+| 페이코 | 6 | |
+| 그립지원 | 99 | |
 
 ### 주문 취소(판매 취소)
 - 재고 부족과 같은 사유로 판매자가 주문을 취소합니다.
@@ -655,6 +668,7 @@ GET /api/return
 | shippingAmount | Double | 배송비 |
 | shippingExtraAmount | Double | 도서/산간지역 추가 배송비 |
 | couponAmount | Double | 쿠폰 할인 금액 |
+| paymentMethod | Integer | 결제 수단 |
 | buyerNickname | String | 구매자 닉네임 |
 | buyerName | String | 구매자 이름 |
 | buyerPhoneNumber | String | 구매자 전화번호 |
@@ -731,6 +745,7 @@ GET /api/exchange
 | shippingAmount | Double | 배송비 |
 | shippingExtraAmount | Double | 도서/산간지역 추가 배송비 |
 | couponAmount | Double | 쿠폰 할인 금액 |
+| paymentMethod | Integer | 결제 수단 |
 | buyerNickname | String | 구매자 닉네임 |
 | buyerName | String | 구매자 이름 |
 | buyerPhoneNumber | String | 구매자 전화번호 |
