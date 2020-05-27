@@ -1456,7 +1456,7 @@ POST /api/group/member
 
 ### 맴버 수정
 - 그룹 맴버의 정보를 수정합니다.
-- Request는 상품 등록과 동일합니다.
+- Request는 맴버 등록과 동일합니다.
 
 ```
 PUT /api/group/member/{userId}
