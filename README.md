@@ -1371,5 +1371,167 @@ PUT /api/review/{reviewSeq}
 | -----------  | ------------ |------------ | 
 | reviewSeq | Long | 리뷰 번호 |
 
+## 그룹 관리 (그룹 계정 전용)
+### 맴버 수
+- 그룹 맴버 수를 조회합니다.
+- Request
+
+```
+GET /api/gropup/member/count
+```
+
+| searchQuery | String | N | 검색할 맴버의 닉네임 or 소속명 | |
+
+- Response
+
+| 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| memberCount | Integer | 맴버 수 |
+
+### 맴버 목록
+- 그룹 맴버 목록을 조회합니다.
+- Request
+
+```
+GET /api/gropup/member/
+```
+
+| 이름 | 타입 | 필수 | 설명 | 비고 |
+| -----------  | ------------ |-----------|------------ | --------------- |
+| searchQuery | String | N | 검색할 맴버의 닉네임 or 소속명 | |
+| sortField | Integer | N | 정렬 필드 | 이용자 아이디: 0, 닉네임: 1, 소속명: 2, 상품수: 4, 방송수: 5, 팔로워수: 6, 최근방송일시: 7, 등록일시(디폴트): -1 |
+| sortOrder | String | N | 정렬 순서 | DESC, ASC |
+| start | Integer | N | 페이지 시작 번호. 디폴트 0 | 페이지 사이즈가 20이면 다음 시작 번호는 20 |
+| length | Integer | N | 페이지 사이즈. 디폴트 20 |  |
+
+- Response
+
+| 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| memberList | List&lt;GroupMemberList&gt; | 맴버 목록 |
+
+- GroupMemberList
+
+| 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| userId | String | 그립 내부 사용자 아이디 |
+| userTag | String | 이용자 아이디. 프로필에 보이는 아이디 |
+| userName | String | 닉네임. 프로필에 보이는 닉네임 |
+| master | Boolean | 그룹 마스터 여부 |
+| active | Boolean | 방송권한 여부 |
+| profileUrl | String | 프로필 URL |
+| companyName | String | 소속명 |
+| managerName | String | 브랜드 담당 매니저 이름 |
+| managerEmail | String | 브랜드 담당 매니저 이메일 |
+| managerMobile | String | 브랜드 담당 매니저 핸드폰 번호 |
+| productCount | Integer | 상품 수 |
+| contentCount | Integer | 방송 수 |
+| followerCount | Integer | 팔로워 수 |
+| lastPublishedAt | Date | 최근 방송일시 |
+| createdAt | Date | 등록일시 |
 
 
+### 맴버 등록
+- 그룹 맴버를 등록합니다.
+- Request
+
+```
+POST /api/group/member
+```
+
+| 이름 | 타입 | 필수 | 설명 | 비고 |
+| -----------  | ------------ |-----------|------------ | --------------- |
+| companyName | String | Y | 소속명 | |
+| userTag | String | Y | 이용자 아이디. 프로필에 보이는 아이디 | |
+| userName | String | Y | 닉네임. 프로필에 보이는 닉네임 | |
+| managerName | String | Y | 브랜드 담당 매니저 이름 | |
+| managerEmail | String | Y | 브랜드 담당 매니저 이메일 | |
+| managerMobile | String | Y | 브랜드 담당 매니저 핸드폰 번호 | |
+
+- Response
+
+| 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| userId | String | 그립 내부 사용자 아이디 |
+
+### 맴버 수정
+- 그룹 맴버의 정보를 수정합니다.
+- Request는 상품 등록과 동일합니다.
+
+```
+PUT /api/group/member/{userId}
+```
+
+- Response
+
+| 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| userId | String | 그립 내부 사용자 아이디 |
+
+### 맴버 삭제
+- 그룹에서 해당 맴버를 삭제합니다.
+
+```
+DELETE /api/group/member/{userId}
+```
+
+- Response
+
+| 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| userId | String | 그립 내부 사용자 아이디 |
+
+### 방송 권한 부여
+- 해당 맴버에게 방송 권한을 부여합니다.
+
+```
+PUT /api/group/member/{userId}/enable
+```
+
+- Response
+
+| 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| userId | String | 그립 내부 사용자 아이디 |
+
+### 방송 권한 제거
+- 해당 맴버의 방송 권한을 제거합니다.
+
+```
+PUT /api/group/member/{userId}/disable
+```
+
+- Response
+
+| 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| userId | String | 그립 내부 사용자 아이디 |
+
+### 패스워드 초기화
+- 해당 맴버의 패스워드를 초기화 합니다.
+- 초기화하면 임시 패스워드가 발급됩니다.
+
+```
+PUT /api/group/member/{userId}/password/reset
+```
+
+- Response
+
+| 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| userId | String | 그립 내부 사용자 아이디 |
+| password | String | 새로운 임시 패스워드 |
+
+
+### 패스워드 전송
+- 해당 맴버의 managerEmail로 현재 패스워드를 전송 합니다.
+
+```
+PUT /api/group/member/{userId}/password/send
+```
+
+- Response
+
+| 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| userId | String | 그립 내부 사용자 아이디 |
