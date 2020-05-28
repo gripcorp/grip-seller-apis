@@ -797,7 +797,7 @@ PUT /api/delivery/info
 | recipientPhoneNumber | String | Y | 수령인 연락처 | |
 | recipientPostalCode | String | Y | 수령지 우편번호 | 최대 8자 |
 | recipientAddress1 | String | Y | 수령지 주소 | 최대 100자, 서울특별시 서초구 서초동 강남대로 373 |
-| recipientAddress2 | String | Y | 수령지 세부 주소 | 최대 100자홍우빌딩 10층 |
+| recipientAddress2 | String | Y | 수령지 세부 주소 | 최대 100자, 홍우빌딩 10층 |
 
 - Response
 
@@ -902,6 +902,7 @@ GET /api/delivery/prepare
 
 ### 발주 요청
 - 배송이 필요한 주문을 발주 요청 합니다.
+- 한번에 다수의 주문을 묶어서 요청하는 것을 권장합니다.
 - 발주 요청을 하면 구매자는 '배송준비중' 안내를 받고 주문취소를 할 수 없게 됩니다.
 - Request
 
@@ -1026,8 +1027,9 @@ PUT /api/delivery/shipping
 ### 발송 요청
 - 택배사에 물건을 전달한 후에 발송 요청을 합니다.
 - 직접배송이나 배송없음 상품이 아닌 경우에는 택배 정보 설정부터 해야 합니다.
+- 한번에 다수의 주문을 묶어서 요청하는 것을 권장합니다.
 - 발송 요청을 하면 구매자는 '배송중' 안내를 받고 배송추적 및 구매확정이 가능해집니다.
-- 배송없음 상품인 경우에는 즉시 구매확정이 됩니다.
+- 배송없음 상품인 경우에는 즉시 '배송완료'가 됩니다.
 - Request
 
 ```
