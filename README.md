@@ -147,7 +147,7 @@ GET /api/product/count
 | 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
 | searchTarget | String | N | 검색 대상 | 상품명:productName |
-| searchQuery | String | N | 검색어 | 식품 |
+| searchQuery | String | N | 검색어 | 최대 40자 |
 | searchStatus | String | N | 검색할 상품 상태. 콤마(,)로 구분해서 여러개 가능 | 판매대기:1, 판매중:2, 품절임박:3, 품절:4, 판매중지: 5 |
 
 - Response
@@ -169,7 +169,7 @@ GET /api/product
 | start | Integer | N | 페이지 시작 번호. 디폴트 0 | 페이지 사이즈가 20이면 다음 시작 번호는 20 |
 | length | Integer | N | 페이지 사이즈. 디폴트 20, 최대 100 |  |
 | searchTarget | String | N | 검색 대상 | 상품명:productName |
-| searchQuery | String | N | 검색어 | 식품 |
+| searchQuery | String | N | 검색어 | 최대 40자 |
 | searchStatus | String | N | 검색할 상품 상태. 콤마(,)로 구분해서 여러개 가능 | 판매대기:1, 판매중:2, 품절임박:3, 품절:4, 판매중지: 5 |
 
 - Response
@@ -280,60 +280,60 @@ GET /api/product/{productId}
 
 - ProductOptionType
 
-| 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 비고 |
 | -----------  | ------------ |------------ | 
-| typeSeq | Integer | 옵션 종류 번호 |
-| optionType | String | 옵션 종류 명칭 |
+| typeSeq | Integer | 옵션 종류 번호 | |
+| optionType | String | 옵션 종류 명칭 | ex) 색상. 최대 30자 |
 
 - ProductOptionName
 
-| 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 비고 |
 | -----------  | ------------ |------------ | 
-| typeSeq | Integer | 옵션 종류 번호 |
-| nameSeq | Integer | 옵션 종류별 항목 번호 |
-| optionName | String | 옵션 항목 명칭 |
+| typeSeq | Integer | 옵션 종류 번호 | |
+| nameSeq | Integer | 옵션 종류별 항목 번호 | |
+| optionName | String | 옵션 항목 명칭 | ex) 블루, 블랙, 레드. 최대 30자 |
 
 - ProductOptionCombination
 
-| 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 |
 | -----------  | ------------ |------------ | 
 | nameSeqs | List&lt;Integer&gt; | 조합된 옵션 항목 번호 목록 |
-| price | Double | 추가 가격 |
+| price | Double | 추가 가격. 마이너스 가격 가능. 0원인 조합이 1개 이상 있어야 함 |
 | stockCount | Integer | 재고 수량 |
 | expose | Boolean | 판매 여부 |
 
 - ProductAfterService
 
-| 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 비고 |
 | -----------  | ------------ |------------ | 
-| asTelephone | String | A/S 전화번호 |
-| asPolicy | String | A/S 안내 |
-| etc | String | 판매자 특이사항 |
+| asTelephone | String | A/S 전화번호 | |
+| asPolicy | String | A/S 안내 | 최대 1000자 |
+| etc | String | 판매자 특이사항 | 최대 1000자 |
 
 - ProductDelivery
 
-| 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 | 비고 |
 | -----------  | ------------ |------------ | 
-| serviceType | Integer | 택배배송:1, 새벽배송:2, 배송없음:4, 직접배송:5 |
-| chargeType | Integer | 무료배송:1, 조건부 무료배송:2, 유료배송: 3, 수량별 배송비 부과: 4 |
-| chargeTimeType | Integer | 선결제:1 |
-| bundleType | Integer | 선결제:1 |
-| chargePrice | Double | 배송비 |
-| deliveryExternal | Boolean | 도서산간지역 배송 여부 |
-| chargePriceExternal | Double | 도서산간지역 추가 배송비 |
-| chargeFreeCondition | Double | 무료 배송 조건 금액 |
-| chargeByQuantity | Integer | 수량별 배송비 부과 선택시 수량 |
-| deliveryCompanySeq | Integer | 택배 회사 번호 |
-| sendEstimatedTime | Integer | 발송 예정일 |
-| originPostalCode | String | 출고지 우편번호 |
-| originAddress1 | String | 출고지 주소 |
-| originAddress2 | String | 출고지 상세 주소 |
-| returnPostalCode | String | 반품/교환 주소지 우편번호 |
-| returnAddress1 | String | 반품/교환 주소지 주소 |
-| returnAddress2 | String | 반품/교환 주소지 상세 주소 |
-| returnCompanySeq | Integer | 반품/교환 택배 회사 번호 |
-| returnChargePrice | Double | 반품 택배비 |
-| exchangeChargePrice | Double | 교환 택배비 |
+| serviceType | Integer | 택배배송:1, 새벽배송:2, 해외배송:3, 배송없음:4, 직접배송:5 | |
+| chargeType | Integer | 무료배송:1, 조건부 무료배송:2, 유료배송: 3, 수량별 배송비 부과: 4 | |
+| chargeTimeType | Integer | 선결제:1 | |
+| bundleType | Integer | 선결제:1 | |
+| chargePrice | Double | 배송비 | |
+| deliveryExternal | Boolean | 도서산간지역 배송 여부 | |
+| chargePriceExternal | Double | 도서산간지역 추가 배송비 | |
+| chargeFreeCondition | Double | 무료 배송 조건 금액 | |
+| chargeByQuantity | Integer | 수량별 배송비 부과 선택시 수량 | |
+| deliveryCompanySeq | Integer | 택배 회사 번호 | |
+| sendEstimatedTime | Integer | 발송 예정일 | 2 ~ 21 |
+| originPostalCode | String | 출고지 우편번호 | 최대 8자 |
+| originAddress1 | String | 출고지 주소 | 최대 100자 |
+| originAddress2 | String | 출고지 상세 주소 | 최대 100자 |
+| returnPostalCode | String | 반품/교환 주소지 우편번호 | 최대 8자 |
+| returnAddress1 | String | 반품/교환 주소지 주소 | 최대 100자 |
+| returnAddress2 | String | 반품/교환 주소지 상세 주소 | 최대 100자 |
+| returnCompanySeq | Integer | 반품/교환 택배 회사 번호 | |
+| returnChargePrice | Double | 반품 택배비 | |
+| exchangeChargePrice | Double | 교환 택배비 | |
 
 ### 상품 등록
 - 상품을 등록 합니다.
@@ -345,21 +345,21 @@ POST /api/product
 
 | 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
-| yourProductId | String | N | 자체 상품 아이디 | |
-| productName | String | Y | 상품명 | |
+| yourProductId | String | N | 자체 상품 아이디 | 최대 40자 |
+| productName | String | Y | 상품명 | 최대 40자 |
 | categorySeq | Integer | Y | 상품 카테고리 번호 | 말단 카테고리의 번호만 허용 |
 | legalSeq | Integer | Y | 상품정보 제공고시 번호 | |
 | legalItems | List&lt;LegalItem&gt; | Y | 상품정보 제공고시 상세 | |
-| introduction | String | Y | 상품 설명 | |
+| introduction | String | Y | 상품 설명 | 최대 50자 |
 | useOption | Boolean | Y | 옵션 사용 여부 | |
 | option | ProductOption | N | 옵션 정보 | useOption이 Y면 필수 |
-| costPrice | Double | Y | 원가 | |
-| sellingPrice | Double | Y | 판매가 | |
-| liveSellingPrice | Double | Y | 라이브 판매가 | |
-| originName | String | Y | 원산지 | |
-| manufacturer | String | N | 제조사 | |
-| brandName | String | N | 브랜드 | |
-| modelName | String | N | 모델명 | |
+| costPrice | Double | Y | 원가 | 최소 200원 또는 0원 |
+| sellingPrice | Double | Y | 판매가 | 최소 200원 또는 0원 |
+| liveSellingPrice | Double | Y | 라이브 판매가 | 최소 200원 또는 0원 |
+| originName | String | Y | 원산지 | 최대 20자 |
+| manufacturer | String | N | 제조사 | 최대 32자 |
+| brandName | String | N | 브랜드 | 최대 32자 |
+| modelName | String | N | 모델명 | 최대 32자 |
 | ondemand | Boolean | Y | 주문제작 여부 | |
 | returnImpossible | Boolean | N | 반품 불가 여부 | returnImpossible이 Y면 필수 |
 | taxType | Integer | Y | 부가세. 과세상품:1, 면세상품:2, 영세상품: 3 | |
@@ -377,9 +377,9 @@ POST /api/product
 | customAs | Boolean | Y | 커스텀 A/S 사용 여부 | N이면 판매자 기본 A/S 정보 사용 |
 | as | ProductAfterService | N | 상품 A/S 정보 | customAs가 Y면 필수 |
 | supportMarketing | Boolean | Y | 그리퍼 지원 요청 여부 | |
-| tags | List&lt;String&gt; | Y | 태그 목록 | |
-| previewImageUrls | List&lt;String&gt; | Y | 상품 상단 이미지 URL 목록 | 이미지를 미리 업로드하고 받은 URL 사용. 최대 10개 |
-| detailImageUrls | List&lt;String&gt; | Y | 상품 상세 이미지 URL 목록 | 이미지를 미리 업로드하고 받은 URL 사용. 최대 15개 |
+| tags | List&lt;String&gt; | Y | 태그 목록 | 최대 20개, 최대 32자, 특수문자 불가. 대소문자 구분없음 |
+| previewImageUrls | List&lt;String&gt; | Y | 상품 상단 이미지 URL 목록 | 이미지를 미리 업로드하고 받은 URL 사용. 최대 10개. 750px X 750px 권장. 비율이 다를시 Center Crop. 첫번째 이미지가 대표 이미지. PNG, JPG 허용 |
+| detailImageUrls | List&lt;String&gt; | Y | 상품 상세 이미지 URL 목록 | 이미지를 미리 업로드하고 받은 URL 사용. 최대 30개. 가로 860px 권장. PNG, JPG, GIF 허용 |
 
 - Response
 
@@ -456,7 +456,7 @@ GET /api/order/count
 | 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
 | searchTarget | String | N | 검색 대상 | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq |
-| searchQuery | String | N | 검색어 | 구매자 |
+| searchQuery | String | N | 검색어 | 최대 40자 |
 | searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 여러개 가능 | 결제완료:1, 배송준비중:10, 배송중:11, 배송완료:13, 발송지연:12, 구매확정:90, 반품신청:40, 교환신청:50, 환불완료:42, 판매취소:60, 주문취소:80, 입금대기중:2  |
 | searchStartAt | Date | N | 검색할 주문/결제 시작일시. 디폴트 30일전 | |
 | searchEndAt | Date | N | 검색할 주문/결제 종료일시. 디폴트 오늘 | |
@@ -480,7 +480,7 @@ GET /api/order
 | start | Integer | N | 페이지 시작 번호. 디폴트 0 | 페이지 사이즈가 20이면 다음 시작 번호는 20 |
 | length | Integer | N | 페이지 사이즈. 디폴트 20, 최대 100 |  |
 | searchTarget | String | N | 검색 대상 | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq |
-| searchQuery | String | N | 검색어 | 구매자 |
+| searchQuery | String | N | 검색어 | 최대 40 |
 | searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 여러개 가능 | 결제완료:1, 배송준비중:10, 배송중:11, 배송완료:13, 발송지연:12, 구매확정:90, 반품신청:40, 교환신청:50, 환불완료:42, 판매취소:60, 주문취소:80, 입금대기중:2  |
 | searchStartAt | Date | N | 검색할 주문/결제 시작일시. 디폴트 30일전 | |
 | searchEndAt | Date | N | 검색할 주문/결제 종료일시. 디폴트 오늘 | |
