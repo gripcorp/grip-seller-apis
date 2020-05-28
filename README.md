@@ -98,12 +98,12 @@ GET /api/product/category
 
 - Category
 
-| 이름 | 타입 | 설명 | 
-| ----------- | ------------ |------------ | 
-| categorySeq | Integer | 카테고리 번호 |
-| parentCategorySeq | Integer | 부모 카테고리 번호 |
-| level | Integer | 카테고리 레벨 |
-| categoryName | String | 카테고리 이름 |
+| 이름 | 타입 | 설명 | 비고 |
+| ----------- | ------------ |------------ | ------------ |
+| categorySeq | Integer | 카테고리 번호 | |
+| parentCategorySeq | Integer | 부모 카테고리 번호 | |
+| level | Integer | 카테고리 레벨 | |
+| categoryName | String | 카테고리 이름 | 최대 20자 |
 
 
 ### 상품정보 제공고시 목록
@@ -122,19 +122,19 @@ GET /api/product/legal
 
 - Legal
 
-| 이름 | 타입 | 설명 | 
-| -----------  | ------------ |------------ | 
-| legalSeq | Integer | 상품정보 제공고시 번호 |
-| legalName | String | 상품정보 제공고시 이름 |
-| items | List&lt;LegalItem&gt; | 세부 항목 |
+| 이름 | 타입 | 설명 | 비고 |
+| -----------  | ------------ |------------ | ------------ |
+| legalSeq | Integer | 상품정보 제공고시 번호 | |
+| legalName | String | 상품정보 제공고시 이름 | 최대 40자 |
+| items | List&lt;LegalItem&gt; | 세부 항목 | |
 
 - LegalItem
 
-| 이름 | 타입 | 설명 | 
-| -----------  | ------------ |------------ | 
-| itemSeq | Integer | 세부 항목 번호 |
-| title | String | 세부 항목 이름 |
-| body | String | 세부 항목 설명 |
+| 이름 | 타입 | 설명 | 비고 |
+| -----------  | ------------ |------------ | ------------ |
+| itemSeq | Integer | 세부 항목 번호 | |
+| title | String | 세부 항목 이름 | 최대 60자 |
+| body | String | 세부 항목 설명 | 최대 2,000자 |
 
 ### 상품 개수
 - 상품 개수를 조회합니다.
@@ -281,14 +281,14 @@ GET /api/product/{productId}
 - ProductOptionType
 
 | 이름 | 타입 | 설명 | 비고 |
-| -----------  | ------------ |------------ | 
+| -----------  | ------------ |------------ | ------------ |
 | typeSeq | Integer | 옵션 종류 번호 | |
 | optionType | String | 옵션 종류 명칭 | ex) 색상. 최대 30자 |
 
 - ProductOptionName
 
 | 이름 | 타입 | 설명 | 비고 |
-| -----------  | ------------ |------------ | 
+| -----------  | ------------ |------------ | ------------ |
 | typeSeq | Integer | 옵션 종류 번호 | |
 | nameSeq | Integer | 옵션 종류별 항목 번호 | |
 | optionName | String | 옵션 항목 명칭 | ex) 블루, 블랙, 레드. 최대 30자 |
@@ -305,15 +305,15 @@ GET /api/product/{productId}
 - ProductAfterService
 
 | 이름 | 타입 | 설명 | 비고 |
-| -----------  | ------------ |------------ | 
+| -----------  | ------------ |------------ | ------------ |
 | asTelephone | String | A/S 전화번호 | |
-| asPolicy | String | A/S 안내 | 최대 1000자 |
-| etc | String | 판매자 특이사항 | 최대 1000자 |
+| asPolicy | String | A/S 안내 | 최대 1,000자 |
+| etc | String | 판매자 특이사항 | 최대 1,000자 |
 
 - ProductDelivery
 
 | 이름 | 타입 | 설명 | 비고 |
-| -----------  | ------------ |------------ | 
+| -----------  | ------------ |------------ | ------------ |
 | serviceType | Integer | 택배배송:1, 새벽배송:2, 해외배송:3, 배송없음:4, 직접배송:5 | |
 | chargeType | Integer | 무료배송:1, 조건부 무료배송:2, 유료배송: 3, 수량별 배송비 부과: 4 | |
 | chargeTimeType | Integer | 선결제:1 | |
@@ -610,7 +610,7 @@ GET /api/return/count
 | 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
 | searchTarget | String | N | 검색 대상 | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq, 송장번호:trackingNumber |
-| searchQuery | String | N | 검색어 | 구매자 |
+| searchQuery | String | N | 검색어 | 최대 40자 |
 | searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 여러개 가능 | 반품신청:40, 반품진행중(상품대기):41, 반품진행중(상품확인):42, 반품취소(판매자):48, 반품완료(환불완료):44, 반품완료(환불대기):46  |
 | searchStartAt | Date | N | 검색할 반품신청 시작일시. 디폴트 30일전 | |
 | searchEndAt | Date | N | 검색할 반품신청 종료일시. 디폴트 오늘 | |
@@ -634,7 +634,7 @@ GET /api/return
 | start | Integer | N | 페이지 시작 번호. 디폴트 0 | 페이지 사이즈가 20이면 다음 시작 번호는 20 |
 | length | Integer | N | 페이지 사이즈. 디폴트 20 |  |
 | searchTarget | String | N | 검색 대상 | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq, 송장번호:trackingNumber |
-| searchQuery | String | N | 검색어 | 구매자 |
+| searchQuery | String | N | 검색어 | 최대 40자 |
 | searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 여러개 가능 | 반품신청:40, 반품진행중(상품대기):41, 반품진행중(상품확인):42, 반품취소(판매자):48, 반품완료(환불완료):44, 반품완료(환불대기):46  |
 | searchStartAt | Date | N | 검색할 반품신청 시작일시. 디폴트 30일전 | |
 | searchEndAt | Date | N | 검색할 반품신청 종료일시. 디폴트 오늘 | |
@@ -689,7 +689,7 @@ GET /api/exchange/count
 | 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
 | searchTarget | String | N | 검색 대상 | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq, 송장번호:trackingNumber |
-| searchQuery | String | N | 검색어 | 구매자 |
+| searchQuery | String | N | 검색어 | 최대 40자 |
 | searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 여러개 가능 | 교환신청:50, 교환진행중:51, 교환(배송중):53, 교환(배송완료):54, 교환불가:52  |
 | searchStartAt | Date | N | 검색할 교환신청 시작일시. 디폴트 30일전 | |
 | searchEndAt | Date | N | 검색할 교환신청 종료일시. 디폴트 오늘 | |
@@ -713,7 +713,7 @@ GET /api/exchange
 | start | Integer | N | 페이지 시작 번호. 디폴트 0 | 페이지 사이즈가 20이면 다음 시작 번호는 20 |
 | length | Integer | N | 페이지 사이즈. 디폴트 20 |  |
 | searchTarget | String | N | 검색 대상 | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq, 송장번호:trackingNumber |
-| searchQuery | String | N | 검색어 | 구매자 |
+| searchQuery | String | N | 검색어 | 최대 40 |
 | searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 여러개 가능 | 교환신청:50, 교환진행중:51, 교환(배송중):53, 교환(배송완료):54, 교환불가:52  |
 | searchStartAt | Date | N | 검색할 교환신청 시작일시. 디폴트 30일전 | |
 | searchEndAt | Date | N | 검색할 교환신청 종료일시. 디폴트 오늘 | |
@@ -724,7 +724,7 @@ GET /api/exchange
 | -----------  | ------------ |------------ | 
 | exchangeList | List&lt;ExchangeList&gt; | 교환 목록 |
 
-- ReturnList
+- ExchangeList
 
 | 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
@@ -775,12 +775,12 @@ GET /api/delivery/company
 
 - DeliveryCompany
 
-| 이름 | 타입 | 설명 | 
-| ----------- | ------------ |------------ | 
-| companySeq | Integer | 택배회사 번호 |
-| companyName | String | 택배회사 이름 |
-| serviceType | Integer | 일반배송:1, 새벽배송:2, 해외배송: 3 |
-| tracking | Boolean | 배송추적 가능 여부 |
+| 이름 | 타입 | 설명 | 비고 |
+| ----------- | ------------ |------------ | ------------ |
+| companySeq | Integer | 택배회사 번호 | |
+| companyName | String | 택배회사 이름 | 최대 40자 |
+| serviceType | Integer | 일반배송:1, 새벽배송:2, 해외배송: 3 | |
+| tracking | Boolean | 배송추적 가능 여부 | |
 
 ### 배송지 변경
 - 구매자의 요청으로 배송 주소를 변경합니다.
@@ -795,9 +795,9 @@ PUT /api/delivery/info
 | orderSeq | Long | Y | 주문 번호 | |
 | recipientName | String | Y | 수령인 이름 | |
 | recipientPhoneNumber | String | Y | 수령인 연락처 | |
-| recipientPostalCode | String | Y | 수령지 우편번호 | |
-| recipientAddress1 | String | Y | 수령지 주소 | 서울특별시 서초구 서초동 강남대로 373 |
-| recipientAddress2 | String | Y | 수령지 세부 주소 | 홍우빌딩 10층 |
+| recipientPostalCode | String | Y | 수령지 우편번호 | 최대 8자 |
+| recipientAddress1 | String | Y | 수령지 주소 | 최대 100자, 서울특별시 서초구 서초동 강남대로 373 |
+| recipientAddress2 | String | Y | 수령지 세부 주소 | 최대 100자홍우빌딩 10층 |
 
 - Response
 
@@ -817,7 +817,7 @@ PUT /api/delivery/postpone
 | 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
 | orderKeys | List&lt;OrderKey&gt; | Y | 대상 주문 | |
-| reason | String | Y | 배송 지연 사유 | |
+| reason | String | Y | 배송 지연 사유 | 최대 50자 |
 
 - Response
 
@@ -836,7 +836,7 @@ GET /api/delivery/prepare/count
 | 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
 | searchTarget | String | N | 검색 대상 | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq |
-| searchQuery | String | N | 검색어 | 구매자 |
+| searchQuery | String | N | 검색어 | 최대 40자 |
 | searchStartAt | Date | N | 검색할 주문/결제 시작일시. 디폴트 30일전 | |
 | searchEndAt | Date | N | 검색할 주문/결제 종료일시. 디폴트 오늘 | |
 
@@ -859,7 +859,7 @@ GET /api/delivery/prepare
 | start | Integer | N | 페이지 시작 번호. 디폴트 0 | 페이지 사이즈가 20이면 다음 시작 번호는 20 |
 | length | Integer | N | 페이지 사이즈. 디폴트 20, 최대 100 |  |
 | searchTarget | String | N | 검색 대상 | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq |
-| searchQuery | String | N | 검색어 | 구매자 |
+| searchQuery | String | N | 검색어 | 최대 40자 |
 | searchStartAt | Date | N | 검색할 주문/결제 시작일시. 디폴트 30일전 | |
 | searchEndAt | Date | N | 검색할 주문/결제 종료일시. 디폴트 오늘 | |
 
@@ -930,7 +930,7 @@ GET /api/delivery/start/count
 | 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
 | searchTarget | String | N | 검색 대상 | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq |
-| searchQuery | String | N | 검색어 | 구매자 |
+| searchQuery | String | N | 검색어 | 최대 40자 |
 | searchStartAt | Date | N | 검색할 주문/결제 시작일시. 디폴트 30일전 | |
 | searchEndAt | Date | N | 검색할 주문/결제 종료일시. 디폴트 오늘 | |
 
@@ -953,7 +953,7 @@ GET /api/delivery/start
 | start | Integer | N | 페이지 시작 번호. 디폴트 0 | 페이지 사이즈가 20이면 다음 시작 번호는 20 |
 | length | Integer | N | 페이지 사이즈. 디폴트 20, 최대 100 |  |
 | searchTarget | String | N | 검색 대상 | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq |
-| searchQuery | String | N | 검색어 | 구매자 |
+| searchQuery | String | N | 검색어 | 최대 40자 |
 | searchStartAt | Date | N | 검색할 주문/결제 시작일시. 디폴트 30일전 | |
 | searchEndAt | Date | N | 검색할 주문/결제 종료일시. 디폴트 오늘 | |
 
@@ -1055,7 +1055,7 @@ GET /api/delivery/status/count
 | 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
 | searchTarget | String | N | 검색 대상 | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq |
-| searchQuery | String | N | 검색어 | 구매자 |
+| searchQuery | String | N | 검색어 | 최대 40자 |
 | searchStartAt | Date | N | 검색할 주문/결제 시작일시. 디폴트 30일전 | |
 | searchEndAt | Date | N | 검색할 주문/결제 종료일시. 디폴트 오늘 | |
 
@@ -1079,7 +1079,7 @@ GET /api/delivery/status
 | start | Integer | N | 페이지 시작 번호. 디폴트 0 | 페이지 사이즈가 20이면 다음 시작 번호는 20 |
 | length | Integer | N | 페이지 사이즈. 디폴트 20, 최대 100 |  |
 | searchTarget | String | N | 검색 대상 | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq, 송장번호:trackingNumber |
-| searchQuery | String | N | 검색어 | 구매자 |
+| searchQuery | String | N | 검색어 | 최대 40자 |
 | searchStartAt | Date | N | 검색할 주문/결제 시작일시. 디폴트 30일전 | |
 | searchEndAt | Date | N | 검색할 주문/결제 종료일시. 디폴트 오늘 | |
 
@@ -1135,7 +1135,7 @@ GET /api/inquiry/count
 | -----------  | ------------ |-----------|------------ | --------------- |
 | inquiryType | InquiryType | N | 검색할 문의 유형 | |
 | searchTarget | String | N | 검색 대상 | 문의자 닉네임:username, 문의 제목:title, 주문번호:orderSeq |
-| searchQuery | String | N | 검색어 | |
+| searchQuery | String | N | 최대 40자 | |
 | searchStartAt | Date | N | 검색할 문의 등록 시작일시. 디폴트 30일전 | |
 | searchEndAt | Date | N | 검색할 문의 등록 종료일시. 디폴트 오늘 | |
 | needReply | Boolean | N | 답변 필요. 디폴트 false | |
@@ -1245,7 +1245,7 @@ POST /api/inquiry/{inquirySeq}
 
 | 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
-| reply | String | Y | 답변 내용 | |
+| reply | String | Y | 답변 내용 | 최대 1,000자 |
 
 - Response
 
@@ -1264,7 +1264,7 @@ PUT /api/inquiry/{inquirySeq}
 
 | 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
-| reply | String | Y | 답변 내용 | |
+| reply | String | Y | 답변 내용 | 최대 1,000자 |
 | noti | Boolean | Y | 답변 수정 알림 여부 | |
 
 - Response
@@ -1343,7 +1343,7 @@ POST /api/review/{reviewSeq}
 
 | 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
-| reply | String | Y | 답변 내용 | |
+| reply | String | Y | 답변 내용 | 최대 500자 |
 
 - Response
 
@@ -1362,7 +1362,7 @@ PUT /api/review/{reviewSeq}
 
 | 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
-| reply | String | Y | 답변 내용 | |
+| reply | String | Y | 답변 내용 | 최대 500자 |
 | noti | Boolean | Y | 답변 수정 알림 여부 | |
 
 - Response
@@ -1380,7 +1380,9 @@ PUT /api/review/{reviewSeq}
 GET /api/gropup/member/count
 ```
 
-| searchQuery | String | N | 검색할 맴버의 닉네임 or 소속명 | |
+| 이름 | 타입 | 필수 | 설명 | 비고 |
+| -----------  | ------------ |-----------|------------ | --------------- |
+| searchQuery | String | N | 검색할 맴버의 닉네임 or 소속명 | 최대 40자 |
 
 - Response
 
@@ -1398,7 +1400,7 @@ GET /api/gropup/member/
 
 | 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
-| searchQuery | String | N | 검색할 맴버의 닉네임 or 소속명 | |
+| searchQuery | String | N | 검색할 맴버의 닉네임 or 소속명 | 최대 40자 |
 | sortField | Integer | N | 정렬 필드 | 이용자 아이디: 0, 닉네임: 1, 소속명: 2, 상품수: 4, 방송수: 5, 팔로워수: 6, 최근방송일시: 7, 등록일시(디폴트): -1 |
 | sortOrder | String | N | 정렬 순서 | DESC, ASC |
 | start | Integer | N | 페이지 시작 번호. 디폴트 0 | 페이지 사이즈가 20이면 다음 시작 번호는 20 |
@@ -1441,11 +1443,11 @@ POST /api/group/member
 
 | 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
-| companyName | String | Y | 소속명 | |
-| userTag | String | Y | 이용자 아이디. 프로필에 보이는 아이디 | |
-| userName | String | Y | 닉네임. 프로필에 보이는 닉네임 | |
-| managerName | String | Y | 브랜드 담당 매니저 이름 | |
-| managerEmail | String | Y | 브랜드 담당 매니저 이메일 | |
+| companyName | String | Y | 소속명 | 최대 40자 |
+| userTag | String | Y | 이용자 아이디. 프로필에 보이는 아이디 | 최대 16자 |
+| userName | String | Y | 닉네임. 프로필에 보이는 닉네임 | 최대 20자 |
+| managerName | String | Y | 브랜드 담당 매니저 이름 | 최대 30자 |
+| managerEmail | String | Y | 브랜드 담당 매니저 이메일 | 최대 40자 |
 | managerMobile | String | Y | 브랜드 담당 매니저 핸드폰 번호 | |
 
 - Response
