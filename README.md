@@ -291,7 +291,7 @@ GET /api/product/{productId}
 | -----------  | ------------ |------------ | ------------ |
 | typeSeq | Integer | 옵션 종류 번호 | |
 | nameSeq | Integer | 옵션 종류별 항목 번호 | |
-| optionName | String | 옵션 항목 명칭 | ex) 블루, 블랙, 레드. 최대 30자 |
+| optionName | String | 옵션 항목 명칭 | ex) 블루, 블랙, 레드. 최대 120자 |
 
 - ProductOptionCombination
 
