@@ -458,6 +458,7 @@ GET /api/order/count
 | searchTarget | String | N | 검색 대상 | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq |
 | searchQuery | String | N | 검색어 | 최대 40자 |
 | searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 여러개 가능 | 결제완료:1, 배송준비중:10, 배송중:11, 배송완료:13, 발송지연:12, 구매확정:90, 반품신청:40, 교환신청:50, 환불완료:42, 판매취소:60, 주문취소:80, 입금대기중:2  |
+| searchDate | String | N | 검색할 주문/결제 날짜 대상. 디폴트 orderedAt | 주문결제일시:orderedAt, 구매확정일시:confirmAt, 주문취소일시:cancelAt |
 | searchStartAt | Date | N | 검색할 주문/결제 시작일시. 디폴트 30일전 | |
 | searchEndAt | Date | N | 검색할 주문/결제 종료일시. 디폴트 오늘 | |
 
@@ -482,6 +483,7 @@ GET /api/order
 | searchTarget | String | N | 검색 대상 | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq |
 | searchQuery | String | N | 검색어 | 최대 40 |
 | searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 여러개 가능 | 결제완료:1, 배송준비중:10, 배송중:11, 배송완료:13, 발송지연:12, 구매확정:90, 반품신청:40, 교환신청:50, 환불완료:42, 판매취소:60, 주문취소:80, 입금대기중:2  |
+| searchDate | String | N | 검색할 주문/결제 날짜 대상. 디폴트 orderedAt | 주문결제일시:orderedAt, 구매확정일시:confirmAt, 주문취소일시:cancelAt |
 | searchStartAt | Date | N | 검색할 주문/결제 시작일시. 디폴트 30일전 | |
 | searchEndAt | Date | N | 검색할 주문/결제 종료일시. 디폴트 오늘 | |
 
@@ -498,6 +500,8 @@ GET /api/order
 | orderSeq | Long | 주문 번호 |
 | orderProductSeq | Long | 주문 상품 번호 |
 | orderedAt | Date | 주문 결제 일시 |
+| confirmAt | Date | 구매 확정 일시 |
+| cancelAt | Date | 주문(판매) 취소 일시 |
 | orderState | OrderProductState | 주문 상태 |
 | yourProductId | String | 자체 상품 아이디 |
 | productId | String | Grip 상품 아이디 |
@@ -1124,6 +1128,44 @@ GET /api/delivery/status
 | dawnDeliveryRequest | String | 새벽 배송 메시지 |
 | clearanceCode | String | 개인 통관 번호 |
 
+### 직접 수령
+- 구매자가 상품을 직접 수령한 경우에 사용합니다.
+- 직접 수령을 하면 구매자는 '배송완료' 안내를 받게 됩니다.
+- Request
+
+```
+PUT /api/delivery/direct
+```
+
+| 이름 | 타입 | 필수 | 설명 | 비고 |
+| -----------  | ------------ |-----------|------------ | --------------- |
+| orderKeys | List&lt;OrderKey&gt; | Y | 대상 주문 | |
+
+- Response
+
+| 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| affected | Integer | 직접 수령 성공한 주문 수 |
+
+### 강제 배송완료
+- 구매자에게 상품을 발송하여 배송중 상태이지만 송장번호의 오류나 기타 택배사의 오류로 배송 추적이 되지 않는 경우에 사용합니다.
+- 강제 배송완료를 하면 구매자는 '배송완료' 안내를 받게 됩니다.
+- Request
+
+```
+PUT /api/delivery/direct
+```
+
+| 이름 | 타입 | 필수 | 설명 | 비고 |
+| -----------  | ------------ |-----------|------------ | --------------- |
+| orderKeys | List&lt;OrderKey&gt; | Y | 대상 주문 | |
+
+- Response
+
+| 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| affected | Integer | 강제 배송완료 성공한 주문 수 |
+
 ## 1:1 문의 관리
 ### 1:1 문의 개수
 - 1:1 문의 개수를 조회합니다.
@@ -1433,6 +1475,8 @@ GET /api/gropup/member/
 | followerCount | Integer | 팔로워 수 |
 | lastPublishedAt | Date | 최근 방송일시 |
 | createdAt | Date | 등록일시 |
+| accessKey | String | API AccessKey |
+| secretKey | String | API SecretKey |
 
 
 ### 맴버 등록
