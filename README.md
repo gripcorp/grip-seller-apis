@@ -857,7 +857,7 @@ POST /api/exchange/start
 | 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
 | orderKey | OrderKey | Y | 대상 주문 | |
-| message | String | Y | 반품 접수 안내 메시지 | 최대 1,000자 |
+| message | String | Y | 교환 접수 안내 메시지 | 최대 1,000자 |
 
 - Response
 
@@ -918,7 +918,7 @@ POST /api/exchange/deny
 | 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
 | orderKey | OrderKey | Y | 대상 주문 | |
-| reason | String | Y | 반품 거절 사유 | 최대 200자 |
+| reason | String | Y | 교환 거절 사유 | 최대 200자 |
 
 - Response
 
