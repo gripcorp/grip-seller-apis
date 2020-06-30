@@ -615,7 +615,8 @@ GET /api/return/count
 | -----------  | ------------ |-----------|------------ | --------------- |
 | searchTarget | String | N | 검색 대상 | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq, 송장번호:trackingNumber |
 | searchQuery | String | N | 검색어 | 최대 40자 |
-| searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 여러개 가능 | 반품신청:40, 반품진행중(상품대기):41, 반품진행중(상품확인):42, 반품취소(판매자):48, 반품완료(환불완료):44, 반품완료(환불대기):46  |
+| searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 여러개 가능 | 반품신청:40, 반품진행중(상품대기):41, 반품진행중(상품확인):42, 반품취소(구매자):47, 반품취소(판매자):48, 반품완료(환불완료):44, 반품완료(환불대기):46  |
+| searchDate | String | N | 검색할 날짜 대상. 디폴트 requestReturnAt | 주문결제일시:orderedAt, 반품신청일시:requestReturnAt, 반품취소일시:cancelReturnAt, 반품완료일시:completeReturnAt |
 | searchStartAt | Date | N | 검색할 반품신청 시작일시. 디폴트 30일전 | |
 | searchEndAt | Date | N | 검색할 반품신청 종료일시. 디폴트 오늘 | |
 
@@ -639,7 +640,8 @@ GET /api/return
 | length | Integer | N | 페이지 사이즈. 디폴트 20 |  |
 | searchTarget | String | N | 검색 대상 | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq, 송장번호:trackingNumber |
 | searchQuery | String | N | 검색어 | 최대 40자 |
-| searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 여러개 가능 | 반품신청:40, 반품진행중(상품대기):41, 반품진행중(상품확인):42, 반품취소(판매자):48, 반품완료(환불완료):44, 반품완료(환불대기):46  |
+| searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 여러개 가능 | 반품신청:40, 반품진행중(상품대기):41, 반품진행중(상품확인):42, 반품취소(구매자):47, 반품취소(판매자):48, 반품완료(환불완료):44, 반품완료(환불대기):46  |
+| searchDate | String | N | 검색할 날짜 대상. 디폴트 requestReturnAt | 주문결제일시:orderedAt, 반품신청일시:requestReturnAt, 반품취소일시:cancelReturnAt, 반품완료일시:completeReturnAt |
 | searchStartAt | Date | N | 검색할 반품신청 시작일시. 디폴트 30일전 | |
 | searchEndAt | Date | N | 검색할 반품신청 종료일시. 디폴트 오늘 | |
 
@@ -658,6 +660,8 @@ GET /api/return
 | orderedAt | Date | 주문 결제 일시 |
 | orderState | OrderProductState | 주문 상태 |
 | returnRequestAt | Date | 반품신청일시 |
+| returnCancelAt | Date | 반품취소일시 |
+| returnCompleteAt | Date | 반품완료일시 |
 | buyerReturnReasonType | Integer | 반품사유. 단순변심:1, 다른 상품 잘못 주문:3, 서비스 불만족:4, 배송 지연:5, 상품 파손 및 불량:7, 상품정보 상이:8, 다른 상품 잘못 배송:10 |
 | buyerReturnReason | String | 구매자 반품 사유 |
 | sellerReturnReason | String | 판매자 반품 불가 메시지 |
@@ -694,7 +698,8 @@ GET /api/exchange/count
 | -----------  | ------------ |-----------|------------ | --------------- |
 | searchTarget | String | N | 검색 대상 | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq, 송장번호:trackingNumber |
 | searchQuery | String | N | 검색어 | 최대 40자 |
-| searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 여러개 가능 | 교환신청:50, 교환진행중:51, 교환(배송중):53, 교환(배송완료):54, 교환불가:52  |
+| searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 여러개 가능 | 교환신청:50, 교환진행중:51, 교환(배송중):53, 교환(배송완료):54, 교환취소(구매자):55, 교환취소(판매자):52  |
+| searchDate | String | N | 검색할 날짜 대상. 디폴트 requestChangeAt | 주문결제일시:orderedAt, 교환신청일시:requestChangeAt, 교환취소일시:cancelChangeAt |
 | searchStartAt | Date | N | 검색할 교환신청 시작일시. 디폴트 30일전 | |
 | searchEndAt | Date | N | 검색할 교환신청 종료일시. 디폴트 오늘 | |
 
@@ -718,7 +723,8 @@ GET /api/exchange
 | length | Integer | N | 페이지 사이즈. 디폴트 20 |  |
 | searchTarget | String | N | 검색 대상 | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq, 송장번호:trackingNumber |
 | searchQuery | String | N | 검색어 | 최대 40 |
-| searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 여러개 가능 | 교환신청:50, 교환진행중:51, 교환(배송중):53, 교환(배송완료):54, 교환불가:52  |
+| searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 여러개 가능 | 교환신청:50, 교환진행중:51, 교환(배송중):53, 교환(배송완료):54, 교환취소(구매자):55, 교환취소(판매자):52  |
+| searchDate | String | N | 검색할 날짜 대상. 디폴트 requestChangeAt | 주문결제일시:orderedAt, 교환신청일시:requestChangeAt, 교환취소일시:cancelChangeAt |
 | searchStartAt | Date | N | 검색할 교환신청 시작일시. 디폴트 30일전 | |
 | searchEndAt | Date | N | 검색할 교환신청 종료일시. 디폴트 오늘 | |
 
@@ -737,6 +743,7 @@ GET /api/exchange
 | orderedAt | Date | 주문 결제 일시 |
 | orderState | OrderProductState | 주문 상태 |
 | exchangeRequestAt | Date | 교환신청일시 |
+| exchangeCancelAt | Date | 교환취소일시 |
 | buyerChangeReasonType | Integer | 교환사유. 색상 및 사이즈 변경:2, 다른 상품 잘못 주문:3, 상품 파손 및 불량:7, 다른 상품 잘못 배송:10 |
 | buyerChangeReason | String | 구매자 교환 사유 |
 | yourProductId | String | 자체 상품 아이디 |
