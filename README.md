@@ -228,47 +228,47 @@ GET /api/product/{productId}
 
 - Product
 
-| 이름 | 타입 | 설명 | 
-| -----------  | ------------ |------------ | 
-| yourProductId | String | 자체 상품 아이디 |
-| productId | String | Grip 상품 아이디 |
-| productName | String | 상품명 |
-| categorySeq | Integer | 상품 카테고리 번호 |
-| legalSeq | Integer | 상품정보 제공고시 번호 |
-| legalItems | List&lt;LegalItem&gt; | 상품정보 제공고시 상세 |
-| introduction | String | 상품 설명 |
-| expose | Boolean | 판매 여부 |
-| useOption | Boolean | 옵션 사용 여부 |
-| option | ProductOption | 옵션 정보 |
-| costPrice | Double | 원가 |
-| sellingPrice | Double | 판매가 |
-| liveSellingPrice | Double | 라이브 판매가 |
-| originName | String | 원산지 |
-| manufacturer | String | 제조사 |
-| brandName | String | 브랜드 |
-| modelName | String | 모델명 |
-| ondemand | Boolean | 주문제작 여부 |
-| returnImpossible | Boolean | 반품 불가 여부 |
-| taxType | Integer | 부가세. 과세상품:1, 면세상품:2, 영세상품: 3 |
-| startAt | Date | 판매 시작일시 |
-| endAt | Date | 판매 종료일시 |
-| stockCount | Integer | 재고 수량 |
-| useMinOrderQuantity | Boolean | 최소 구매 개수 사용 여부 |
-| useMaxOrderQuantity | Boolean | 최대 구매 개수 사용 여부 |
-| minOrderQuantity | Integer | 최소 구매 개수 |
-| maxOrderQuantity | Integer | 최대 구매 개수 |
-| allowCoupon | Boolean | 쿠폰 적용 불가 상품 여부. 쿠폰 사용 가능이면 Y, 불가면 N |
-| overseasDirect | Boolean | 해외배송 여부 |
-| customDelivery | Boolean | 커스텀 배송 정보 사용 여부 |
-| delivery | ProductDelivery | 상품 배송 정보 |
-| customAs | Boolean | 커스텀 A/S 사용 여부 |
-| as | ProductAfterService | 상품 A/S 정보 |
-| supportMarketing | Boolean | 그리퍼 지원 요청 여부 |
-| tags | List&lt;String&gt; | 태그 목록 |
-| previewImageUrls | List&lt;String&gt; | 상품 상단 이미지 URL 목록 |
-| detailImageUrls | List&lt;String&gt; | 상품 상세 이미지 URL 목록 |
-| createdAt | Date | 등록일시 |
-| modifiedAt | Date | 수정일시 |
+| 이름 | 타입 | 설명 | 비고 |
+| -----------  | ------------ |------------ | ------------ | 
+| yourProductId | String | 자체 상품 아이디 | 최대 40자 |
+| productId | String | Grip 상품 아이디 | 최대 16자 |
+| productName | String | 상품명 | 최대 40자 |
+| categorySeq | Integer | 상품 카테고리 번호 | |
+| legalSeq | Integer | 상품정보 제공고시 번호 | |
+| legalItems | List&lt;LegalItem&gt; | 상품정보 제공고시 상세 | |
+| introduction | String | 상품 설명 | 최대 50자 |
+| expose | Boolean | 판매 여부 | |
+| useOption | Boolean | 옵션 사용 여부 | |
+| option | ProductOption | 옵션 정보 | |
+| costPrice | Double | 원가 | |
+| sellingPrice | Double | 판매가 | |
+| liveSellingPrice | Double | 라이브 판매가 | |
+| originName | String | 원산지 | 최대 20자 |
+| manufacturer | String | 제조사 | 최대 32자 |
+| brandName | String | 브랜드 | 최대 32자 |
+| modelName | String | 모델명 | 최대 32자 |
+| ondemand | Boolean | 주문제작 여부 | |
+| returnImpossible | Boolean | 반품 불가 여부 | |
+| taxType | Integer | 부가세. 과세상품:1, 면세상품:2, 영세상품: 3 | |
+| startAt | Date | 판매 시작일시 | |
+| endAt | Date | 판매 종료일시 | |
+| stockCount | Integer | 재고 수량 | |
+| useMinOrderQuantity | Boolean | 최소 구매 개수 사용 여부 | |
+| useMaxOrderQuantity | Boolean | 최대 구매 개수 사용 여부 | |
+| minOrderQuantity | Integer | 최소 구매 개수 | |
+| maxOrderQuantity | Integer | 최대 구매 개수 | |
+| allowCoupon | Boolean | 쿠폰 적용 불가 상품 여부. 쿠폰 사용 가능이면 Y, 불가면 N | |
+| overseasDirect | Boolean | 해외배송 여부 | |
+| customDelivery | Boolean | 커스텀 배송 정보 사용 여부 | |
+| delivery | ProductDelivery | 상품 배송 정보 | |
+| customAs | Boolean | 커스텀 A/S 사용 여부 | |
+| as | ProductAfterService | 상품 A/S 정보 | |
+| supportMarketing | Boolean | 그리퍼 지원 요청 여부 | |
+| tags | List&lt;String&gt; | 태그 목록 | 최대 20개 |
+| previewImageUrls | List&lt;String&gt; | 상품 상단 이미지 URL 목록 | |
+| detailImageUrls | List&lt;String&gt; | 상품 상세 이미지 URL 목록 | |
+| createdAt | Date | 등록일시 | |
+| modifiedAt | Date | 수정일시 | |
 
 - ProductOption
 
@@ -383,9 +383,9 @@ POST /api/product
 
 - Response
 
-| 이름 | 타입 | 설명 | 
-| -----------  | ------------ |------------ | 
-| productId | String | 상품 아이디 |
+| 이름 | 타입 | 설명 | 비고 |
+| -----------  | ------------ |------------ |-----------|
+| productId | String | 상품 아이디 | 최대 16자 |
 
 ### 상품 수정
 - 상품을 수정 합니다.
@@ -397,9 +397,9 @@ PUT /api/product/{productId}
 
 - Response
 
-| 이름 | 타입 | 설명 | 
-| -----------  | ------------ |------------ | 
-| productId | String | 상품 아이디 |
+| 이름 | 타입 | 설명 | 비고 |
+| -----------  | ------------ |------------ |-----------|
+| productId | String | 상품 아이디 | 최대 16자 |
 
 ### 상품 삭제
 - 상품을 삭제 합니다.
@@ -410,9 +410,9 @@ DELETE /api/product/{productId}
 
 - Response
 
-| 이름 | 타입 | 설명 | 
-| -----------  | ------------ |------------ | 
-| productId | String | 상품 아이디 |
+| 이름 | 타입 | 설명 | 비고 |
+| -----------  | ------------ |------------ |-----------|
+| productId | String | 상품 아이디 | 최대 16자 |
 
 ### 상품 판매 시작
 - 상품을 판매 시작 합니다.
@@ -423,9 +423,9 @@ PUT /api/product/{productId}/start
 
 - Response
 
-| 이름 | 타입 | 설명 | 
-| -----------  | ------------ |------------ | 
-| productId | String | 상품 아이디 |
+| 이름 | 타입 | 설명 | 비고 |
+| -----------  | ------------ |------------ |-----------|
+| productId | String | 상품 아이디 | 최대 16자 |
 
 ### 상품 판매 중지
 - 상품을 판매 중지 합니다.
@@ -436,9 +436,9 @@ PUT /api/product/{productId}/stop
 
 - Response
 
-| 이름 | 타입 | 설명 | 
-| -----------  | ------------ |------------ | 
-| productId | String | 상품 아이디 |
+| 이름 | 타입 | 설명 | 비고 |
+| -----------  | ------------ |------------ |-----------|
+| productId | String | 상품 아이디 | 최대 16자 |
 
 
 ## 주문/반품/교환 목록
@@ -495,35 +495,35 @@ GET /api/order
 
 - OrderList
 
-| 이름 | 타입 | 설명 | 
-| -----------  | ------------ |------------ | 
-| orderSeq | Long | 주문 번호 |
-| orderProductSeq | Long | 주문 상품 번호 |
-| orderedAt | Date | 주문 결제 일시 |
-| confirmAt | Date | 구매 확정 일시 |
-| cancelAt | Date | 주문(판매) 취소 일시 |
-| orderState | OrderProductState | 주문 상태 |
-| yourProductId | String | 자체 상품 아이디 |
-| productId | String | Grip 상품 아이디 |
-| productName | String | 주문 당시 상품명 |
-| optionName | String | 주문 당시 옵션명 |
-| price | Double | 구매가 |
-| quantity | Integer | 수량 |
-| productAmount | Double | 상품 주문 금액 |
-| shippingAmount | Double | 배송비 |
-| shippingExtraAmount | Double | 도서/산간지역 추가 배송비 |
-| couponAmount | Double | 쿠폰 할인 금액 |
-| paymentMethod | Integer | 결제 수단 |
-| buyerNickname | String | 구매자 닉네임 |
-| buyerName | String | 구매자 이름 |
-| buyerPhoneNumber | String | 구매자 전화번호 |
-| recipientName | String | 수령인 이름 |
-| recipientPhoneNumber | String | 수령인 전화번호 |
-| recipientPostalCode | String | 수령인 우편번호 |
-| recipientAddress | String | 수령인 주소 |
-| deliveryRequest | String | 배송 메시지 |
-| dawnDeliveryRequest | String | 새벽 배송 메시지 |
-| clearanceCode | String | 개인 통관 번호 |
+| 이름 | 타입 | 설명 | 비고 |
+| -----------  | ------------ |------------ | ------------ | 
+| orderSeq | Long | 주문 번호 | |
+| orderProductSeq | Long | 주문 상품 번호 | |
+| orderedAt | Date | 주문 결제 일시 | |
+| confirmAt | Date | 구매 확정 일시 | |
+| cancelAt | Date | 주문(판매) 취소 일시 | |
+| orderState | OrderProductState | 주문 상태 | |
+| yourProductId | String | 자체 상품 아이디 | 최대 40자 |
+| productId | String | Grip 상품 아이디 | 최대 16자 |
+| productName | String | 주문 당시 상품명 | 최대 40자 |
+| optionName | String | 주문 당시 옵션명 | 최대 120자 |
+| price | Double | 구매가 | |
+| quantity | Integer | 수량 | |
+| productAmount | Double | 상품 주문 금액 | |
+| shippingAmount | Double | 배송비 | |
+| shippingExtraAmount | Double | 도서/산간지역 추가 배송비 | |
+| couponAmount | Double | 쿠폰 할인 금액 | |
+| paymentMethod | Integer | 결제 수단 | |
+| buyerNickname | String | 구매자 닉네임 | 최대 30자 |
+| buyerName | String | 구매자 이름 | 최대 20자 |
+| buyerPhoneNumber | String | 구매자 전화번호 | 최대 13자 |
+| recipientName | String | 수령인 이름 | 최대 20자 |
+| recipientPhoneNumber | String | 수령인 전화번호 | 최대 13자 |
+| recipientPostalCode | String | 수령인 우편번호 | 최대 8자 |
+| recipientAddress | String | 수령인 주소 | 최대 200자 |
+| deliveryRequest | String | 배송 메시지 | 최대 60자 |
+| dawnDeliveryRequest | String | 새벽 배송 메시지 | 최대 60자 |
+| clearanceCode | String | 개인 통관 번호 | 최대 16자 |
 
 - OrderProductState
 
@@ -653,38 +653,38 @@ GET /api/return
 
 - ReturnList
 
-| 이름 | 타입 | 설명 | 
-| -----------  | ------------ |------------ | 
-| orderSeq | Long | 주문 번호 |
-| orderProductSeq | Long | 주문 상품 번호 |
-| orderedAt | Date | 주문 결제 일시 |
-| orderState | OrderProductState | 주문 상태 |
-| returnRequestAt | Date | 반품신청일시 |
-| returnCancelAt | Date | 반품취소일시 |
-| returnCompleteAt | Date | 반품완료일시 |
-| buyerReturnReasonType | Integer | 반품사유. 단순변심:1, 다른 상품 잘못 주문:3, 서비스 불만족:4, 배송 지연:5, 상품 파손 및 불량:7, 상품정보 상이:8, 다른 상품 잘못 배송:10 |
-| buyerReturnReason | String | 구매자 반품 사유 |
-| sellerReturnReason | String | 판매자 반품 불가 메시지 |
-| sellerPermitMessage | String | 판매자 반품 접수 안내 메시지 |
-| yourProductId | String | 자체 상품 아이디 |
-| productId | String | Grip 상품 아이디 |
-| productName | String | 주문 당시 상품명 |
-| optionName | String | 주문 당시 옵션명 |
-| price | Double | 구매가 |
-| quantity | Integer | 수량 |
-| productAmount | Double | 상품 주문 금액 |
-| shippingAmount | Double | 배송비 |
-| shippingExtraAmount | Double | 도서/산간지역 추가 배송비 |
-| couponAmount | Double | 쿠폰 할인 금액 |
-| paymentMethod | Integer | 결제 수단 |
-| buyerNickname | String | 구매자 닉네임 |
-| buyerName | String | 구매자 이름 |
-| buyerPhoneNumber | String | 구매자 전화번호 |
-| recipientName | String | 수령인 이름 |
-| recipientPhoneNumber | String | 수령인 전화번호 |
-| recipientPostalCode | String | 수령인 우편번호 |
-| recipientAddress | String | 수령인 주소 |
-| clearanceCode | String | 개인 통관 번호 |
+| 이름 | 타입 | 설명 | 비고 |
+| -----------  | ------------ |------------ |------------ | 
+| orderSeq | Long | 주문 번호 | |
+| orderProductSeq | Long | 주문 상품 번호 | |
+| orderedAt | Date | 주문 결제 일시 | |
+| orderState | OrderProductState | 주문 상태 | |
+| returnRequestAt | Date | 반품신청일시 | |
+| returnCancelAt | Date | 반품취소일시 | |
+| returnCompleteAt | Date | 반품완료일시 | |
+| buyerReturnReasonType | Integer | 반품사유. 단순변심:1, 다른 상품 잘못 주문:3, 서비스 불만족:4, 배송 지연:5, 상품 파손 및 불량:7, 상품정보 상이:8, 다른 상품 잘못 배송:10 | |
+| buyerReturnReason | String | 구매자 반품 사유 | 최대 1,000자 | 
+| sellerReturnReason | String | 판매자 반품 불가 메시지 | 최대 200자 |
+| sellerPermitMessage | String | 판매자 반품 접수 안내 메시지 | 최대 1,000자 |
+| yourProductId | String | 자체 상품 아이디 | 최대 40자 |
+| productId | String | Grip 상품 아이디 | 최대 16자 |
+| productName | String | 주문 당시 상품명 | 최대 40자 |
+| optionName | String | 주문 당시 옵션명 | 최대 120자 |
+| price | Double | 구매가 | |
+| quantity | Integer | 수량 | |
+| productAmount | Double | 상품 주문 금액 | |
+| shippingAmount | Double | 배송비 | |
+| shippingExtraAmount | Double | 도서/산간지역 추가 배송비 | |
+| couponAmount | Double | 쿠폰 할인 금액 | |
+| paymentMethod | Integer | 결제 수단 | |
+| buyerNickname | String | 구매자 닉네임 | 최대 30자 |
+| buyerName | String | 구매자 이름 | 최대 20자 |
+| buyerPhoneNumber | String | 구매자 전화번호 | 최대 13자 |
+| recipientName | String | 수령인 이름 | 최대 20자 |
+| recipientPhoneNumber | String | 수령인 전화번호 | 최대 13자 |
+| recipientPostalCode | String | 수령인 우편번호 | 최대 8자 |
+| recipientAddress | String | 수령인 주소 | 최대 200자 |
+| clearanceCode | String | 개인 통관 번호 | 최대 16자 |
 
 ### 반품 접수
 - 구매자의 반품 요청을 접수합니다.
@@ -815,35 +815,35 @@ GET /api/exchange
 
 - ExchangeList
 
-| 이름 | 타입 | 설명 | 
-| -----------  | ------------ |------------ | 
-| orderSeq | Long | 주문 번호 |
-| orderProductSeq | Long | 주문 상품 번호 |
-| orderedAt | Date | 주문 결제 일시 |
-| orderState | OrderProductState | 주문 상태 |
-| exchangeRequestAt | Date | 교환신청일시 |
-| exchangeCancelAt | Date | 교환취소일시 |
-| buyerChangeReasonType | Integer | 교환사유. 색상 및 사이즈 변경:2, 다른 상품 잘못 주문:3, 상품 파손 및 불량:7, 다른 상품 잘못 배송:10 |
-| buyerChangeReason | String | 구매자 교환 사유 |
-| yourProductId | String | 자체 상품 아이디 |
-| productId | String | Grip 상품 아이디 |
-| productName | String | 주문 당시 상품명 |
-| optionName | String | 주문 당시 옵션명 |
-| price | Double | 구매가 |
-| quantity | Integer | 수량 |
-| productAmount | Double | 상품 주문 금액 |
-| shippingAmount | Double | 배송비 |
-| shippingExtraAmount | Double | 도서/산간지역 추가 배송비 |
-| couponAmount | Double | 쿠폰 할인 금액 |
-| paymentMethod | Integer | 결제 수단 |
-| buyerNickname | String | 구매자 닉네임 |
-| buyerName | String | 구매자 이름 |
-| buyerPhoneNumber | String | 구매자 전화번호 |
-| recipientName | String | 수령인 이름 |
-| recipientPhoneNumber | String | 수령인 전화번호 |
-| recipientPostalCode | String | 수령인 우편번호 |
-| recipientAddress | String | 수령인 주소 |
-| clearanceCode | String | 개인 통관 번호 |
+| 이름 | 타입 | 설명 | 비고 |
+| -----------  | ------------ |------------ | ------------ | 
+| orderSeq | Long | 주문 번호 | |
+| orderProductSeq | Long | 주문 상품 번호 | |
+| orderedAt | Date | 주문 결제 일시 | |
+| orderState | OrderProductState | 주문 상태 | |
+| exchangeRequestAt | Date | 교환신청일시 | |
+| exchangeCancelAt | Date | 교환취소일시 | |
+| buyerChangeReasonType | Integer | 교환사유. 색상 및 사이즈 변경:2, 다른 상품 잘못 주문:3, 상품 파손 및 불량:7, 다른 상품 잘못 배송:10 | |
+| buyerChangeReason | String | 구매자 교환 사유 | 최대 1,000자 |
+| yourProductId | String | 자체 상품 아이디 | 최대 40자 |
+| productId | String | Grip 상품 아이디 | 최대 16자 |
+| productName | String | 주문 당시 상품명 | 최대 40자 |
+| optionName | String | 주문 당시 옵션명 | 최대 120자 |
+| price | Double | 구매가 | |
+| quantity | Integer | 수량 | |
+| productAmount | Double | 상품 주문 금액 | |
+| shippingAmount | Double | 배송비 | |
+| shippingExtraAmount | Double | 도서/산간지역 추가 배송비 | |
+| couponAmount | Double | 쿠폰 할인 금액 | |
+| paymentMethod | Integer | 결제 수단 | |
+| buyerNickname | String | 구매자 닉네임 | 최대 30자 |
+| buyerName | String | 구매자 이름 | 최대 20자 |
+| buyerPhoneNumber | String | 구매자 전화번호 | 최대 13자 |
+| recipientName | String | 수령인 이름 | 최대 20자 |
+| recipientPhoneNumber | String | 수령인 전화번호 | 최대 13자 |
+| recipientPostalCode | String | 수령인 우편번호 | 최대 8자 |
+| recipientAddress | String | 수령인 주소 | 최대 200자 |
+| clearanceCode | String | 개인 통관 번호 | 최대 16자 |
 
 ### 교환 접수
 - 구매자의 교환 요청을 접수합니다.
@@ -1062,34 +1062,34 @@ GET /api/delivery/prepare
 
 - DeliveryPrepareList
 
-| 이름 | 타입 | 설명 | 
-| -----------  | ------------ |------------ | 
-| orderSeq | Long | 주문 번호 |
-| orderProductSeq | Long | 주문 상품 번호 |
-| orderedAt | Date | 주문 결제 일시 |
-| postponedAt | Date | 배송 지연 안내 일시 |
-| postponedReason | String | 배송 지연 사유 |
-| yourProductId | String | 자체 상품 아이디 |
-| productId | String | Grip 상품 아이디 |
-| productName | String | 주문 당시 상품명 |
-| optionName | String | 주문 당시 옵션명 |
-| price | Double | 구매가 |
-| quantity | Integer | 수량 |
-| productAmount | Double | 상품 주문 금액 |
-| shippingAmount | Double | 배송비 |
-| shippingExtraAmount | Double | 도서/산간지역 추가 배송비 |
-| originPostalCode | String | 상품 출고지 우편번호 |
-| originAddress | String | 상품 출고지 주소 |
-| buyerNickname | String | 구매자 닉네임 |
-| buyerName | String | 구매자 이름 |
-| buyerPhoneNumber | String | 구매자 전화번호 |
-| recipientName | String | 수령인 이름 |
-| recipientPhoneNumber | String | 수령인 전화번호 |
-| recipientPostalCode | String | 수령인 우편번호 |
-| recipientAddress | String | 수령인 주소 |
-| deliveryRequest | String | 배송 메시지 |
-| dawnDeliveryRequest | String | 새벽 배송 메시지 |
-| clearanceCode | String | 개인 통관 번호 |
+| 이름 | 타입 | 설명 | 비고 |
+| -----------  | ------------ |------------ | ------------ | 
+| orderSeq | Long | 주문 번호 | |
+| orderProductSeq | Long | 주문 상품 번호 | |
+| orderedAt | Date | 주문 결제 일시 | |
+| postponedAt | Date | 배송 지연 안내 일시 | |
+| postponedReason | String | 배송 지연 사유 | 최대 50자 |
+| yourProductId | String | 자체 상품 아이디 | 최대 40자 |
+| productId | String | Grip 상품 아이디 | 최대 16자 |
+| productName | String | 주문 당시 상품명 | 최대 40자 |
+| optionName | String | 주문 당시 옵션명 | 최대 120자 |
+| price | Double | 구매가 | |
+| quantity | Integer | 수량 | |
+| productAmount | Double | 상품 주문 금액 | |
+| shippingAmount | Double | 배송비 | |
+| shippingExtraAmount | Double | 도서/산간지역 추가 배송비 | |
+| originPostalCode | String | 상품 출고지 우편번호 | 최대 8자 |
+| originAddress | String | 상품 출고지 주소 | 최대 200자 |
+| buyerNickname | String | 구매자 닉네임 | 최대 30자 |
+| buyerName | String | 구매자 이름 | 최대 20자 |
+| buyerPhoneNumber | String | 구매자 전화번호 | 최대 13자 |
+| recipientName | String | 수령인 이름 | 최대 20자 |
+| recipientPhoneNumber | String | 수령인 전화번호 | 최대 13자 |
+| recipientPostalCode | String | 수령인 우편번호 | 최대 8자 |
+| recipientAddress | String | 수령인 주소 | 최대 200자 |
+| deliveryRequest | String | 배송 메시지 | 최대 60자 |
+| dawnDeliveryRequest | String | 새벽 배송 메시지 | 최대 60자 |
+| clearanceCode | String | 개인 통관 번호 | 최대 16자 |
 
 ### 발주 요청
 - 배송이 필요한 주문을 발주 요청 합니다.
@@ -1151,40 +1151,40 @@ GET /api/delivery/start
 
 - Response
 
-| 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 |
 | -----------  | ------------ |------------ | 
 | startList | List&lt;DeliveryStartList&gt; | 발송이 필요한 주문 목록 |
 
 - DeliveryStartList
 
-| 이름 | 타입 | 설명 | 
-| -----------  | ------------ |------------ | 
-| orderSeq | Long | 주문 번호 |
-| orderProductSeq | Long | 주문 상품 번호 |
-| orderedAt | Date | 주문 결제 일시 |
-| deliveryCompanySeq | Integer | 택배 회사 번호 |
-| deliveryTrackingNumber | String | 송장 번호 |
-| yourProductId | String | 자체 상품 아이디 |
-| productId | String | Grip 상품 아이디 |
-| productName | String | 주문 당시 상품명 |
-| optionName | String | 주문 당시 옵션명 |
-| price | Double | 구매가 |
-| quantity | Integer | 수량 |
-| productAmount | Double | 상품 주문 금액 |
-| shippingAmount | Double | 배송비 |
-| shippingExtraAmount | Double | 도서/산간지역 추가 배송비 |
-| originPostalCode | String | 상품 출고지 우편번호 |
-| originAddress | String | 상품 출고지 주소 |
-| buyerNickname | String | 구매자 닉네임 |
-| buyerName | String | 구매자 이름 |
-| buyerPhoneNumber | String | 구매자 전화번호 |
-| recipientName | String | 수령인 이름 |
-| recipientPhoneNumber | String | 수령인 전화번호 |
-| recipientPostalCode | String | 수령인 우편번호 |
-| recipientAddress | String | 수령인 주소 |
-| deliveryRequest | String | 배송 메시지 |
-| dawnDeliveryRequest | String | 새벽 배송 메시지 |
-| clearanceCode | String | 개인 통관 번호 |
+| 이름 | 타입 | 설명 | 비고 |
+| -----------  | ------------ |------------ | ------------ | 
+| orderSeq | Long | 주문 번호 | |
+| orderProductSeq | Long | 주문 상품 번호 | |
+| orderedAt | Date | 주문 결제 일시 | |
+| deliveryCompanySeq | Integer | 택배 회사 번호 | |
+| deliveryTrackingNumber | String | 송장 번호 | 최대 40자 |
+| yourProductId | String | 자체 상품 아이디 | 최대 40자 |
+| productId | String | Grip 상품 아이디 | 최대 16자 |
+| productName | String | 주문 당시 상품명 | 최대 40자 |
+| optionName | String | 주문 당시 옵션명 | 최대 120자 |
+| price | Double | 구매가 | |
+| quantity | Integer | 수량 | |
+| productAmount | Double | 상품 주문 금액 | |
+| shippingAmount | Double | 배송비 | |
+| shippingExtraAmount | Double | 도서/산간지역 추가 배송비 | |
+| originPostalCode | String | 상품 출고지 우편번호 | 최대 8자 |
+| originAddress | String | 상품 출고지 주소 | 최대 200자 |
+| buyerNickname | String | 구매자 닉네임 | 최대 30자 |
+| buyerName | String | 구매자 이름 | 최대 20자 |
+| buyerPhoneNumber | String | 구매자 전화번호 | 최대 13자 |
+| recipientName | String | 수령인 이름 | 최대 20자 |
+| recipientPhoneNumber | String | 수령인 전화번호 | 최대 13자 |
+| recipientPostalCode | String | 수령인 우편번호 | 최대 8자 |
+| recipientAddress | String | 수령인 주소 | 최대 200자 |
+| deliveryRequest | String | 배송 메시지 | 최대 60자 |
+| dawnDeliveryRequest | String | 새벽 배송 메시지 | 최대 60자 |
+| clearanceCode | String | 개인 통관 번호 | 최대 16자 |
 
 ### 택배 정보 설정
 - 택배회사 및 운송장 번호를 설정합니다.
@@ -1284,36 +1284,36 @@ GET /api/delivery/status
 
 - DeliveryStatusList
 
-| 이름 | 타입 | 설명 | 
-| -----------  | ------------ |------------ | 
-| orderSeq | Long | 주문 번호 |
-| orderProductSeq | Long | 주문 상품 번호 |
-| orderedAt | Date | 주문 결제 일시 |
-| deliveryCompanySeq | Integer | 택배 회사 번호 |
-| deliveryTrackingNumber | String | 송장 번호 |
-| startAt | Date | 발송 시작 일시 |
-| orderState | OrderProductState | 주문 상태 |
-| yourProductId | String | 자체 상품 아이디 |
-| productId | String | Grip 상품 아이디 |
-| productName | String | 주문 당시 상품명 |
-| optionName | String | 주문 당시 옵션명 |
-| price | Double | 구매가 |
-| quantity | Integer | 수량 |
-| productAmount | Double | 상품 주문 금액 |
-| shippingAmount | Double | 배송비 |
-| shippingExtraAmount | Double | 도서/산간지역 추가 배송비 |
-| originPostalCode | String | 상품 출고지 우편번호 |
-| originAddress | String | 상품 출고지 주소 |
-| buyerNickname | String | 구매자 닉네임 |
-| buyerName | String | 구매자 이름 |
-| buyerPhoneNumber | String | 구매자 전화번호 |
-| recipientName | String | 수령인 이름 |
-| recipientPhoneNumber | String | 수령인 전화번호 |
-| recipientPostalCode | String | 수령인 우편번호 |
-| recipientAddress | String | 수령인 주소 |
-| deliveryRequest | String | 배송 메시지 |
-| dawnDeliveryRequest | String | 새벽 배송 메시지 |
-| clearanceCode | String | 개인 통관 번호 |
+| 이름 | 타입 | 설명 | 비고 |
+| -----------  | ------------ |------------ | ------------ | 
+| orderSeq | Long | 주문 번호 | |
+| orderProductSeq | Long | 주문 상품 번호 | |
+| orderedAt | Date | 주문 결제 일시 | |
+| deliveryCompanySeq | Integer | 택배 회사 번호 | |
+| deliveryTrackingNumber | String | 송장 번호 | 최대 40자 |
+| startAt | Date | 발송 시작 일시 | |
+| orderState | OrderProductState | 주문 상태 | |
+| yourProductId | String | 자체 상품 아이디 | 최대 40자 |
+| productId | String | Grip 상품 아이디 | 최대 16자 |
+| productName | String | 주문 당시 상품명 | 최대 40자 |
+| optionName | String | 주문 당시 옵션명 | 최대 120자 |
+| price | Double | 구매가 | |
+| quantity | Integer | 수량 | |
+| productAmount | Double | 상품 주문 금액 | |
+| shippingAmount | Double | 배송비 | |
+| shippingExtraAmount | Double | 도서/산간지역 추가 배송비 | |
+| originPostalCode | String | 상품 출고지 우편번호 | 최대 8자 |
+| originAddress | String | 상품 출고지 주소 | 최대 200자 |
+| buyerNickname | String | 구매자 닉네임 | 최대 30자 |
+| buyerName | String | 구매자 이름 | 최대 20자 |
+| buyerPhoneNumber | String | 구매자 전화번호 | 최대 13자 |
+| recipientName | String | 수령인 이름 | 최대 20자 |
+| recipientPhoneNumber | String | 수령인 전화번호 | 최대 13자 |
+| recipientPostalCode | String | 수령인 우편번호 | 최대 8자 |
+| recipientAddress | String | 수령인 주소 | 최대 200자 |
+| deliveryRequest | String | 배송 메시지 | 최대 60자 |
+| dawnDeliveryRequest | String | 새벽 배송 메시지 | 최대 60자 |
+| clearanceCode | String | 개인 통관 번호 | 최대 16자 |
 
 ### 직접 수령
 - 구매자가 상품을 직접 수령한 경우에 사용합니다.
@@ -1405,19 +1405,19 @@ GET /api/inquiry
 
 - InquiryList
 
-| 이름 | 타입 | 설명 | 
-| -----------  | ------------ |------------ | 
-| inquirySeq | Long | 문의 번호 |
-| inquiryType | InquiryType | 문의 유형 |
-| title | String | 문의 제목 |
-| userName | String | 문의한 사용자 닉네임 |
-| yourProductId | String | 자체 상품 아이디 |
-| productId | String | Grip 상품 아이디 |
-| productName | String | 주문 당시 상품명 |
-| email | String | 문의한 사용자 이메일 |
-| createdAt | Date | 문의일시 |
-| replyAt | Date | 답변일시 |
-| imageUrls | List&lt;String&gt; | 이미지 있는 경우 URL 목록 |
+| 이름 | 타입 | 설명 | 비고 |
+| -----------  | ------------ |------------ | ------------ | 
+| inquirySeq | Long | 문의 번호 | |
+| inquiryType | InquiryType | 문의 유형 | |
+| title | String | 문의 제목 | 최대 50자 |
+| userName | String | 문의한 사용자 닉네임 | 최대 30자 |
+| yourProductId | String | 자체 상품 아이디 | 최대 40자 |
+| productId | String | Grip 상품 아이디 | 최대 16자 |
+| productName | String | 주문 당시 상품명 | 최대 40자 |
+| email | String | 문의한 사용자 이메일 | 최대 60자 |
+| createdAt | Date | 문의일시 | |
+| replyAt | Date | 답변일시 | |
+| imageUrls | List&lt;String&gt; | 이미지 있는 경우 URL 목록 | 최대 10개 |
 
 - InquiryType
 
@@ -1450,21 +1450,21 @@ GET /api/inquiry/{inquirySeq}
 
 - Inquiry
 
-| 이름 | 타입 | 설명 | 
-| -----------  | ------------ |------------ | 
-| inquirySeq | Long | 문의 번호 |
-| inquiryType | InquiryType | 문의 유형 |
-| title | String | 문의 제목 |
-| content | String | 문의 내용 |
-| reply | String | 답변 내용 |
-| userName | String | 문의한 사용자 닉네임 |
-| yourProductId | String | 자체 상품 아이디 |
-| productId | String | Grip 상품 아이디 |
-| productName | String | 주문 당시 상품명 |
-| email | String | 문의한 사용자 이메일 |
-| createdAt | Date | 문의일시 |
-| replyAt | Date | 답변일시 |
-| imageUrls | List&lt;String&gt; | 이미지 있는 경우 URL 목록 |
+| 이름 | 타입 | 설명 | 비고 |
+| -----------  | ------------ |------------ | ------------ | 
+| inquirySeq | Long | 문의 번호 | |
+| inquiryType | InquiryType | 문의 유형 | |
+| title | String | 문의 제목 | 최대 50자 |
+| content | String | 문의 내용 | 최대 1,000자 |
+| reply | String | 답변 내용 | 최대 1,000자 |
+| userName | String | 문의한 사용자 닉네임 | 최대 30자 |
+| yourProductId | String | 자체 상품 아이디 | 최대 40자 |
+| productId | String | Grip 상품 아이디 | 최대 16자 |
+| productName | String | 주문 당시 상품명 | 최대 40자 |
+| email | String | 문의한 사용자 이메일 | 최대 60자 |
+| createdAt | Date | 문의일시 | |
+| replyAt | Date | 답변일시 | |
+| imageUrls | List&lt;String&gt; | 이미지 있는 경우 URL 목록 | 최대 10개 |
 
 ### 1:1 문의 답변 등록
 - 1:1 문의 답변을 등록합니다.
@@ -1550,19 +1550,19 @@ GET /api/review
 
 - ReviewList
 
-| 이름 | 타입 | 설명 | 
-| -----------  | ------------ |------------ | 
-| reviewSeq | Long | 리뷰 번호 |
-| grade | Float | 별점 |
-| review | String | 리뷰 내용 |
-| reply | String | 답변 내용 |
-| userName | String | 리뷰 작성한 사용자 닉네임 |
-| yourProductId | String | 자체 상품 아이디 |
-| productId | String | Grip 상품 아이디 |
-| productName | String | 주문 당시 상품명 |
-| createdAt | Date | 작성일시 |
-| replyAt | Date | 답변일시 |
-| imageUrls | List&lt;String&gt; | 이미지 있는 경우 URL 목록 |
+| 이름 | 타입 | 설명 | 비고 |
+| -----------  | ------------ |------------ | ------------ | 
+| reviewSeq | Long | 리뷰 번호 | |
+| grade | Float | 별점 | |
+| review | String | 리뷰 내용 | 최대 500자 |
+| reply | String | 답변 내용 | 최대 500자 |
+| userName | String | 리뷰 작성한 사용자 닉네임 | 최대 30자 |
+| yourProductId | String | 자체 상품 아이디 | 최대 40자 |
+| productId | String | Grip 상품 아이디 | 최대 16자 |
+| productName | String | 주문 당시 상품명 | 최대 40자 |
+| createdAt | Date | 작성일시 | |
+| replyAt | Date | 답변일시 | |
+| imageUrls | List&lt;String&gt; | 이미지 있는 경우 URL 목록 | 최대 10개 |
 
 ### 리뷰 답변 등록
 - 리뷰의 답변을 등록합니다.
@@ -1646,25 +1646,25 @@ GET /api/gropup/member/
 
 - GroupMemberList
 
-| 이름 | 타입 | 설명 | 
-| -----------  | ------------ |------------ | 
-| userId | String | 그립 내부 사용자 아이디 |
-| userTag | String | 이용자 아이디. 프로필에 보이는 아이디 |
-| userName | String | 닉네임. 프로필에 보이는 닉네임 |
-| master | Boolean | 그룹 마스터 여부 |
-| active | Boolean | 방송권한 여부 |
-| profileUrl | String | 프로필 URL |
-| companyName | String | 소속명 |
-| managerName | String | 브랜드 담당 매니저 이름 |
-| managerEmail | String | 브랜드 담당 매니저 이메일 |
-| managerMobile | String | 브랜드 담당 매니저 핸드폰 번호 |
-| productCount | Integer | 상품 수 |
-| contentCount | Integer | 방송 수 |
-| followerCount | Integer | 팔로워 수 |
-| lastPublishedAt | Date | 최근 방송일시 |
-| createdAt | Date | 등록일시 |
-| accessKey | String | API AccessKey |
-| secretKey | String | API SecretKey |
+| 이름 | 타입 | 설명 | 비고 |
+| -----------  | ------------ |------------ | ------------ | 
+| userId | String | 그립 내부 사용자 아이디 | 최대 16자 |
+| userTag | String | 이용자 아이디. 프로필에 보이는 아이디 | 최대 16자 |
+| userName | String | 닉네임. 프로필에 보이는 닉네임 | 최대 30자 |
+| master | Boolean | 그룹 마스터 여부 | |
+| active | Boolean | 방송권한 여부 | |
+| profileUrl | String | 프로필 URL | 최대 300자 |
+| companyName | String | 소속명 | 최대 40자 |
+| managerName | String | 브랜드 담당 매니저 이름 | 최대 20자 |
+| managerEmail | String | 브랜드 담당 매니저 이메일 | 최대 60자 |
+| managerMobile | String | 브랜드 담당 매니저 핸드폰 번호 | 최대 13자 |
+| productCount | Integer | 상품 수 | |
+| contentCount | Integer | 방송 수 | |
+| followerCount | Integer | 팔로워 수 | |
+| lastPublishedAt | Date | 최근 방송일시 | |
+| createdAt | Date | 등록일시 | |
+| accessKey | String | API AccessKey | 최대 16자 |
+| secretKey | String | API SecretKey | 최대 16자 |
 
 
 ### 맴버 등록
@@ -1686,9 +1686,9 @@ POST /api/group/member
 
 - Response
 
-| 이름 | 타입 | 설명 | 
-| -----------  | ------------ |------------ | 
-| userId | String | 그립 내부 사용자 아이디 |
+| 이름 | 타입 | 설명 | 비고 |
+| -----------  | ------------ |------------ | ------------ | 
+| userId | String | 그립 내부 사용자 아이디 | 최대 16자 |
 
 ### 맴버 수정
 - 그룹 맴버의 정보를 수정합니다.
@@ -1700,9 +1700,9 @@ PUT /api/group/member/{userId}
 
 - Response
 
-| 이름 | 타입 | 설명 | 
-| -----------  | ------------ |------------ | 
-| userId | String | 그립 내부 사용자 아이디 |
+| 이름 | 타입 | 설명 | 비고 |
+| -----------  | ------------ |------------ | ------------ | 
+| userId | String | 그립 내부 사용자 아이디 | 최대 16자 |
 
 ### 맴버 삭제
 - 그룹에서 해당 맴버를 삭제합니다.
@@ -1713,9 +1713,9 @@ DELETE /api/group/member/{userId}
 
 - Response
 
-| 이름 | 타입 | 설명 | 
-| -----------  | ------------ |------------ | 
-| userId | String | 그립 내부 사용자 아이디 |
+| 이름 | 타입 | 설명 | 비고 |
+| -----------  | ------------ |------------ | ------------ | 
+| userId | String | 그립 내부 사용자 아이디 | 최대 16자 |
 
 ### 방송 권한 부여
 - 해당 맴버에게 방송 권한을 부여합니다.
@@ -1726,9 +1726,9 @@ PUT /api/group/member/{userId}/enable
 
 - Response
 
-| 이름 | 타입 | 설명 | 
-| -----------  | ------------ |------------ | 
-| userId | String | 그립 내부 사용자 아이디 |
+| 이름 | 타입 | 설명 | 비고 |
+| -----------  | ------------ |------------ | ------------ | 
+| userId | String | 그립 내부 사용자 아이디 | 최대 16자 |
 
 ### 방송 권한 제거
 - 해당 맴버의 방송 권한을 제거합니다.
@@ -1739,9 +1739,9 @@ PUT /api/group/member/{userId}/disable
 
 - Response
 
-| 이름 | 타입 | 설명 | 
-| -----------  | ------------ |------------ | 
-| userId | String | 그립 내부 사용자 아이디 |
+| 이름 | 타입 | 설명 | 비고 |
+| -----------  | ------------ |------------ | ------------ | 
+| userId | String | 그립 내부 사용자 아이디 | 최대 16자 |
 
 ### 패스워드 초기화
 - 해당 맴버의 패스워드를 초기화 합니다.
@@ -1753,10 +1753,10 @@ PUT /api/group/member/{userId}/password/reset
 
 - Response
 
-| 이름 | 타입 | 설명 | 
-| -----------  | ------------ |------------ | 
-| userId | String | 그립 내부 사용자 아이디 |
-| password | String | 새로운 임시 패스워드 |
+| 이름 | 타입 | 설명 | 비고 |
+| -----------  | ------------ |------------ | ------------ | 
+| userId | String | 그립 내부 사용자 아이디 | 최대 16자 |
+| password | String | 새로운 임시 패스워드 | 최대 16자 |
 
 
 ### 패스워드 전송
@@ -1768,6 +1768,6 @@ PUT /api/group/member/{userId}/password/send
 
 - Response
 
-| 이름 | 타입 | 설명 | 
-| -----------  | ------------ |------------ | 
-| userId | String | 그립 내부 사용자 아이디 |
+| 이름 | 타입 | 설명 | 비고 |
+| -----------  | ------------ |------------ | ------------ | 
+| userId | String | 그립 내부 사용자 아이디 | 최대 16자 |
