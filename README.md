@@ -1341,7 +1341,7 @@ PUT /api/delivery/direct
 - Request
 
 ```
-PUT /api/delivery/direct
+PUT /api/delivery/complete
 ```
 
 | 이름 | 타입 | 필수 | 설명 | 비고 |
