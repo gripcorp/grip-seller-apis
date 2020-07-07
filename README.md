@@ -1664,6 +1664,7 @@ GET /api/gropup/member/
 | followerCount | Integer | 팔로워 수 | |
 | lastPublishedAt | Date | 최근 방송일시 | |
 | createdAt | Date | 등록일시 | |
+| memo | String | 관리용 메모 | 최대 200자 |
 | accessKey | String | API AccessKey | 최대 16자 |
 | secretKey | String | API SecretKey | 최대 16자 |
 
@@ -1684,6 +1685,7 @@ POST /api/group/member
 | managerName | String | Y | 브랜드 담당 매니저 이름 | 최대 30자 |
 | managerEmail | String | Y | 브랜드 담당 매니저 이메일 | 최대 40자 |
 | managerMobile | String | Y | 브랜드 담당 매니저 핸드폰 번호 | |
+| memo | String | N | 관리용 메모 | 최대 200자 |
 
 - Response
 
