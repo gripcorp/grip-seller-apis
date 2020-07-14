@@ -209,7 +209,6 @@ GET /api/product
 | maxOrderQuantity | Integer | 최대 구매 개수 |
 | allowCoupon | Boolean | 쿠폰 적용 불가 상품 여부. 쿠폰 사용 가능이면 Y, 불가면 N |
 | overseasDirect | Boolean | 해외배송 여부 |
-| supportMarketing | Boolean | 그리퍼 지원 요청 여부 |
 | createdAt | Date | 등록일시 |
 | modifiedAt | Date | 수정일시 |
 
@@ -263,7 +262,6 @@ GET /api/product/{productId}
 | delivery | ProductDelivery | 상품 배송 정보 | |
 | customAs | Boolean | 커스텀 A/S 사용 여부 | |
 | as | ProductAfterService | 상품 A/S 정보 | |
-| supportMarketing | Boolean | 그리퍼 지원 요청 여부 | |
 | tags | List&lt;String&gt; | 태그 목록 | 최대 20개 |
 | previewImageUrls | List&lt;String&gt; | 상품 상단 이미지 URL 목록 | |
 | detailImageUrls | List&lt;String&gt; | 상품 상세 이미지 URL 목록 | |
@@ -376,7 +374,6 @@ POST /api/product
 | delivery | ProductDelivery | N | 상품 배송 정보 | customDelivery가 Y면 필수 |
 | customAs | Boolean | Y | 커스텀 A/S 사용 여부 | N이면 판매자 기본 A/S 정보 사용 |
 | as | ProductAfterService | N | 상품 A/S 정보 | customAs가 Y면 필수 |
-| supportMarketing | Boolean | Y | 그리퍼 지원 요청 여부 | |
 | tags | List&lt;String&gt; | Y | 태그 목록 | 최대 20개, 최대 32자, 특수문자 불가. 대소문자 구분없음 |
 | previewImageUrls | List&lt;String&gt; | Y | 상품 상단 이미지 URL 목록 | 이미지를 미리 업로드하고 받은 URL 사용. 최대 10개. 750px X 750px 권장. 비율이 다를시 Center Crop. 첫번째 이미지가 대표 이미지. PNG, JPG 허용 |
 | detailImageUrls | List&lt;String&gt; | Y | 상품 상세 이미지 URL 목록 | 이미지를 미리 업로드하고 받은 URL 사용. 최대 30개. 가로 860px 권장. PNG, JPG, GIF 허용 |
