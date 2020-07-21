@@ -272,8 +272,8 @@ GET /api/product/{productId}
 
 | 이름 | 타입 | 설명 | 
 | -----------  | ------------ |------------ | 
-| types | List&lt;ProductOptionType&gt; | 옵션 종류 목록 |
-| names | List&lt;ProductOptionName&gt; | 옵션 종류별 항목 목록 |
+| types | List&lt;ProductOptionType&gt; | 옵션 종류 목록. 최대 3개 |
+| names | List&lt;ProductOptionName&gt; | 옵션 종류별 항목 목록. 종류별로 최대 100개 |
 | combinations | List&lt;ProductOptionCombination&gt; | 옵션 종류를 조합한 최종 옵션 정보 목록 |
 
 - ProductOptionType
