@@ -314,8 +314,8 @@ GET /api/product/{productId}
 | -----------  | ------------ |------------ | ------------ |
 | serviceType | Integer | 택배배송:1, 새벽배송:2, 해외배송:3, 배송없음:4, 직접배송:5 | |
 | chargeType | Integer | 무료배송:1, 조건부 무료배송:2, 유료배송: 3, 수량별 배송비 부과: 4 | |
-| chargeTimeType | Integer | 선결제:1 | |
-| bundleType | Integer | 선결제:1 | |
+| chargeTimeType | Integer | 선결제:1 | 현재 선결제만 있음 |
+| bundleType | Integer | 최대 배송비:1, 최소 배송비2, 개별 계산:3 | 묶음 배송에 대한 배송비 |
 | chargePrice | Double | 배송비 | |
 | deliveryExternal | Boolean | 도서산간지역 배송 여부 | |
 | chargePriceExternal | Double | 도서산간지역 추가 배송비 | |
