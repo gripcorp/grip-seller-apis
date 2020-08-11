@@ -1676,6 +1676,7 @@ POST /api/group/member
 
 | 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
+| yourMemberId | String | N | 자체 맴버 아이디 | 최대 40자 |
 | companyName | String | Y | 소속명 | 최대 40자 |
 | userTag | String | Y | 이용자 아이디. 프로필에 보이는 아이디 | 최대 16자 |
 | userName | String | Y | 닉네임. 프로필에 보이는 닉네임 | 최대 20자 |
