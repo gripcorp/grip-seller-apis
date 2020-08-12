@@ -295,6 +295,7 @@ GET /api/product/{productId}
 
 | 이름 | 타입 | 설명 |
 | -----------  | ------------ |------------ | 
+| optionKey | String | 조합된 옵션의 키 |
 | nameSeqs | List&lt;Integer&gt; | 조합된 옵션 항목 번호 목록 |
 | price | Double | 추가 가격. 마이너스 가격 가능. 0원인 조합이 1개 이상 있어야 함 |
 | stockCount | Integer | 재고 수량 |
