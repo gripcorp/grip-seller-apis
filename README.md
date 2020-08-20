@@ -1379,6 +1379,7 @@ GET /api/inquiry/count
 
 ### 1:1 문의 목록
 - 1:1 문의 목록을 조회합니다.
+- 그립에서 1:1 문의는 상품 상세와 주문서를 통해서 등록됩니다.
 - Request
 
 ```
@@ -1408,6 +1409,7 @@ GET /api/inquiry
 | -----------  | ------------ |------------ | ------------ | 
 | inquirySeq | Long | 문의 번호 | |
 | inquiryType | InquiryType | 문의 유형 | |
+| orderSeq | Long | 주문 번호 | 상품 상세에서 문의한 경우에는 null |
 | title | String | 문의 제목 | 최대 50자 |
 | userName | String | 문의한 사용자 닉네임 | 최대 30자 |
 | yourProductId | String | 자체 상품 아이디 | 최대 40자 |
@@ -1453,6 +1455,7 @@ GET /api/inquiry/{inquirySeq}
 | -----------  | ------------ |------------ | ------------ | 
 | inquirySeq | Long | 문의 번호 | |
 | inquiryType | InquiryType | 문의 유형 | |
+| orderSeq | Long | 주문 번호 | 상품 상세에서 문의한 경우에는 null |
 | title | String | 문의 제목 | 최대 50자 |
 | content | String | 문의 내용 | 최대 1,000자 |
 | reply | String | 답변 내용 | 최대 1,000자 |
