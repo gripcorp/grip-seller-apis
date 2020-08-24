@@ -1611,7 +1611,7 @@ PUT /api/review/{reviewSeq}
 - Request
 
 ```
-GET /api/gropup/member/count
+GET /api/group/member/count
 ```
 
 | 이름 | 타입 | 필수 | 설명 | 비고 |
@@ -1629,7 +1629,7 @@ GET /api/gropup/member/count
 - Request
 
 ```
-GET /api/gropup/member/
+GET /api/group/member/
 ```
 
 | 이름 | 타입 | 필수 | 설명 | 비고 |
