@@ -349,7 +349,7 @@ POST /api/product
 | categorySeq | Integer | Y | 상품 카테고리 번호 | 말단 카테고리의 번호만 허용 |
 | legalSeq | Integer | Y | 상품정보 제공고시 번호 | |
 | legalItems | List&lt;LegalItem&gt; | Y | 상품정보 제공고시 상세 | |
-| introduction | String | Y | 상품 설명 | 최대 50자 |
+| introduction | String | N | 상품 설명 | 최대 50자 |
 | useOption | Boolean | Y | 옵션 사용 여부 | |
 | option | ProductOption | N | 옵션 정보 | useOption이 Y면 필수 |
 | costPrice | Double | Y | 원가 | 최소 200원 또는 0원 |
