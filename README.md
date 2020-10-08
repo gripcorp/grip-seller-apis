@@ -504,6 +504,7 @@ GET /api/order
 | yourProductId | String | 자체 상품 아이디 | 최대 40자 |
 | productId | String | Grip 상품 아이디 | 최대 16자 |
 | productName | String | 주문 당시 상품명 | 최대 40자 |
+| optionKey | String | 조합된 옵션의 키 | 최대 8자 |
 | optionName | String | 주문 당시 옵션명 | 최대 120자 |
 | price | Double | 구매가 | |
 | quantity | Integer | 수량 | |
@@ -667,6 +668,7 @@ GET /api/return
 | yourProductId | String | 자체 상품 아이디 | 최대 40자 |
 | productId | String | Grip 상품 아이디 | 최대 16자 |
 | productName | String | 주문 당시 상품명 | 최대 40자 |
+| optionKey | String | 조합된 옵션의 키 | 최대 8자 |
 | optionName | String | 주문 당시 옵션명 | 최대 120자 |
 | price | Double | 구매가 | |
 | quantity | Integer | 수량 | |
@@ -826,6 +828,7 @@ GET /api/exchange
 | yourProductId | String | 자체 상품 아이디 | 최대 40자 |
 | productId | String | Grip 상품 아이디 | 최대 16자 |
 | productName | String | 주문 당시 상품명 | 최대 40자 |
+| optionKey | String | 조합된 옵션의 키 | 최대 8자 |
 | optionName | String | 주문 당시 옵션명 | 최대 120자 |
 | price | Double | 구매가 | |
 | quantity | Integer | 수량 | |
