@@ -364,7 +364,7 @@ POST /api/product
 | taxType | Integer | Y | 부가세. 과세상품:1, 면세상품:2, 영세상품: 3 | |
 | startAt | Date | Y | 판매 시작일시 | 최소 2019-02-01 00:00:00. 현재시간 권장 |
 | endAt | Date | Y | 판매 종료일시 | 최대 2048-12-31 23:59:59 |
-| stockCount | Integer | Y | 재고 수량 | useOption이 Y인 경우에 option에 있는 ProductOptionCombination에서 expose가 Y인 것의 stockCount 합과 같아야 함 |
+| stockCount | Integer | Y | 재고 수량 | useOption이 Y인 경우에 option에 있는 ProductOptionCombination에서 expose가 Y인 것으로 자동 설정 됨 |
 | useMinOrderQuantity | Boolean | Y | 최소 구매 개수 사용 여부 | |
 | useMaxOrderQuantity | Boolean | Y | 최대 구매 개수 사용 여부 | |
 | minOrderQuantity | Integer | N | 최소 구매 개수 | useMinOrderQuantity가 Y면 필수 |
