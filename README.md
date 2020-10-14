@@ -14,7 +14,7 @@
 # 사전 정보
 - SecretKey : 판매자센터에서 발급 받은 SecretKey. API인증을 위한 Fingerprint를 만들때 사용.
 - AccessKey : 판매자센터에서 발급 받은 AccessKey.
-- API host : 개발서버(https://dev-seller.grip.show), 리얼서버(https://seller.grip.show)
+- API host : https://seller.grip.show
  
 # HTTP 응답 코드
 - HTTP 응답 코드는 성공인 경우에는 200이고 실패인 경우에는 500입니다. 실패인 경우에는 응답 결과의 message에 실패사유가 내려갑니다.
