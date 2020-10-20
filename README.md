@@ -612,7 +612,7 @@ POST /api/order/cancel
 | affected | Integer | 주문 취소 성공한 주문 수 |
 
 ```
-PUT /api/order/cancel/result
+POST /api/order/cancel/result
 ```
 
 | 이름 | 타입 | 필수 | 설명 | 비고 |
