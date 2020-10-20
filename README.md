@@ -715,7 +715,7 @@ GET /api/return
 - Request
 
 ```
-POST /api/return/start
+PUT /api/return/start
 ```
 
 | 이름 | 타입 | 필수 | 설명 | 비고 |
@@ -734,7 +734,7 @@ POST /api/return/start
 - Request
 
 ```
-POST /api/return/receive
+PUT /api/return/receive
 ```
 
 | 이름 | 타입 | 필수 | 설명 | 비고 |
@@ -755,7 +755,7 @@ POST /api/return/receive
 - Request
 
 ```
-POST /api/return/allow
+PUT /api/return/allow
 ```
 
 | 이름 | 타입 | 필수 | 설명 | 비고 |
@@ -774,7 +774,7 @@ POST /api/return/allow
 - Request
 
 ```
-POST /api/return/deny
+PUT /api/return/deny
 ```
 
 | 이름 | 타입 | 필수 | 설명 | 비고 |
@@ -875,7 +875,7 @@ GET /api/exchange
 - Request
 
 ```
-POST /api/exchange/start
+PUT /api/exchange/start
 ```
 
 | 이름 | 타입 | 필수 | 설명 | 비고 |
@@ -894,7 +894,7 @@ POST /api/exchange/start
 - Request
 
 ```
-POST /api/exchange/receive
+PUT /api/exchange/receive
 ```
 
 | 이름 | 타입 | 필수 | 설명 | 비고 |
@@ -914,7 +914,7 @@ POST /api/exchange/receive
 - Request
 
 ```
-POST /api/exchange/direct
+PUT /api/exchange/direct
 ```
 
 | 이름 | 타입 | 필수 | 설명 | 비고 |
@@ -934,7 +934,7 @@ POST /api/exchange/direct
 - Request
 
 ```
-POST /api/exchange/allow
+PUT /api/exchange/allow
 ```
 
 | 이름 | 타입 | 필수 | 설명 | 비고 |
@@ -956,7 +956,7 @@ POST /api/exchange/allow
 - Request
 
 ```
-POST /api/exchange/deny
+PUT /api/exchange/deny
 ```
 
 | 이름 | 타입 | 필수 | 설명 | 비고 |
