@@ -369,6 +369,8 @@ POST /api/product
 | useMaxOrderQuantity | Boolean | Y | 최대 구매 개수 사용 여부 | |
 | minOrderQuantity | Integer | N | 최소 구매 개수 | useMinOrderQuantity가 Y면 필수 |
 | maxOrderQuantity | Integer | N | 최대 구매 개수 | useMaxOrderQuantity가 Y면 필수 |
+| maxOrderQuantityStartAt | Date | N | 최대 구매 개수 적용 시작일시 | null이면 매일 초기화. 하루 단위로만 제한됨 |
+| maxOrderQuantityEndAt | Date | N | 최대 구매 개수 적용 종료일시 | null이면 매일 초기화. 하루 단위로만 제한됨 |
 | allowCoupon | Boolean | N | 쿠폰 적용 불가 상품 여부. 디폴트 Y | 쿠폰허용이면 Y, 불가면 N|
 | overseasDirect | Boolean | N | 해외배송 여부. 디폴트 N |
 | customDelivery | Boolean | Y | 커스텀 배송 정보 사용 여부 | N이면 판매자 기본 배송 정보 사용|
