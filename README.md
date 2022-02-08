@@ -1043,7 +1043,8 @@ PUT /api/delivery/postpone
 | 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
 | orderKeys | List&lt;OrderKey&gt; | Y | 대상 주문 | |
-| reason | String | Y | 배송 지연 사유 | 최대 50자 |
+| postponeType | Integer | Y | 지연 사유 | 재고부족:1, 합배송 요청:2, 배송일지정:3, 기타 10 |
+| reason | String | Y | 상세 지연 사유. 소비자에게 안내됨 | 최대 50자 |
 
 - Response
 
