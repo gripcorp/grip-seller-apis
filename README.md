@@ -26,6 +26,7 @@
 
 | Header  | 설명 |
 |----|----|
+| X-ServiceId | API 연동 서비스 이름. 그립을 통해서 발급 받아야 함 |
 | X-AccessKey | 판매자센터에서 발급 받은 AccessKey |
 | X-Fingerprint | SecretKey로 암호화한 Fingerprint. HMAC 암호화 알고리즘은 HmacSHA256 사용 |
 | X-Fingerprint-Timestamp | Fingerprint를 암호화할때 사용한 timestamp(**milliseconds**). Grip 서버와 시간차가 10분 이상 나는 경우 유효하지 않은 요청으로 간주 |
