@@ -1265,7 +1265,7 @@ PUT /api/delivery/shipping
 | -----------  | ------------ |-----------|------------ | --------------- |
 | shippings | List&lt;DeliveryShipping&gt; | Y | 대상 주문 | |
 
-- OrderKey
+- DeliveryShipping
 
 | 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
@@ -1286,7 +1286,7 @@ PUT /api/delivery/shipping/result
 
 | 이름 | 타입 | 필수 | 설명 | 비고 |
 | -----------  | ------------ |-----------|------------ | --------------- |
-| orderKeys | List&lt;OrderKey&gt; | Y | 대상 주문 | |
+| shippings | List&lt;DeliveryShipping&gt; | Y | 대상 주문 | |
 
 - Response
 
