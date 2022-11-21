@@ -6,7 +6,7 @@
 - API의 성능을 보장하기 위해 검색 범위는 최근 90일까지만 가능합니다.
 
 # 판매자센터 API 이용 신청하기
-- 판매자센터 우상단에 있는 프로필을 클릭하여 API 사용을 시작합니다.
+- 판매자센터 좌상단에 있는 API를 클릭하여 사용을 시작합니다.
 - 'SecretKey 신청'을 클릭하면 AccessKey와 SecretKey가 생성됩니다.
 - SecretKey가 유출되면 'SecretKey 재발급'을 클릭하여 SecretKey를 새로 발급 받을 수 있습니다.
 - AccessKey는 변경되지 않습니다.
