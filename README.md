@@ -301,6 +301,7 @@ GET /api/product/{productId}
 | price | Double | 추가 가격. 마이너스 가격 가능. 0원인 조합이 1개 이상 있어야 함 |
 | stockCount | Integer | 재고 수량 |
 | expose | Boolean | 판매 여부 |
+| yourProductId | String | 옵션에 부여하고 싶은 자체 상품 아이디. Optional |
 
 - ProductAfterService
 
