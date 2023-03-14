@@ -694,6 +694,7 @@ GET /api/return
 | sellerReturnReason | String | 판매자 반품 불가 메시지 | 최대 200자 |
 | sellerPermitMessage | String | 판매자 반품 접수 안내 메시지 | 최대 1,000자 |
 | yourProductId | String | 자체 상품 아이디 | 최대 40자 |
+| yourProductOptionId | String | 자체 옵션 상품 아이디. 옵션에 설정된 yourProductId | 최대 40자 |
 | productId | String | Grip 상품 아이디 | 최대 16자 |
 | productName | String | 주문 당시 상품명 | 최대 40자 |
 | optionNameSeqs | List<Integer> | 조합된 옵션의 종류 번호 | |
@@ -854,6 +855,7 @@ GET /api/exchange
 | buyerChangeReasonType | Integer | 교환사유. 색상 및 사이즈 변경:2, 다른 상품 잘못 주문:3, 상품 파손 및 불량:7, 다른 상품 잘못 배송:10 | |
 | buyerChangeReason | String | 구매자 교환 사유 | 최대 1,000자 |
 | yourProductId | String | 자체 상품 아이디 | 최대 40자 |
+| yourProductOptionId | String | 자체 옵션 상품 아이디. 옵션에 설정된 yourProductId | 최대 40자 |	
 | productId | String | Grip 상품 아이디 | 최대 16자 |
 | productName | String | 주문 당시 상품명 | 최대 40자 |
 | optionNameSeqs | List<Integer> | 조합된 옵션의 종류 번호 | |
@@ -1123,6 +1125,7 @@ GET /api/delivery/prepare
 | postponedAt | Date | 배송 지연 안내 일시 | |
 | postponedReason | String | 배송 지연 사유 | 최대 50자 |
 | yourProductId | String | 자체 상품 아이디 | 최대 40자 |
+| yourProductOptionId | String | 자체 옵션 상품 아이디. 옵션에 설정된 yourProductId | 최대 40자 |	
 | productId | String | Grip 상품 아이디 | 최대 16자 |
 | productName | String | 주문 당시 상품명 | 최대 40자 |
 | optionName | String | 주문 당시 옵션명 | 최대 120자 |
@@ -1232,6 +1235,7 @@ GET /api/delivery/start
 | deliveryCompanySeq | Integer | 택배 회사 번호 | |
 | deliveryTrackingNumber | String | 송장 번호 | 최대 40자 |
 | yourProductId | String | 자체 상품 아이디 | 최대 40자 |
+| yourProductOptionId | String | 자체 옵션 상품 아이디. 옵션에 설정된 yourProductId | 최대 40자 |	
 | productId | String | Grip 상품 아이디 | 최대 16자 |
 | productName | String | 주문 당시 상품명 | 최대 40자 |
 | optionName | String | 주문 당시 옵션명 | 최대 120자 |
@@ -1389,6 +1393,7 @@ GET /api/delivery/status
 | startAt | Date | 발송 시작 일시 | |
 | orderState | OrderProductState | 주문 상태 | |
 | yourProductId | String | 자체 상품 아이디 | 최대 40자 |
+| yourProductOptionId | String | 자체 옵션 상품 아이디. 옵션에 설정된 yourProductId | 최대 40자 |	
 | productId | String | Grip 상품 아이디 | 최대 16자 |
 | productName | String | 주문 당시 상품명 | 최대 40자 |
 | optionName | String | 주문 당시 옵션명 | 최대 120자 |
