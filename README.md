@@ -573,6 +573,7 @@ GET /api/order
 | cancelAt | Date | 주문(판매) 취소 일시 | |
 | orderState | OrderProductState | 주문 상태 | |
 | yourProductId | String | 자체 상품 아이디 | 최대 40자 |
+| yourProductOptionId | String | 자체 옵션 상품 아이디. 옵션에 설정된 yourProductId | 최대 40자 |
 | productId | String | Grip 상품 아이디 | 최대 16자 |
 | productName | String | 주문 당시 상품명 | 최대 40자 |
 | optionNameSeqs | List<Integer> | 조합된 옵션의 종류 번호 | |
