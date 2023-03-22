@@ -368,6 +368,8 @@ POST /api/product
 | costPrice | Double | Y | 원가 | 최소 200원 또는 0원 |
 | sellingPrice | Double | Y | 판매가 | 최소 200원 또는 0원 |
 | liveSellingPrice | Double | Y | 라이브 판매가 | 최소 200원 또는 0원 |
+| useSpecialPrice | Boolean | Y | 행사 사용가 사용 여부 | |
+| specialPrice | ProductSpecialPrice | N | 행사 할인가 정보 | useSpecialPrice이 Y면 필수 |
 | originName | String | Y | 원산지 | 최대 20자 |
 | manufacturer | String | N | 제조사 | 최대 32자 |
 | brandName | String | N | 브랜드 | 최대 32자 |
