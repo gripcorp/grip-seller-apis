@@ -244,6 +244,8 @@ GET /api/product/{productId}
 | costPrice | Double | 원가 | |
 | sellingPrice | Double | 판매가 | |
 | liveSellingPrice | Double | 라이브 판매가 | |
+| useSpecialPrice | Boolean | 행사 할인가 사용 여부 | |
+| specialPrice | ProductSpecialPrice | 행사 할인가 | |
 | originName | String | 원산지 | 최대 20자 |
 | manufacturer | String | 제조사 | 최대 32자 |
 | brandName | String | 브랜드 | 최대 32자 |
@@ -269,6 +271,14 @@ GET /api/product/{productId}
 | detailImageUrls | List&lt;String&gt; | 상품 상세 이미지 URL 목록 | |
 | createdAt | Date | 등록일시 | |
 | modifiedAt | Date | 수정일시 | |
+
+- ProductSpecialPrice
+
+| 이름 | 타입 | 설명 | 비고 |
+| -----------  | ------------ |------------ | ------------ |
+| specialPrice | Double | 행사할인가 | |
+| startAt | Date | 행사 할인가 시작일시 | |
+| endAt | Date | 행사 할인가 종료일시 | |
 
 - ProductOption
 
