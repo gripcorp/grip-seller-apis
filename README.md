@@ -260,6 +260,8 @@ GET /api/product/{productId}
 | useMaxOrderQuantity | Boolean | 최대 구매 개수 사용 여부 | |
 | minOrderQuantity | Integer | 최소 구매 개수 | |
 | maxOrderQuantity | Integer | 최대 구매 개수 | |
+| maxOrderQuantityStartAt | Date | 최대 구매 개수 적용 시작일시 | |
+| maxOrderQuantityEndAt | Date | 최대 구매 개수 적용 종료일시 | |
 | allowCoupon | Boolean | 쿠폰 적용 불가 상품 여부. 쿠폰 사용 가능이면 Y, 불가면 N | |
 | overseasDirect | Boolean | 해외배송 여부 | |
 | customDelivery | Boolean | 커스텀 배송 정보 사용 여부 | |
