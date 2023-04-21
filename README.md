@@ -138,6 +138,79 @@ GET /api/product/legal
 | title | String | 세부 항목 이름 | 최대 60자 |
 | body | String | 세부 항목 설명 | 최대 2,000자 |
 
+### 인증 정보 목록
+- 상품에 설정할 수 있는 인증 정보 목록입니다.
+- Request
+
+```
+GET /api/product/cert
+```
+
+- Response
+
+| 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| cert | List&lt;CertType&gt; | 상품 인증 정보 |
+
+- CertType
+
+| 이름 | 타입 | 설명 | 비고 |
+| -----------  | ------------ |------------ | ------------ |
+| certTypeSeq | Integer | 인증 종류 번호 | |
+| typeName | String | 인증 종류 이름 | 최대 40자 |
+| items | List&lt;CertSubject&gt; | 인증 종류 세부 항목 | |
+
+- CertSubject
+
+| 이름 | 타입 | 설명 | 비고 |
+| -----------  | ------------ |------------ | ------------ |
+| certSubjectSeq | Integer | 세부 항목 번호 | |
+| subjectName | String | 세부 항목 이름 | 최대 60자 |
+| required | Boolean | 인증기관 및 인증번호 필수 입력 여부 |  |
+
+### 모델 목록
+- 그립에 등록되어 있는 상품의 모델 목록입니다. 상품 모델 추천에 사용할 수 있습니다.
+- Request
+
+```
+GET /api/product/model
+```
+
+- Response
+
+| 이름 | 타입 | 설명 | 
+| ----------- | ------------ |------------ | 
+| model | List&lt;String&gt; | 모델명, 최대 32자 |
+
+### 브랜드 목록
+- 그립에 등록되어 있는 상품의 브랜드 목록입니다. 상품 브랜드 추천에 사용할 수 있습니다.
+- Request
+
+```
+GET /api/product/brand
+```
+
+- Response
+
+| 이름 | 타입 | 설명 | 
+| ----------- | ------------ |------------ | 
+| model | List&lt;String&gt; | 브랜드, 최대 32자 |
+
+
+### 제조사 목록
+- 그립에 등록되어 있는 상품의 제조사 목록입니다. 상품 제조사 추천에 사용할 수 있습니다.
+- Request
+
+```
+GET /api/product/manufacturer
+```
+
+- Response
+
+| 이름 | 타입 | 설명 | 
+| ----------- | ------------ |------------ | 
+| model | List&lt;String&gt; | 제조사, 최대 32자 |
+
 ### 상품 개수
 - 상품 개수를 조회합니다.
 - Request
@@ -268,6 +341,10 @@ GET /api/product/{productId}
 | delivery | ProductDelivery | 상품 배송 정보 | |
 | customAs | Boolean | 커스텀 A/S 사용 여부 | |
 | as | ProductAfterService | 상품 A/S 정보 | |
+| certTypeSeq | Integer | 인증 종류 | |
+| certSubjectSeq | Integer | 인증 세부 항목 | |
+| certAgency | String | 인증 기관 | 최대 40자 |
+| certNumber | String | 인증 번 | 최대 40자 |
 | tags | List&lt;String&gt; | 태그 목록 | 최대 20개 |
 | previewImageUrls | List&lt;String&gt; | 상품 상단 이미지 URL 목록 | |
 | detailImageUrls | List&lt;String&gt; | 상품 상세 이미지 URL 목록 | |
@@ -397,6 +474,10 @@ POST /api/product
 | tags | List&lt;String&gt; | Y | 태그 목록 | 최대 20개, 최대 32자, 특수문자 불가. 대소문자 구분없음 |
 | previewImageUrls | List&lt;String&gt; | Y | 상품 상단 이미지 URL 목록 | 이미지를 미리 업로드하고 받은 URL 사용. 최대 10개. 750px X 750px 권장. 비율이 다를시 Center Crop. 첫번째 이미지가 대표 이미지. PNG, JPG 허용 |
 | detailImageUrls | List&lt;String&gt; | Y | 상품 상세 이미지 URL 목록 | 이미지를 미리 업로드하고 받은 URL 사용. 최대 30개. 가로 860px 권장. PNG, JPG, GIF 허용 |
+| certTypeSeq | Integer | N | 인증 정보 번호 |  |
+| certSubjectSeq | Integer | N | 인증 세부 항목 번호 |  |
+| certAgency | String | N | 인증 기관 | 인증 세부 항목의 required가 true면 필수 |
+| certNumber | String | N | 인증 번호 | 인증 세부 항목의 required가 true면 필수 |
 
 - Response
 
