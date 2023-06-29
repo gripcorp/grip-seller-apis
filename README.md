@@ -63,6 +63,8 @@ public String makeFingerprint(String method, String uri, long timestamp) throws 
 ## 상품 관리
 - 배송/반품/교환 정보와 A/S 및 특이사항 정보는 Grip 판매자센터에서 설정한 판매자 기본 설정을 사용할 수 있습니다.
 - 기본으로 설정한 정보와 상이한 경우에만 설정하는 것을 권장합니다.
+- 입점할때 판매 상품의 카테고리에 따라 일반상품과 전자상품으로 구분 됩니다. 전자상품은 배송이 필요 없는 e-Ticket 형태의 기프트콘이나 여행상품을 의미합니다.
+- 상품 등록시 어떤 상품 판매자인지에 따라 입력 정보가 상이합니다.
 
 ### 이미지 업로드
 - 상품을 등록하기 전에 미리 이미지를 업로드 해야 합니다.
@@ -348,6 +350,7 @@ GET /api/product/{productId}
 | tags | List&lt;String&gt; | 태그 목록 | 최대 20개 |
 | previewImageUrls | List&lt;String&gt; | 상품 상단 이미지 URL 목록 | |
 | detailImageUrls | List&lt;String&gt; | 상품 상세 이미지 URL 목록 | |
+| voucher | ProductVoucher | 전자 상품인 경우에 설정한 가이드 정보 | |
 | createdAt | Date | 등록일시 | |
 | modifiedAt | Date | 수정일시 | |
 
@@ -358,6 +361,16 @@ GET /api/product/{productId}
 | specialPrice | Double | 행사할인가 | |
 | startAt | Date | 행사 할인가 시작일시 | |
 | endAt | Date | 행사 할인가 종료일시 | |
+
+- ProductVoucher
+
+| 이름 | 타입 | 설명 | 비고 |
+| -----------  | ------------ |------------ | ------------ |
+| guide | String | 예약/사용 안내 | |
+| notice | String | 유의사항 | |
+| cancelGuide | String | 취소/환불 방법 | |
+| cancelFeeGuide | String | 취소 수수료 안내 | |
+| cancelNotice | String | 취소 유의사항 | |
 
 - ProductOption
 
@@ -478,6 +491,11 @@ POST /api/product
 | certSubjectSeq | Integer | N | 인증 세부 항목 번호 |  |
 | certAgency | String | N | 인증 기관 | 인증 세부 항목의 required가 true면 필수 |
 | certNumber | String | N | 인증 번호 | 인증 세부 항목의 required가 true면 필수 |
+| voucherGuide | String | N | 예약/사용 안내 | 전자 상품인 경우에는 필수 |
+| voucherNotice | String | N | 유의사항 | 전자 상품인 경우에는 필수 |
+| voucherCancelGuide | String | N | 취소/환불 방법 | 전자 상품인 경우에는 필수 |
+| voucherCancelFeeGuide | String | N | 취소 수수료 안내 | 전자 상품인 경우에는 필수 |
+| voucherCancelNotice | String | N | 취소 유의사항 | 전자 상품인 경우에는 필수 |
 
 - Response
 
@@ -622,7 +640,7 @@ GET /api/order/count
 | -----------  | ------------ |-----------|------------ | --------------- |
 | searchTarget | String | N | 검색 대상 | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq |
 | searchQuery | String | N | 검색어 | 최대 40자 |
-| searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 여러개 가능 | 결제완료:1, 배송준비중:10, 배송중:11, 배송완료:13, 발송지연:12, 구매확정:90, 반품신청:40, 교환신청:50, 환불완료:42, 판매취소:60, 주문취소:80, 입금대기중:2  |
+| searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 여러개 가능 | 결제완료:1, 배송준비중(발송준비중):10, 배송중(발송완료):11, 배송완료(사용완료):13, 발송지연:12, 구매확정:90, 반품신청(취소요청):40, 교환신청:50, 환불완료:42, 판매취소:60, 주문취소:80, 입금대기중:2  |
 | searchDate | String | N | 검색할 주문/결제 날짜 대상. 디폴트 orderedAt | 주문결제일시:orderedAt, 구매확정일시:confirmAt, 주문취소일시:cancelAt |
 | searchStartAt | Date | N | 검색할 주문/결제 시작일시. 디폴트 30일전 | |
 | searchEndAt | Date | N | 검색할 주문/결제 종료일시. 디폴트 오늘 | |
@@ -647,7 +665,7 @@ GET /api/order
 | length | Integer | N | 페이지 사이즈. 디폴트 20, 최대 100 |  |
 | searchTarget | String | N | 검색 대상 | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq |
 | searchQuery | String | N | 검색어 | 최대 40 |
-| searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 여러개 가능 | 결제완료:1, 배송준비중:10, 배송중:11, 배송완료:13, 발송지연:12, 구매확정:90, 반품신청:40, 교환신청:50, 환불완료:42, 판매취소:60, 주문취소:80, 입금대기중:2  |
+| searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 여러개 가능 | 결제완료:1, 배송준비중(발송준비중):10, 배송중(발송완료):11, 배송완료(사용완료):13, 발송지연:12, 구매확정:90, 반품신청(취소요청):40, 교환신청:50, 환불완료:42, 판매취소:60, 주문취소:80, 입금대기중:2  |
 | searchDate | String | N | 검색할 주문/결제 날짜 대상. 디폴트 orderedAt | 주문결제일시:orderedAt, 구매확정일시:confirmAt, 주문취소일시:cancelAt |
 | searchStartAt | Date | N | 검색할 주문/결제 시작일시. 디폴트 30일전 | |
 | searchEndAt | Date | N | 검색할 주문/결제 종료일시. 디폴트 오늘 | |
@@ -1132,7 +1150,7 @@ PUT /api/delivery/info
 | -----------  | ------------ |------------ | 
 | affected | Integer | 주소 변경에 영향 받은 주문 수 |
 
-### 배송 지연 안내
+### 배송(발송) 지연 안내
 - 재고 부족이나 연휴가 긴 경우에 판매자가 배송 지연을 안내 합니다.
 - 배송 지연 안내는 1회만 가능합니다.
 - Request
@@ -1167,7 +1185,7 @@ PUT /api/delivery/postpone/result
 | -----------  | ------------ |------------ | 
 | result | List&lt;DeliveryResult&gt; | 배송 지연 안내 요청 결과 |
 
-### 발주가 필요한 주문 개수
+### 발주(접수)가 필요한 주문 개수
 - 발주가 필요한 주문 개수를 조회합니다.
 - Request
 
@@ -1188,7 +1206,7 @@ GET /api/delivery/prepare/count
 | -----------  | ------------ |------------ | 
 | prepareCount | Integer | 발주가 필요한 주문 수 |
 
-### 발주할 주문 목록
+### 발주(접수)할 주문 목록
 - 발주가 필요한 주문 목록을 조회합니다.
 - Request
 
@@ -1243,7 +1261,7 @@ GET /api/delivery/prepare
 | dawnDeliveryRequest | String | 새벽 배송 메시지 | 최대 60자 |
 | clearanceCode | String | 개인 통관 번호 | 최대 16자 |
 
-### 발주 요청
+### 발주(접수) 요청
 - 배송이 필요한 주문을 발주 요청 합니다.
 - 한번에 다수의 주문을 묶어서 요청하는 것을 권장합니다.
 - 발주 요청을 하면 구매자는 '배송준비중' 안내를 받고 주문취소를 할 수 없게 됩니다.
@@ -1432,7 +1450,7 @@ PUT /api/delivery/start/result
 | -----------  | ------------ |------------ | 
 | result | List&lt;DeliveryResult&gt; | 발송 요청 결과 |
 
-### 배송 현황 확인이 가능한 주문 개수
+### 배송(사용) 현황 확인이 가능한 주문 개수
 - 배송 현황 확인이 가능한 주문 개수를 조회합니다.
 - Request
 
@@ -1453,7 +1471,7 @@ GET /api/delivery/status/count
 | -----------  | ------------ |------------ | 
 | statusCount | Integer | 확인 가능한 주문 수 |
 
-### 배송 현황 확인이 가능한 주문 목록
+### 배송(사용) 현황 확인이 가능한 주문 목록
 - 배송 현황 확인이 가능한 주문 목록을 조회합니다.
 - 발송 요청한 주문을 여기서 확인할 수 있습니다.
 - Request
@@ -1544,7 +1562,7 @@ PUT /api/delivery/direct/result
 | -----------  | ------------ |------------ | 
 | result | List&lt;DeliveryResult&gt; | 발송 요청 결과 |
 
-### 강제 배송완료
+### 강제 배송완료(사용 완료)
 - 구매자에게 상품을 발송하여 배송중 상태이지만 송장번호의 오류나 기타 택배사의 오류로 배송 추적이 되지 않는 경우에 사용합니다.
 - 해외배송은 배송시작 후 30일이 경과해야 사용할 수 있고 국내배송은 배송시작 후 10일이 경과해야 사용할 수 있습니다.
 - 강제 배송완료를 하면 구매자는 '배송완료' 안내를 받게 됩니다.
