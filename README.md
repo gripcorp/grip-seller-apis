@@ -267,9 +267,9 @@ GET /api/product
 | legalSeq | Integer | 상품정보 제공고시 번호 |
 | expose | Boolean | 판매 여부 |
 | useOption | Boolean | 옵션 사용 여부 |
-| costPrice | Double | 원가 |
-| sellingPrice | Double | 판매가 |
-| liveSellingPrice | Double | 라이브 판매가 |
+| costPrice | Double | 상품 가격 |
+| sellingPrice | Double | 상시 할인가 |
+| liveSellingPrice | Double | 라이브가 |
 | originName | String | 원산지 |
 | manufacturer | String | 제조사 |
 | brandName | String | 브랜드 |
@@ -316,9 +316,9 @@ GET /api/product/{productId}
 | expose | Boolean | 판매 여부 | |
 | useOption | Boolean | 옵션 사용 여부 | |
 | option | ProductOption | 옵션 정보 | |
-| costPrice | Double | 원가 | |
-| sellingPrice | Double | 판매가 | |
-| liveSellingPrice | Double | 라이브 판매가 | |
+| costPrice | Double | 상품 가격 | |
+| sellingPrice | Double | 상시 할인가 | |
+| liveSellingPrice | Double | 라이브가 | |
 | useSpecialPrice | Boolean | 행사 할인가 사용 여부 | |
 | specialPrice | ProductSpecialPrice | 행사 할인가 | |
 | originName | String | 원산지 | 최대 20자 |
@@ -458,9 +458,9 @@ POST /api/product
 | introduction | String | N | 상품 설명 | 최대 50자 |
 | useOption | Boolean | Y | 옵션 사용 여부 | |
 | option | ProductOption | N | 옵션 정보 | useOption이 Y면 필수 |
-| costPrice | Double | Y | 원가 | 최소 200원 또는 0원 |
-| sellingPrice | Double | Y | 판매가 | 최소 200원 또는 0원 |
-| liveSellingPrice | Double | Y | 라이브 판매가 | 최소 200원 또는 0원 |
+| costPrice | Double | Y | 상품 가격 | 최소 200원 또는 0원 |
+| sellingPrice | Double | Y | 상시 할인가 | 최소 200원 또는 0원 |
+| liveSellingPrice | Double | Y | 라이브가 | 최소 200원 또는 0원 |
 | useSpecialPrice | Boolean | Y | 행사 사용가 사용 여부 | |
 | specialPrice | ProductSpecialPrice | N | 행사 할인가 정보 | useSpecialPrice이 Y면 필수 |
 | originName | String | Y | 원산지 | 최대 20자 |
