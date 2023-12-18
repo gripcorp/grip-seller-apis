@@ -1,0 +1,86 @@
+{
+  "productName": "테스트 상품",
+  "categorySeq": 160,
+  "legalSeq": 35,
+  "legalItems": [
+    {
+      "itemSeq": 308,
+      "title": "발행자",
+      "body": "테스트 발행자"
+    },
+    {
+      "itemSeq": 309,
+      "title": "유효기간, 이용조건",
+      "body": "유효기간 경과시 보상 기준 포함"
+    },
+    {
+      "itemSeq": 310,
+      "title": "이용 가능 매장",
+      "body": "전세계 어디에서나"
+    },
+    {
+      "itemSeq": 311,
+      "title": "환불조건 및 방법",
+      "body": "환불 쌉가능"
+    },
+    {
+      "itemSeq": 312,
+      "title": "소비자상담 관련 전화번호",
+      "body": "내 핸드폰으로"
+    }
+  ],
+  "useOption": true,
+  "option": {
+    "types": [
+      {
+        "typeSeq": 1,
+        "optionType": "색상"
+      }
+    ],
+    "names": [
+      {
+        "typeSeq": 1,
+        "nameSeq": 1,
+        "optionName": "블루"
+      }
+    ],
+    "combinations": [
+      {
+        "optionKey": "",
+        "nameSeqs": [1],
+        "price": 0,
+        "stockCount": 50,
+        "expose": true,
+        "yourProductId": ""
+      }
+    ]
+  },
+  "costPrice": 20000,
+  "sellingPrice": 15000,
+  "liveSellingPrice": 11000,
+  "useSpecialPrice": false,
+  "originName": "Korea",
+  "ondemand": false,
+  "taxType": 1,
+  "startAt": "2023-11-15T00:00:00.000Z",
+  "endAt": "2023-12-31T11:59:59.000Z",
+  "stockCount": 100,
+  "useMinOrderQuantity": true,
+  "useMaxOrderQuantity": true,
+  "minOrderQuantity": 2,
+  "maxOrderQuantity": 999,
+  "customDelivery": false,
+  "customAs": false,
+  "tags": ["tag1", "tag2", "tag3"],
+  "previewImageUrls": [
+    "https://dev-static-ssl.grip.show/temp/fb5bn59e99192k.jpg"
+  ],
+  "detailImageUrls": [
+    "https://dev-static-ssl.grip.show/temp/fb5bn59e99192k.jpg"
+  ],
+  "voucherGuide": "바우처 가이드",
+  "voucherNotice": "바우처 공지사항",
+  "voucherCancelGuide": "바우처 취소 가이드",
+  "voucherCancelFeeGuide": "바우처 취소 비용 가이드",
+  "voucherCancelNotice": "바우처 취소 공지사항"
+}
