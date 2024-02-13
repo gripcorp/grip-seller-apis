@@ -1,0 +1,29 @@
+# intellij project file
+/**/*.iml
+
+# maven build target
+/**/target/
+
+# build output
+/**/bin/
+/**/out/
+/**/classes/
+/**/build/
+/**/dist/
+
+# idea querydsl generated qclass
+/**/generated/
+/**/generated_tests/
+
+# all hidden files and directories
+/**/.*
+
+# logs
+/**/*.log
+
+# build-output for airflow
+/**/deploy-output
+
+# except .gitignore file
+!/.gitignore
+!/.github
