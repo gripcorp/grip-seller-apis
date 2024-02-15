@@ -448,62 +448,76 @@ GET /api/product/{productId}
 POST /api/product
 ```
 
-| 이름 | 타입 | 필수 | 설명 | 비고 |
-| -----------  | ------------ |-----------|------------ | --------------- |
-| yourProductId | String | N | 자체 상품 아이디 | 최대 40자 |
-| productName | String | Y | 상품명 | 최대 40자 |
-| categorySeq | Integer | Y | 상품 카테고리 번호 | 말단 카테고리의 번호만 허용 |
-| legalSeq | Integer | Y | 상품정보 제공고시 번호 | |
-| legalItems | List&lt;LegalItem&gt; | Y | 상품정보 제공고시 상세 | |
-| introduction | String | N | 상품 설명 | 최대 50자 |
-| useOption | Boolean | Y | 옵션 사용 여부 | |
-| option | ProductOption | N | 옵션 정보 | useOption이 Y면 필수 |
-| costPrice | Double | Y | 상품 가격 | 최소 200원 또는 0원 |
-| sellingPrice | Double | Y | 상시 할인가 | 최소 200원 또는 0원 |
-| liveSellingPrice | Double | Y | 라이브가 | 최소 200원 또는 0원 |
-| useSpecialPrice | Boolean | Y | 행사 사용가 사용 여부 | |
-| specialPrice | ProductSpecialPrice | N | 행사 할인가 정보 | useSpecialPrice이 Y면 필수 |
-| originName | String | Y | 원산지 | 최대 20자 |
-| manufacturer | String | N | 제조사 | 최대 32자 |
-| brandName | String | N | 브랜드 | 최대 32자 |
-| modelName | String | N | 모델명 | 최대 32자 |
-| ondemand | Boolean | Y | 주문제작 여부 | |
-| returnImpossible | Boolean | N | 반품 불가 여부 | returnImpossible이 Y면 필수 |
-| taxType | Integer | Y | 부가세. 과세상품:1, 면세상품:2, 영세상품: 3 | |
-| startAt | Date | Y | 판매 시작일시 | 최소 2019-02-01 00:00:00. 현재시간 권장 |
-| endAt | Date | Y | 판매 종료일시 | 최대 2048-12-31 23:59:59 |
-| stockCount | Integer | Y | 재고 수량 | useOption이 Y인 경우에 option에 있는 ProductOptionCombination에서 expose가 Y인 것으로 자동 설정 됨 |
-| useMinOrderQuantity | Boolean | Y | 최소 구매 개수 사용 여부 | |
-| useMaxOrderQuantity | Boolean | Y | 최대 구매 개수 사용 여부 | |
-| minOrderQuantity | Integer | N | 최소 구매 개수 | useMinOrderQuantity가 Y면 필수 |
-| maxOrderQuantity | Integer | N | 최대 구매 개수 | useMaxOrderQuantity가 Y면 필수 |
-| useMaxOrderQuantityPeriod | Boolean | N | 최대 구매 개수 적용 기간 사용 여부 | N이면 매일 초기화되어 하루 단위로만 제한됨, Y이면 적용 기간을 설정할 수 있음 |
-| maxOrderQuantityStartAt | Date | N | 최대 구매 개수 적용 시작일시 | useMaxOrderQuantityPeriod가 Y면 필수 |
-| maxOrderQuantityEndAt | Date | N | 최대 구매 개수 적용 종료일시 | useMaxOrderQuantityPeriod가 Y면 필수 |
-| allowCoupon | Boolean | N | 쿠폰 적용 불가 상품 여부. 디폴트 Y | 쿠폰허용이면 Y, 불가면 N|
+| 이름 | 타입 | 필수 | 설명 | 비고                                                                                                                         |
+| -----------  | ------------ |-----------|------------ |----------------------------------------------------------------------------------------------------------------------------|
+| yourProductId | String | N | 자체 상품 아이디 | 최대 40자                                                                                                                     |
+| productName | String | Y | 상품명 | 최대 40자                                                                                                                     |
+| categorySeq | Integer | Y | 상품 카테고리 번호 | 말단 카테고리의 번호만 허용                                                                                                            |
+| legalSeq | Integer | Y | 상품정보 제공고시 번호 |                                                                                                                            |
+| legalItems | List&lt;LegalItem&gt; | Y | 상품정보 제공고시 상세 |                                                                                                                            |
+| introduction | String | N | 상품 설명 | 최대 50자                                                                                                                     |
+| useOption | Boolean | Y | 옵션 사용 여부 |                                                                                                                            |
+| option | ProductOption | N | 옵션 정보 | useOption이 Y면 필수                                                                                                           |
+| costPrice | Double | Y | 상품 가격 | 최소 200원 또는 0원                                                                                                              |
+| sellingPrice | Double | Y | 상시 할인가 | 최소 200원 또는 0원                                                                                                              |
+| liveSellingPrice | Double | Y | 라이브가 | 최소 200원 또는 0원                                                                                                              |
+| useSpecialPrice | Boolean | Y | 행사 사용가 사용 여부 |                                                                                                                            |
+| specialPrice | ProductSpecialPrice | N | 행사 할인가 정보 | useSpecialPrice이 Y면 필수                                                                                                     |
+| originName | String | Y | 원산지 | 최대 20자                                                                                                                     |
+| manufacturer | String | N | 제조사 | 최대 32자                                                                                                                     |
+| brandName | String | N | 브랜드 | 최대 32자                                                                                                                     |
+| modelName | String | N | 모델명 | 최대 32자                                                                                                                     |
+| ondemand | Boolean | Y | 주문제작 여부 |                                                                                                                            |
+| returnImpossible | Boolean | N | 반품 불가 여부 | returnImpossible이 Y면 필수                                                                                                    |
+| taxType | Integer | Y | 부가세. 과세상품:1, 면세상품:2, 영세상품: 3 |                                                                                                                            |
+| startAt | Date | Y | 판매 시작일시 | 최소 2019-02-01 00:00:00. 현재시간 권장                                                                                            |
+| endAt | Date | Y | 판매 종료일시 | 최대 2048-12-31 23:59:59                                                                                                     |
+| stockCount | Integer | Y | 재고 수량 | useOption이 Y인 경우에 option에 있는 ProductOptionCombination에서 expose가 Y인 것으로 자동 설정 됨                                             |
+| useMinOrderQuantity | Boolean | Y | 최소 구매 개수 사용 여부 |                                                                                                                            |
+| useMaxOrderQuantity | Boolean | Y | 최대 구매 개수 사용 여부 |                                                                                                                            |
+| minOrderQuantity | Integer | N | 최소 구매 개수 | useMinOrderQuantity가 Y면 필수                                                                                                 |
+| maxOrderQuantity | Integer | N | 최대 구매 개수 | useMaxOrderQuantity가 Y면 필수                                                                                                 |
+| useMaxOrderQuantityPeriod | Boolean | N | 최대 구매 개수 적용 기간 사용 여부 | N이면 매일 초기화되어 하루 단위로만 제한됨, Y이면 적용 기간을 설정할 수 있음                                                                              |
+| maxOrderQuantityStartAt | Date | N | 최대 구매 개수 적용 시작일시 | useMaxOrderQuantityPeriod가 Y면 필수                                                                                           |
+| maxOrderQuantityEndAt | Date | N | 최대 구매 개수 적용 종료일시 | useMaxOrderQuantityPeriod가 Y면 필수                                                                                           |
+| allowCoupon | Boolean | N | 쿠폰 적용 불가 상품 여부. 디폴트 Y | 쿠폰허용이면 Y, 불가면 N                                                                                                            |
 | overseasDirect | Boolean | N | 해외배송 여부. 디폴트 N |
-| customDelivery | Boolean | Y | 커스텀 배송 정보 사용 여부 | N이면 판매자 기본 배송 정보 사용|
-| delivery | ProductDelivery | N | 상품 배송 정보 | customDelivery가 Y면 필수 |
-| customAs | Boolean | Y | 커스텀 A/S 사용 여부 | N이면 판매자 기본 A/S 정보 사용 |
-| as | ProductAfterService | N | 상품 A/S 정보 | customAs가 Y면 필수 |
-| tags | List&lt;String&gt; | Y | 태그 목록 | 최대 20개, 최대 32자, 특수문자 불가. 대소문자 구분없음 |
-| previewImageUrls | List&lt;String&gt; | Y | 상품 상단 이미지 URL 목록 | 이미지를 미리 업로드하고 받은 URL 사용. 최대 10개. 750px X 750px 권장. 비율이 다를시 Center Crop. 첫번째 이미지가 대표 이미지. PNG, JPG 허용 |
-| detailImageUrls | List&lt;String&gt; | Y | 상품 상세 이미지 URL 목록 | 이미지를 미리 업로드하고 받은 URL 사용. 최대 30개. 가로 860px 권장. PNG, JPG, GIF 허용 |
-| certTypeSeq | Integer | N | 인증 정보 번호 |  |
-| certSubjectSeq | Integer | N | 인증 세부 항목 번호 |  |
-| certAgency | String | N | 인증 기관 | 인증 세부 항목의 required가 true면 필수 |
-| certNumber | String | N | 인증 번호 | 인증 세부 항목의 required가 true면 필수 |
-| voucherGuide | String | N | 예약/사용 안내 | 전자 상품인 경우에는 필수 |
-| voucherNotice | String | N | 유의사항 | 전자 상품인 경우에는 필수 |
-| voucherCancelGuide | String | N | 취소/환불 방법 | 전자 상품인 경우에는 필수 |
-| voucherCancelFeeGuide | String | N | 취소 수수료 안내 | 전자 상품인 경우에는 필수 |
-| voucherCancelNotice | String | N | 취소 유의사항 | 전자 상품인 경우에는 필수 |
+| customDelivery | Boolean | Y | 커스텀 배송 정보 사용 여부 | N이면 판매자 기본 배송 정보 사용                                                                                                        |
+| delivery | ProductDelivery | N | 상품 배송 정보 | customDelivery가 Y면 필수                                                                                                      |
+| customAs | Boolean | Y | 커스텀 A/S 사용 여부 | N이면 판매자 기본 A/S 정보 사용                                                                                                       |
+| as | ProductAfterService | N | 상품 A/S 정보 | customAs가 Y면 필수                                                                                                            |
+| tags | List&lt;String&gt; | Y | 태그 목록 | 최대 20개, 최대 32자, 특수문자 불가. 대소문자 구분없음                                                                                         |
+| previewImageUrls | List&lt;String&gt; | Y | 상품 상단 이미지 URL 목록 | 이미지를 미리 업로드하고 받은 URL 사용. 최대 10개. 750px X 750px 권장. 비율이 다를시 Center Crop. 첫번째 이미지가 대표 이미지. PNG, JPG 허용                       |
+| detailContentsType | String | N | 상품 상세 컨텐츠 타입 | `IMAGE` 혹은 `HTML`로 입력.`IMAGE`인 경우, 상품상세 컨텐츠를 `detailImageUrls`기반으로 구성. `HTML`인 경우 `detailDescription`기반으로 구성. 기본값은 `IMAGE` |
+| detailImageUrls | List&lt;String&gt; | `detailContentsType`가 `IMAGE`시 Y | 상품 상세 이미지 URL 목록 | 이미지를 미리 업로드하고 받은 URL 사용. 최대 30개. 가로 860px 권장. PNG, JPG, GIF 허용                                                             |
+| detailDescription | String | `detailContentsType`가 `HTML`시 Y | 상품 상세 HTML | 하단의 상품상세 HTML 등록 가이드 참고                                                                                                    |
+| certTypeSeq | Integer | N | 인증 정보 번호 |                                                                                                                            |
+| certSubjectSeq | Integer | N | 인증 세부 항목 번호 |                                                                                                                            |
+| certAgency | String | N | 인증 기관 | 인증 세부 항목의 required가 true면 필수                                                                                               |
+| certNumber | String | N | 인증 번호 | 인증 세부 항목의 required가 true면 필수                                                                                               |
+| voucherGuide | String | N | 예약/사용 안내 | 전자 상품인 경우에는 필수                                                                                                             |
+| voucherNotice | String | N | 유의사항 | 전자 상품인 경우에는 필수                                                                                                             |
+| voucherCancelGuide | String | N | 취소/환불 방법 | 전자 상품인 경우에는 필수                                                                                                             |
+| voucherCancelFeeGuide | String | N | 취소 수수료 안내 | 전자 상품인 경우에는 필수                                                                                                             |
+| voucherCancelNotice | String | N | 취소 유의사항 | 전자 상품인 경우에는 필수                                                                                                             |
 
 - Response
 
 | 이름 | 타입 | 설명 | 비고 |
 | -----------  | ------------ |------------ |-----------|
 | productId | String | 상품 아이디 | 최대 16자 |
+
+#### 상품상세 HTML 등록 가이드
+- 기능
+  - html 원본을 상품상세에 등록가능함
+- 스펙
+  - 허용하는 html 태그들
+    - body, p, span, br, ul, li, ol, figure, blockquote, table, tbody, tr, th, td, font, img, b, i, u, strike, s, h1, h2, h3, h4, h5, h6, div, strong
+    - iframe (www.youtube.com 만 지원)
+  - html내 허용하는 이미지갯수
+    - 최소 1개, 최대 30개
+  - html내 최대 문자수
+    - 10,000자
 
 ### 상품 수정
 - 상품을 수정 합니다.
