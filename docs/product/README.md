@@ -122,58 +122,58 @@
 <details>
 <summary><strong>Product</strong></summary>
 
-| 이름                        | 타입                                          | 설명                                                   | 비고     |
-|---------------------------|---------------------------------------------|------------------------------------------------------|--------| 
-| yourProductId             | String                                      | 자체 상품 아이디                                            | 최대 40자 |
-| productId                 | String                                      | Grip 상품 아이디                                          | 최대 16자 |
-| productName               | String                                      | 상품명                                                  | 최대 40자 |
-| categorySeq               | Integer                                     | 상품 카테고리 번호                                           |        |
-| legalSeq                  | Integer                                     | 상품정보 제공고시 번호                                         |        |
-| legalItems                | List&lt;[LegalItem](#legalitem)&gt;         | 상품정보 제공고시 상세                                         |        |
-| introduction              | String                                      | 상품 설명                                                | 최대 50자 |
-| expose                    | Boolean                                     | 판매 여부                                                |        |
-| useOption                 | Boolean                                     | 옵션 사용 여부                                             |        |
-| option                    | [ProductOption](#productoption)             | 옵션 정보                                                |        |
-| costPrice                 | Double                                      | 상품 가격                                                |        |
-| sellingPrice              | Double                                      | 상시 할인가                                               |        |
-| liveSellingPrice          | Double                                      | 라이브가                                                 |        |
-| useSpecialPrice           | Boolean                                     | 행사 할인가 사용 여부                                         |        |
-| specialPrice              | [ProductSpecialPrice](#productspecialprice) | 행사 할인가                                               |        |
-| originName                | String                                      | 원산지                                                  | 최대 20자 |
-| manufacturer              | String                                      | 제조사                                                  | 최대 32자 |
-| brandName                 | String                                      | 브랜드                                                  | 최대 32자 |
-| modelName                 | String                                      | 모델명                                                  | 최대 32자 |
-| ondemand                  | Boolean                                     | 주문제작 여부                                              |        |
-| returnImpossible          | Boolean                                     | 반품 불가 여부                                             |        |
-| taxType                   | Integer                                     | 부가세. 과세상품: 1, 면세상품: 2, 영세상품: 3                       |        |
-| startAt                   | Date                                        | 판매 시작일시                                              |        |
-| endAt                     | Date                                        | 판매 종료일시                                              |        |
-| stockCount                | Integer                                     | 재고 수량                                                |        |
-| useMinOrderQuantity       | Boolean                                     | 최소 구매 개수 사용 여부                                       |        |
-| useMaxOrderQuantity       | Boolean                                     | 최대 구매 개수 사용 여부                                       |        |
-| minOrderQuantity          | Integer                                     | 최소 구매 개수                                             |        |
-| maxOrderQuantity          | Integer                                     | 최대 구매 개수                                             |        |
-| useMaxOrderQuantityPeriod | Boolean                                     | 최대 구매 개수 적용 기간 사용 여부                                 |        |
-| maxOrderQuantityStartAt   | Date                                        | 최대 구매 개수 적용 시작일시                                     |        |
-| maxOrderQuantityEndAt     | Date                                        | 최대 구매 개수 적용 종료일시                                     |        |
-| allowCoupon               | Boolean                                     | 쿠폰 적용 가능 상품 여부. 쿠폰 사용 가능이면 Y, 불가면 N                  |        |
-| overseasDirect            | Boolean                                     | 해외배송 여부                                              |        |
-| customDelivery            | Boolean                                     | 커스텀 배송 정보 사용 여부                                      |        |
-| delivery                  | [ProductDelivery](#productdelivery)         | 상품 배송 정보                                             |        |
-| customAs                  | Boolean                                     | 커스텀 A/S 사용 여부                                        |        |
-| as                        | [ProductAfterService](#productafterservice) | 상품 A/S 정보                                            |        |
-| certTypeSeq               | Integer                                     | 인증 종류                                                |        |
-| certSubjectSeq            | Integer                                     | 인증 세부 항목                                             |        |
-| certAgency                | String                                      | 인증 기관                                                | 최대 40자 |
-| certNumber                | String                                      | 인증 번                                                 | 최대 40자 |
-| tags                      | List&lt;String&gt;                          | 태그 목록                                                | 최대 20개 |
-| previewImageUrls          | List&lt;String&gt;                          | 상품 상단 이미지 URL 목록                                     |        |
-| detailImageUrls           | List&lt;String&gt;                          | 상품 상세 이미지 URL 목록                                     |        |
-| voucher                   | [ProductVoucher](#productvoucher)           | 전자 상품인 경우에 설정한 가이드 정보                                |        |
-| createdAt                 | Date                                        | 등록일시                                                 |        |
-| modifiedAt                | Date                                        | 수정일시                                                 |        |
-| zeroPriceReasonType       | Integer                                     | 0원 상품 사유 유형. 합배송: 1, 이벤트(프로모션): 2, 사은품: 3, 기타: 4     |        |
-| zeroPriceReasonText       | String                                      | 0원 상품 사유 상세. 0원 상품 사유 유형이 4인 경우 필수, 나머지 유형은 사용되지 않음. | 최대 50자 |
+| 이름                        | 타입                                          | 설명                                                     | 비고     |
+|---------------------------|---------------------------------------------|--------------------------------------------------------|--------| 
+| yourProductId             | String                                      | 자체 상품 아이디                                              | 최대 40자 |
+| productId                 | String                                      | Grip 상품 아이디                                            | 최대 16자 |
+| productName               | String                                      | 상품명                                                    | 최대 40자 |
+| categorySeq               | Integer                                     | 상품 카테고리 번호                                             |        |
+| legalSeq                  | Integer                                     | 상품정보 제공고시 번호                                           |        |
+| legalItems                | List&lt;[LegalItem](#legalitem)&gt;         | 상품정보 제공고시 상세                                           |        |
+| introduction              | String                                      | 상품 설명                                                  | 최대 50자 |
+| expose                    | Boolean                                     | 판매 여부                                                  |        |
+| useOption                 | Boolean                                     | 옵션 사용 여부                                               |        |
+| option                    | [ProductOption](#productoption)             | 옵션 정보                                                  |        |
+| costPrice                 | Double                                      | 상품 가격                                                  |        |
+| sellingPrice              | Double                                      | 상시 할인가                                                 |        |
+| liveSellingPrice          | Double                                      | 라이브가                                                   |        |
+| useSpecialPrice           | Boolean                                     | 행사 할인가 사용 여부                                           |        |
+| specialPrice              | [ProductSpecialPrice](#productspecialprice) | 행사 할인가                                                 |        |
+| originName                | String                                      | 원산지                                                    | 최대 20자 |
+| manufacturer              | String                                      | 제조사                                                    | 최대 32자 |
+| brandName                 | String                                      | 브랜드                                                    | 최대 32자 |
+| modelName                 | String                                      | 모델명                                                    | 최대 32자 |
+| ondemand                  | Boolean                                     | 주문제작 여부                                                |        |
+| returnImpossible          | Boolean                                     | 반품 불가 여부                                               |        |
+| taxType                   | Integer                                     | 부가세. 과세상품: 1, 면세상품: 2, 영세상품: 3                         |        |
+| startAt                   | Date                                        | 판매 시작일시                                                |        |
+| endAt                     | Date                                        | 판매 종료일시                                                |        |
+| stockCount                | Integer                                     | 재고 수량                                                  |        |
+| useMinOrderQuantity       | Boolean                                     | 최소 구매 개수 사용 여부                                         |        |
+| useMaxOrderQuantity       | Boolean                                     | 최대 구매 개수 사용 여부                                         |        |
+| minOrderQuantity          | Integer                                     | 최소 구매 개수                                               |        |
+| maxOrderQuantity          | Integer                                     | 최대 구매 개수                                               |        |
+| useMaxOrderQuantityPeriod | Boolean                                     | 최대 구매 개수 적용 기간 사용 여부                                   |        |
+| maxOrderQuantityStartAt   | Date                                        | 최대 구매 개수 적용 시작일시                                       |        |
+| maxOrderQuantityEndAt     | Date                                        | 최대 구매 개수 적용 종료일시                                       |        |
+| allowCoupon               | Boolean                                     | 쿠폰 적용 가능 상품 여부. 쿠폰 사용 가능이면 Y, 불가면 N                    |        |
+| overseasDirect            | Boolean                                     | 해외배송 여부                                                |        |
+| customDelivery            | Boolean                                     | 커스텀 배송 정보 사용 여부                                        |        |
+| delivery                  | [ProductDelivery](#productdelivery)         | 상품 배송 정보                                               |        |
+| customAs                  | Boolean                                     | 커스텀 A/S 사용 여부                                          |        |
+| as                        | [ProductAfterService](#productafterservice) | 상품 A/S 정보                                              |        |
+| certTypeSeq               | Integer                                     | 인증 종류                                                  |        |
+| certSubjectSeq            | Integer                                     | 인증 세부 항목                                               |        |
+| certAgency                | String                                      | 인증 기관                                                  | 최대 40자 |
+| certNumber                | String                                      | 인증 번                                                   | 최대 40자 |
+| tags                      | List&lt;String&gt;                          | 태그 목록                                                  | 최대 20개 |
+| previewImageUrls          | List&lt;String&gt;                          | 상품 상단 이미지 URL 목록                                       |        |
+| detailImageUrls           | List&lt;String&gt;                          | 상품 상세 이미지 URL 목록                                       |        |
+| voucher                   | [ProductVoucher](#productvoucher)           | 전자 상품인 경우에 설정한 가이드 정보                                  |        |
+| createdAt                 | Date                                        | 등록일시                                                   |        |
+| modifiedAt                | Date                                        | 수정일시                                                   |        |
+| zeroPriceReasonType       | Integer                                     | 0원 상품 사유 유형. 합배송: 1, 이벤트(프로모션): 2, 사은품: 3, 기타: 4       |        |
+| zeroPriceReasonText       | String                                      | 0원 상품 사유 상세. 0원 상품 사유 유형이 4인 경우 필수, 나머지 유형에서는 사용되지 않음. | 최대 50자 |
 </details>
 
 <a id="productspecialprice"></a>
