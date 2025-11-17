@@ -2,14 +2,14 @@
 
 ## 제공 API
 - [멤버(계정) 수](#멤버계정-수-get-apigroupmembercount)
-- [멤버(계정) 목록](#멤버계정-목록-get-apigroupmember)
-- [멤버(계정) 등록](#멤버계정-등록-post-apigroupmember)
-- [멤버(계정) 수정](#멤버계정-수정-put-apigroupmemberuserid)
-- [멤버(계정) 삭제](#멤버계정-삭제-delete-apigroupmemberuserid)
-- [방송 권한 부여](#방송-권한-부여-put-apigroupmemberuseridenable)
-- [방송 권한 제거](#방송-권한-제거-put-apigroupmemberuseriddisable)
-- [비밀번호 초기화](#비밀번호-초기화-put-apigroupmemberuseridpasswordreset)                     
-- [비밀번호 이메일 전송](#비밀번호-이메일-전송-put-apigroupmemberuseridpasswordsend)
+- [멤버(계정) 목록](#멤버계정-목록-codeget-apigroupmembercode)
+- [멤버(계정) 등록](#멤버계정-등록-codepost-apigroupmembercode)
+- [멤버(계정) 수정](#멤버계정-수정-codeput-apigroupmemberuseridcode)
+- [멤버(계정) 삭제](#멤버계정-삭제-codedelete-apigroupmemberuseridcode)
+- [방송 권한 부여](#방송-권한-부여-codeput-apigroupmemberuseridenablecode)
+- [방송 권한 제거](#방송-권한-제거-codeput-apigroupmemberuseriddisablecode)
+- [비밀번호 초기화](#비밀번호-초기화-codeput-apigroupmemberuseridpasswordresetcode)                     
+- [비밀번호 이메일 전송](#비밀번호-이메일-전송-codeput-apigroupmemberuseridpasswordsendcode)
 
 ---
 
