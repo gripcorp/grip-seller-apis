@@ -3,20 +3,20 @@
 - 발주를 하면 구매자는 주문취소를 할 수 없고 '배송준비중' 안내 푸시를 받습니다.
 
 ## 제공 API
-- [지원 택배사 목록](#지원-택배사-목록-codeget-apideliverycompanycode)
-- [배송지 변경](#배송지-변경-codeput-apideliveryinfocode)
-- [배송(발송) 지연 안내](#배송발송-지연-안내-codeput-apideliverypostponecode)
-- [발주(접수)가 필요한 주문 개수](#발주접수가-필요한-주문-개수-codeget-apideliverypreparecountcode)
-- [발주(접수)할 주문 목록](#발주접수할-주문-목록-codeget-apideliverypreparecode)
-- [발주(접수)요청](#발주접수-요청-codeput-apideliveryprepareresultcode)
-- [발송이 필요한 주문 개수](#발송이-필요한-주문-개수-codeget-apideliverystartcountcode)
-- [발송이 필요한 주문 목록](#발송이-필요한-주문-목록-codeget-apideliverystartcode)
-- [택배 정보 설정](#택배-정보-설정-codeput-apideliveryshippingcode)
-- [발송 요청](#발송-요청-codeput-apideliverystartcode)
-- [배송(사용) 현황 확인이 가능한 주문 개수](#배송사용-현황-확인이-가능한-주문-개수-codeget-apideliverystatuscountcode)
-- [배송(사용) 현황 확인이 가능한 주문 목록](#배송사용-현황-확인이-가능한-주문-목록-codeget-apideliverystatuscode)
-- [직접 수령 처리](#직접-수령-처리-codeput-apideliverydirectcode)
-- [강제 배송 완료처리](#강제-배송완료사용-완료처리-codeput-apideliverycompletecode)
+- [지원 택배사 목록](#지원-택배사-목록-get-apideliverycompany)
+- [배송지 변경](#배송지-변경-put-apideliveryinfo)
+- [배송(발송) 지연 안내](#배송발송-지연-안내-put-apideliverypostpone)
+- [발주(접수)가 필요한 주문 개수](#발주접수가-필요한-주문-개수-get-apideliverypreparecount)
+- [발주(접수)할 주문 목록](#발주접수할-주문-목록-get-apideliveryprepare)
+- [발주(접수)요청](#발주접수-요청-put-apideliveryprepareresult)
+- [발송이 필요한 주문 개수](#발송이-필요한-주문-개수-get-apideliverystartcount)
+- [발송이 필요한 주문 목록](#발송이-필요한-주문-목록-get-apideliverystart)
+- [택배 정보 설정](#택배-정보-설정-put-apideliveryshipping)
+- [발송 요청](#발송-요청-put-apideliverystart)
+- [배송(사용) 현황 확인이 가능한 주문 개수](#배송사용-현황-확인이-가능한-주문-개수-get-apideliverystatuscount)
+- [배송(사용) 현황 확인이 가능한 주문 목록](#배송사용-현황-확인이-가능한-주문-목록-get-apideliverystatus)
+- [직접 수령 처리](#직접-수령-처리-put-apideliverydirect)
+- [강제 배송 완료처리](#강제-배송완료사용-완료처리-put-apideliverycomplete)
 
 ---
 ## 모델

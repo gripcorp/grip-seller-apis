@@ -1,10 +1,10 @@
 ## 리뷰 관리
 
 ## 제공 API
-- [리뷰 개수](#리뷰-개수-codeget-apireviewcountcode)
-- [리뷰 목록](#리뷰-목록-codeget-apireviewcode)
-- [리뷰 답변 등록](#리뷰-답변-등록-codepost-apireviewreviewseqcode)
-- [리뷰 답변 수정](#리뷰-답변-수정-codeput-apireviewreviewseqcode)
+- [리뷰 개수](#리뷰-개수-get-apireviewcount)
+- [리뷰 목록](#리뷰-목록-get-apireview)
+- [리뷰 답변 등록](#리뷰-답변-등록-post-apireviewreviewseq)
+- [리뷰 답변 수정](#리뷰-답변-수정-put-apireviewreviewseq)
 
 ---
 

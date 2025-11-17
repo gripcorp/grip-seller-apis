@@ -4,24 +4,24 @@
 
 ## 제공 API
 - 주문
-  - [주문 개수](#주문-개수-codeget-apiordercountcode)
-  - [주문 목록](#주문-목록-codeget-apiordercode)
-  - [주문 취소(판매 취소)](#주문-취소판매-취소-codepost-apiordercancelcode)
+  - [주문 개수](#주문-개수-get-apiordercount)
+  - [주문 목록](#주문-목록-get-apiorder)
+  - [주문 취소(판매 취소)](#주문-취소판매-취소-post-apiordercancel)
 - 반품
-  - [반품 개수](#반품-개수-codeget-apireturncountcode)
-  - [반품 목록](#반품-목록-codeget-apireturncode)
-  - [반품 접수](#반품-접수-codeput-apireturnstartcode)
-  - [반품 상품 확인](#반품-상품-확인-codeput-apireturnreceivecode)
-  - [반품 승인](#반품-승인-codeput-apireturnallowcode)
-  - [반품 거절](#반품-거절-codeput-apireturndenycode)
+  - [반품 개수](#반품-개수-get-apireturncount)
+  - [반품 목록](#반품-목록-get-apireturn)
+  - [반품 접수](#반품-접수-put-apireturnstart)
+  - [반품 상품 확인](#반품-상품-확인-put-apireturnreceive)
+  - [반품 승인](#반품-승인-put-apireturnallow)
+  - [반품 거절](#반품-거절-put-apireturndeny)
 - 교환
-  - [교환 개수](#교환-개수-codeget-apiexchangecountcode)
-  - [교환 목록](#교환-목록-codeget-apiexchangecode)
-  - [교환 접수](#교환-접수-codeapiexchangestartcode)
-  - [교환 상품 확인](#교환-상품-확인-codeput-apiexchangereceivecode)
-  - [교환 직접 수령](#교환-직접-수령-codeput-apiexchangedirectcode)
-  - [교환 승인](#교환-승인-codeput-apiexchangeallowcode)
-  - [교환 거절](#교환-거절-codeput-apiexchangedenycode)
+  - [교환 개수](#교환-개수-get-apiexchangecount)
+  - [교환 목록](#교환-목록-get-apiexchange)
+  - [교환 접수](#교환-접수-apiexchangestart)
+  - [교환 상품 확인](#교환-상품-확인-put-apiexchangereceive)
+  - [교환 직접 수령](#교환-직접-수령-put-apiexchangedirect)
+  - [교환 승인](#교환-승인-put-apiexchangeallow)
+  - [교환 거절](#교환-거절-put-apiexchangedeny)
 
 ---
 

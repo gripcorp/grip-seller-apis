@@ -1,11 +1,11 @@
 ## 1:1 문의 관리
 
 ## 제공 API
-- [1:1 문의 개수](#11-문의-개수-codeget-apiinquirycountcode)
-- [1:1 문의 목록](#11-문의-목록-codeget-apiinquirycode)
-- [1:1 문의 상세 조회](#11-문의-상세-조회-codeget-apiinquiryinquiryseqcode)
-- [1:1 문의 답변 등록](#11-문의-답변-등록-codepost-apiinquiryinquiryseqcode)
-- [1:1 문의 답변 수정](#11-문의-답변-수정-codeput-apiinquiryinquiryseqcode)
+- [1:1 문의 개수](#11-문의-개수-get-apiinquirycount)
+- [1:1 문의 목록](#11-문의-목록-get-apiinquiry)
+- [1:1 문의 상세 조회](#11-문의-상세-조회-get-apiinquiryinquiryseq)
+- [1:1 문의 답변 등록](#11-문의-답변-등록-post-apiinquiryinquiryseq)
+- [1:1 문의 답변 수정](#11-문의-답변-수정-put-apiinquiryinquiryseq)
 
 ---
 

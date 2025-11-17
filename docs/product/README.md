@@ -5,21 +5,21 @@
 - 상품 등록 시 어떤 상품 판매자인지에 따라 입력 정보가 상이합니다.
 
 ## 제공 API
-- [이미지 업로드](#이미지-업로드-codepost-apiproductimagecode)
-- [카테고리 목록](#카테고리-목록-codeget-apiproductcategorycode)
-- [상품정보 제공고시 목록](#상품정보-제공고시-목록-codeget-apiproductlegalcode)
-- [인증 정보 목록](#인증-정보-목록-codeget-apiproductcertcode)
-- [모델 목록](#모델-목록-codeget-apiproductmodelcode)
-- [브랜드 목록](#브랜드-목록-codeget-apiproductbrandcode)
-- [제조사 목록](#제조사-목록-codeget-apiproductmanufacturercode)
-- [상품 개수](#상품-개수-codeget-apiproductcountcode)
-- [상품 목록](#상품-목록-codeget-apiproductcode)
-- [상품 상세](#상품-상세-codeget-apiproductproductidcode)
-- [상품 등록](#상품-등록-codepost-apiproductcode)
-- [상품 수정](#상품-수정-codeput-apiproductproductidcode)
-- [상품 삭제](#상품-삭제-codedelete-apiproductproductidcode)
-- [상품 판매 시작](#상품-판매-시작-codeput-apiproductproductidstartcode)
-- [상품 판매 중지](#상품-판매-중지-codeput-apiproductproductidstopcode)
+- [이미지 업로드](#이미지-업로드-post-apiproductimage)
+- [카테고리 목록](#카테고리-목록-get-apiproductcategory)
+- [상품정보 제공고시 목록](#상품정보-제공고시-목록-get-apiproductlegal)
+- [인증 정보 목록](#인증-정보-목록-get-apiproductcert)
+- [모델 목록](#모델-목록-get-apiproductmodel)
+- [브랜드 목록](#브랜드-목록-get-apiproductbrand)
+- [제조사 목록](#제조사-목록-get-apiproductmanufacturer)
+- [상품 개수](#상품-개수-get-apiproductcount)
+- [상품 목록](#상품-목록-get-apiproduct)
+- [상품 상세](#상품-상세-get-apiproductproductid)
+- [상품 등록](#상품-등록-post-apiproduct)
+- [상품 수정](#상품-수정-put-apiproductproductid)
+- [상품 삭제](#상품-삭제-delete-apiproductproductid)
+- [상품 판매 시작](#상품-판매-시작-put-apiproductproductidstart)
+- [상품 판매 중지](#상품-판매-중지-put-apiproductproductidstop)
 
 ---
 
