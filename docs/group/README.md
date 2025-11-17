@@ -1,7 +1,7 @@
 ## 그룹 관리 (그룹 계정 전용)
 
 ## 제공 API
-- [멤버(계정) 수](#멤버계정-수-codeget-apigroupmembercountcode)
+- [멤버(계정) 수](#멤버계정-수-get-apigroupmembercount)
 - [멤버(계정) 목록](#멤버계정-목록-codeget-apigroupmembercode)
 - [멤버(계정) 등록](#멤버계정-등록-codepost-apigroupmembercode)
 - [멤버(계정) 수정](#멤버계정-수정-codeput-apigroupmemberuseridcode)
