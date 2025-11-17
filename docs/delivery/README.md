@@ -250,12 +250,12 @@
 
 ***Request Body***
 
-| 이름 | 타입 | 필수 | 설명                            | 비고                                                                                                                                    |
-| -----------  | ------------ |-----------|-------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
+| 이름 | 타입 | 필수 | 설명                            | 비고                                                                                                                                          |
+| -----------  | ------------ |-----------|-------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
 | searchTarget | String | N | 검색 대상                         | buyerNickname: 구매자 닉네임<br>buyerName: 구매자 이름<br>buyerPhoneNumber: 구매자 연락처<br>recipientName: 수령인<br>orderSeq: 주문번호<br>orderProductSeq: 주문상품번호 |
-| searchQuery | String | N | 검색어                           | 최대 40자                                                                                                                                |
-| searchStartAt | Date | N | 검색할 주문/결제 시작일시. default 30일 전 |                                                                                                                                       |
-| searchEndAt | Date | N | 검색할 주문/결제 종료일시. default 오늘    |                                                                                                                                       |
+| searchQuery | String | N | 검색어                           | 최대 40자                                                                                                                                      |
+| searchStartAt | Date | N | 검색할 주문/결제 시작일시. default 30일 전 |                                                                                                                                             |
+| searchEndAt | Date | N | 검색할 주문/결제 종료일시. default 오늘    |                                                                                                                                             |
 
 ***Response***
 
@@ -443,7 +443,7 @@
 
 | 이름 | 타입 | 필수 | 설명                        | 비고 |
 | -----------  | ------------ |-----------|---------------------------| --------------- |
-| searchTarget | String | N | 검색 대상                     | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq |
+| searchTarget | String | N | 검색 대상                     | buyerNickname: 구매자 닉네임<br>buyerName: 구매자 이름<br>buyerPhoneNumber: 구매자 연락처<br>recipientName: 수령인<br>orderSeq: 주문번호<br>orderProductSeq: 주문상품번호 |
 | searchQuery | String | N | 검색어                       | 최대 40자 |
 | searchStartAt | Date | N | 검색할 주문/결제 시작일시. default 30일 전 | |
 | searchEndAt | Date | N | 검색할 주문/결제 종료일시. default 오늘    | |
@@ -466,7 +466,7 @@
 | -----------  | ------------ |-----------|---------------------------| --------------- |
 | start | Integer | N | 페이지 시작 번호(offset). default 0      | 페이지 사이즈가 20이면, 다음 시작 번호는 20 |
 | length | Integer | N | 페이지 사이즈. default 20, 최대 100   |  |
-| searchTarget | String | N | 검색 대상                     | 구매자 닉네임:buyerNickname, 구매자 이름:buyerName, 구매자 연락처:buyerPhoneNumber, 수령인:recipientName, 주문번호:orderSeq, 주문상품번호:orderProductSeq, 송장번호:trackingNumber |
+| searchTarget | String | N | 검색 대상                     | buyerNickname: 구매자 닉네임<br>buyerName: 구매자 이름<br>buyerPhoneNumber: 구매자 연락처<br>recipientName: 수령인<br>orderSeq: 주문번호<br>orderProductSeq: 주문상품번호 |
 | searchQuery | String | N | 검색어                       | 최대 40자 |
 | searchStartAt | Date | N | 검색할 주문/결제 시작일시. default 30일 전 | |
 | searchEndAt | Date | N | 검색할 주문/결제 종료일시. default 오늘    | |
