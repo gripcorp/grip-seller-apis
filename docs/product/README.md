@@ -177,6 +177,7 @@
 | modifiedAt                | Date                                        | 수정일시                                                   |        |
 | zeroPriceReasonType       | Integer                                     | 0원 상품 사유 유형. 합배송: 1, 이벤트(프로모션): 2, 사은품: 3, 기타: 4       |        |
 | zeroPriceReasonText       | String                                      | 0원 상품 사유 상세. 0원 상품 사유 유형이 4인 경우 필수, 나머지 유형에서는 사용되지 않음. | 최대 50자 |
+| description               | String                                      | 상품 상세 정보(상품 상세 HTML)                                   |  |
 </details>
 
 <a id="productspecialprice"></a>
