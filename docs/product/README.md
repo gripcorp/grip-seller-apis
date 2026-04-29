@@ -129,7 +129,7 @@
 |---------------------------|---------------------------------------------|--------------------------------------------------------|--------| 
 | yourProductId             | String                                      | 자체 상품 아이디                                              | 최대 40자 |
 | productId                 | String                                      | Grip 상품 아이디                                            | 최대 16자 |
-| productName               | String                                      | 상품명                                                    | 최대 40자 |
+| productName               | String                                      | 상품명                                                    | 최대 50자 |
 | categorySeq               | Integer                                     | 상품 카테고리 번호                                             |        |
 | legalSeq                  | Integer                                     | 상품정보 제공고시 번호                                           |        |
 | legalItems                | List&lt;[LegalItem](#legalitem)&gt;         | 상품정보 제공고시 상세                                           |        |
