@@ -18,4 +18,4 @@
     - [배송/교환/반품 API](docs/delivery/README.md)
     - [1:1 문의 API](docs/qna/README.md)
     - [리뷰 API](docs/review/README.md)
-4. [변경 이력](docs/changelog.md)
+4. [변경 이력](CHANGELOG.md)
