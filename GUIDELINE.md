@@ -24,15 +24,15 @@ Grip 판매자센터 API를 사용하기 위해서는 아래 세 가지가 준�
 
 ### 발급 절차
 
-<img alt="1.그립 비즈니스 센터 대시보드" src="assets/1.그립%20비즈니스%20센터%20대시보드.png" width="1078" />
+<img alt="1. 그립 비즈니스 센터 대시보드" src="assets/1-dashboard.png" width="1078" />
 
 1. 그립 비즈니스 센터에 로그인 후, [대시보드 페이지](https://business.grip.show/dashboard)로 이동합니다.
 
-<img alt="2.Grip API 연동" src="assets/2.Grip%20API%20연동.png" />
+<img alt="2. Grip API 연동" src="assets/2-gripApiIntegration.png" />
 
 2. **Grip API (외부 연동)** 버튼을 클릭합니다.
 
-<img alt="3.SecretKey 발급" src="assets/3.SecretKey%20발급.png" width="561" />
+<img alt="3. SecretKey 발급" src="assets/3-publishSecrets.png" width="561" />
 
 3. **Secret Key 재발급** 버튼을 클릭하여 새로운 `accessKey`와 `secretKey`를 발급합니다.
 4. 발급된 `accessKey`와 `secretKey`를 확인하고 안전한 곳에 보관합니다.
