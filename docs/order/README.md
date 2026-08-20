@@ -313,7 +313,7 @@
 | searchTarget | String | N | 검색 대상                           | buyerNickname: 구매자 닉네임<br>buyerName: 구매자 이름<br>buyerPhoneNumber: 구매자 연락처<br>recipientName: 수령인<br>orderSeq: 주문번호<br>orderProductSeq: 주문상품번호<br>trackingNumber: 운송장번호 |
 | searchQuery | String | N | 검색어                             | 최대 40자                                                                                                                                                               |
 | searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 복수 상태 가능 | 반품신청: 40, 반품진행중(상품대기): 41, 반품진행중(상품확인): 42<br>반품완료(환불완료): 44, 반품완료(환불대기): 46<br>반품취소(구매자): 47, 반품취소(판매자): 48                                                         |
-| searchDate | String | N | 검색할 대상 날짜. default 반품신청일시       | orderedAt: 주문결제일시<br>requestReturnAt: 반품신청일시<br>cancelReturnAt: 반품취소일시<br>completeReturnAt: 반품완료일시                                                                   |
+| searchDate | String | N | 검색할 대상 날짜. default 반품신청일시       | orderedAt: 주문결제일시<br>requestReturnAt: 반품신청일시<br>cancelReturnAt: 반품취소일시                                                                   |
 | searchStartAt | Date | N | 검색할 반품신청 시작일시. default 30일 전    |                                                                                                                                                                      |
 | searchEndAt | Date | N | 검색할 반품신청 종료일시. default 오늘       |                                                                                                                                                                      |
 
@@ -337,7 +337,7 @@
 | searchTarget | String | N | 검색 대상                          | buyerNickname: 구매자 닉네임<br>buyerName: 구매자 이름<br>buyerPhoneNumber: 구매자 연락처<br>recipientName: 수령인<br>orderSeq: 주문번호<br>orderProductSeq: 주문상품번호<br>trackingNumber: 운송장번호 |
 | searchQuery | String | N | 검색어                            | 최대 40자 |
 | searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 복수 상태 가능 | 반품신청: 40, 반품진행중(상품대기): 41, 반품진행중(상품확인): 42<br>반품완료(환불완료): 44, 반품완료(환불대기): 46<br>반품취소(구매자): 47, 반품취소(판매자): 48                                                         |
-| searchDate | String | N | 검색할 대상 날짜. default 반품신청일시       | orderedAt: 주문결제일시<br>requestReturnAt: 반품신청일시<br>cancelReturnAt: 반품취소일시<br>completeReturnAt: 반품완료일시                                                                   |
+| searchDate | String | N | 검색할 대상 날짜. default 반품신청일시       | orderedAt: 주문결제일시<br>requestReturnAt: 반품신청일시<br>cancelReturnAt: 반품취소일시                                                                   |
 | searchStartAt | Date | N | 검색할 반품신청 시작일시. default 30일 전       | |
 | searchEndAt | Date | N | 검색할 반품신청 종료일시. default 오늘          | |
 
@@ -430,7 +430,7 @@
 
 | 이름 | 타입 | 필수 | 설명                             | 비고                                                                                                                                                                   |
 | -----------  | ------------ |-----------|--------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| searchTarget | String | N | 검색 대상                          | buyerNickname: 구매자 닉네임<br>buyerName: 구매자 이름<br>buyerPhoneNumber: 구매자 연락처<br>recipientName: 수령인<br>orderSeq: 주문번호<br>orderProductSeq: 주문상품번호<br>trackingNumber: 운송장번호 |
+| searchTarget | String | N | 검색 대상                          | buyerNickname: 구매자 닉네임<br>buyerName: 구매자 이름<br>buyerPhoneNumber: 구매자 연락처<br>recipientName: 수령인<br>orderSeq: 주문번호<br>orderProductSeq: 주문상품번호 |
 | searchQuery | String | N | 검색어                            | 최대 40자                                                                                                                                                               |
 | searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 복수 상태 가능 | 교환신청: 50, 교환진행중: 51, 교환취소(판매자): 52<br>교환(배송중): 53, 교환(배송완료): 54, 교환취소(구매자): 55                                                                                       |
 | searchDate | String | N | 검색할 날짜 대상. default 교환신청일시 | orderedAt: 주문결제일시<br>requestChangeAt: 교환신청일시<br>cancelChangeAt: 교환취소일시                                                                                                     |
@@ -454,7 +454,7 @@
 | -----------  | ------------ |-----------|--------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | start | Integer | N | 페이지 시작 번호(offset). default 0      | 페이지 사이즈가 20이면, 다음 시작 번호는 20                                                                                                                                          |
 | length | Integer | N | 페이지 사이즈. default 20                |                                                                                                                                                                      |
-| searchTarget | String | N | 검색 대상                          | buyerNickname: 구매자 닉네임<br>buyerName: 구매자 이름<br>buyerPhoneNumber: 구매자 연락처<br>recipientName: 수령인<br>orderSeq: 주문번호<br>orderProductSeq: 주문상품번호<br>trackingNumber: 운송장번호 |
+| searchTarget | String | N | 검색 대상                          | buyerNickname: 구매자 닉네임<br>buyerName: 구매자 이름<br>buyerPhoneNumber: 구매자 연락처<br>recipientName: 수령인<br>orderSeq: 주문번호<br>orderProductSeq: 주문상품번호 |
 | searchQuery | String | N | 검색어                            | 최대 40                                                                                                                                                                |
 | searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 여러개 가능  | 교환신청: 50, 교환진행중: 51, 교환취소(판매자): 52<br>교환(배송중): 53, 교환(배송완료): 54, 교환취소(구매자): 55                                                                                       |
 | searchDate | String | N | 검색할 날짜 대상. default requestChangeAt | orderedAt: 주문결제일시<br>requestChangeAt: 교환신청일시<br>cancelChangeAt: 교환취소일시                                                                                                     |
