@@ -9,10 +9,11 @@
 
 site_name: Grip 판매자센터 API
 site_description: Grip 판매자센터 OPEN API 연동 가이드 및 레퍼런스
-# NOTE: GitHub Pages 프로젝트 사이트의 경로는 저장소 이름(단일 세그먼트)을 따른다.
-# /developer/catalog 같은 다중 세그먼트 경로로 실제 서빙하려면 커스텀 도메인/프록시
-# 매핑이 필요하다. 빌드 산출물은 상대 경로라 어느 경로에서든 동작한다.
-site_url: https://gripcorp.github.io/developer/catalog/
+# NOTE: site_url은 sitemap/canonical 표기에만 쓰인다 — 실제 서빙 URL은
+# GitHub Pages가 저장소 이름으로 고정한다 (gripcorp.github.io/grip-seller-apis/).
+# /developer/catalog 같은 경로로 옮기려면 커스텀 도메인 + 프록시 매핑이 필요하며,
+# 그 인프라가 준비되면 이 값을 함께 변경한다. 빌드 산출물은 상대 경로라 경로 이동에 재빌드 불필요.
+site_url: https://gripcorp.github.io/grip-seller-apis/
 repo_url: https://github.com/gripcorp/grip-seller-apis
 repo_name: gripcorp/grip-seller-apis
 edit_uri: blob/master/docs/
