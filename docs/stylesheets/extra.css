@@ -57,8 +57,8 @@
     text-transform: uppercase;
 }
 
-/* 참조 모델 블록: 카드가 참조하는 모델 스키마의 접힌 복제본
-   (원본 정의는 문서 하단 '모델' 섹션 하나 — JS가 카드 안으로 복제) */
+/* 참조 스키마 블록: 카드가 참조하는 스키마의 접힌 복제본
+   (원본 정의는 문서 하단 '스키마' 섹션 하나 — JS가 카드 안으로 복제) */
 .md-typeset .api-models {
     margin-top: 1.2em;
     padding-top: 0.9em;

@@ -14,7 +14,7 @@
 (function () {
     var ENDPOINT_RE = /^(GET|POST|PUT|PATCH|DELETE)?\s*(\/\S+)$/;
 
-    /* 모델 registry: '모델' 섹션의 <a id="..."></a> + <details> 쌍을 수집한다 */
+    /* 스키마 registry: '스키마' 섹션의 <a id="..."></a> + <details> 쌍을 수집한다 */
     function collectModels(article) {
         var models = {};
         article.querySelectorAll("a[id]").forEach(function (anchor) {
@@ -28,7 +28,7 @@
         return models;
     }
 
-    /* 카드가 참조하는 모델 id를 (모델 간 참조 포함) 닫힘 집합으로 수집한다 */
+    /* 카드가 참조하는 스키마 id를 (스키마 간 참조 포함) 닫힘 집합으로 수집한다 */
     function collectRefs(root, models) {
         var found = [];
         var seen = {};
@@ -47,8 +47,8 @@
         return found;
     }
 
-    /* 카드 하단에 참조 모델의 접힌 복제본을 붙이고, 카드 내부의 모델 링크가
-       문서 하단 '모델' 섹션 대신 카드 안의 복제본을 가리키도록 재지정한다.
+    /* 카드 하단에 참조 스키마의 접힌 복제본을 붙이고, 카드 내부의 스키마 링크가
+       문서 하단 '스키마' 섹션 대신 카드 안의 복제본을 가리키도록 재지정한다.
        (markdown 원본은 단일 정의 유지 — 화면 이동 없이 카드 안에서 펼쳐 본다) */
     function inlineModels(card, cardIndex, models) {
         var refs = collectRefs(card, models);
@@ -60,7 +60,7 @@
         box.className = "api-models";
         var title = document.createElement("p");
         title.className = "api-models__title";
-        title.textContent = "참조 모델";
+        title.textContent = "참조 스키마";
         box.appendChild(title);
 
         var cloneIds = {};

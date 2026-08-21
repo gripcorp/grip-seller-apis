@@ -409,7 +409,7 @@
 
 ---
 
-## 모델
+## 스키마
 
 <a id="deliverycompany"></a>
 <details markdown="1">

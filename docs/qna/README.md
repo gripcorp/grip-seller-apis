@@ -104,7 +104,7 @@
 
 ---
 
-## 모델
+## 스키마
 
 <a id="inquirytype"></a>
 <details markdown="1">

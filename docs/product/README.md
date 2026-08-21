@@ -354,7 +354,7 @@
 
 ---
 
-## 모델
+## 스키마
 
 <a id="category"></a>
 <details markdown="1">

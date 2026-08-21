@@ -160,7 +160,7 @@
 
 ---
 
-## 모델
+## 스키마
 
 <a id="groupmemberlist"></a>
 <details markdown="1">

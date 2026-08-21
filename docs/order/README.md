@@ -375,7 +375,7 @@
 
 ---
 
-## 모델
+## 스키마
 
 <a id="orderkey"></a>
 <details markdown="1">

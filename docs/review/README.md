@@ -86,7 +86,7 @@
 
 ---
 
-## 모델
+## 스키마
 
 <a id="reviewlist"></a>
 <details markdown="1">
