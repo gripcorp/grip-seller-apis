@@ -1,50 +1,7 @@
-## 그룹 관리 (그룹 계정 전용)
+## 멤버(계정) 수
 
-## 제공 API
-- [멤버(계정) 수](#멤버계정-수-get-apigroupmembercount)
-- [멤버(계정) 목록](#멤버계정-목록-get-apigroupmember)
-- [멤버(계정) 등록](#멤버계정-등록-post-apigroupmember)
-- [멤버(계정) 수정](#멤버계정-수정-put-apigroupmemberuserid)
-- [멤버(계정) 삭제](#멤버계정-삭제-delete-apigroupmemberuserid)
-- [방송 권한 부여](#방송-권한-부여-put-apigroupmemberuseridenable)
-- [방송 권한 제거](#방송-권한-제거-put-apigroupmemberuseriddisable)
-- [비밀번호 초기화](#비밀번호-초기화-put-apigroupmemberuseridpasswordreset)                     
-- [비밀번호 이메일 전송](#비밀번호-이메일-전송-put-apigroupmemberuseridpasswordsend)
+**`GET /api/group/member/count`**
 
----
-
-## 모델
-
-<a id="groupmemberlist"></a>
-<details>
-<summary><strong>GroupMemberList</strong></summary>
-
-| 이름 | 타입 | 설명 | 비고 |
-| -----------  | ------------ |------------ | ------------ | 
-| userId | String | 그립 내부 사용자 아이디 | 최대 16자 |
-| userTag | String | 이용자 아이디. 프로필에 보이는 아이디 | 최대 16자 |
-| userName | String | 닉네임. 프로필에 보이는 닉네임 | 최대 30자 |
-| master | Boolean | 그룹 마스터 여부 | |
-| active | Boolean | 방송권한 여부 | |
-| profileUrl | String | 프로필 URL | 최대 300자 |
-| companyName | String | 소속명 | 최대 40자 |
-| managerName | String | 브랜드 담당 매니저 이름 | 최대 20자 |
-| managerEmail | String | 브랜드 담당 매니저 이메일 | 최대 60자 |
-| managerMobile | String | 브랜드 담당 매니저 핸드폰 번호 | 최대 13자 |
-| productCount | Integer | 상품 수 | |
-| contentCount | Integer | 방송 수 | |
-| followerCount | Integer | 팔로워 수 | |
-| lastPublishedAt | Date | 최근 방송일시 | |
-| createdAt | Date | 등록일시 | |
-| memo | String | 관리용 메모 | 최대 200자 |
-| accessKey | String | API AccessKey | 최대 16자 |
-| secretKey | String | API SecretKey | 최대 16자 |
-</details>
-
-
----
-
-### 멤버(계정) 수 <code>GET /api/group/member/count</code>
 - 그룹 내에 속한 멤버(계정) 수를 조회합니다. 
 
 ***Request Body***
@@ -61,7 +18,10 @@
 
 <br>
 
-### 멤버(계정) 목록 <code>GET /api/group/member</code>
+## 멤버(계정) 목록
+
+**`GET /api/group/member`**
+
 - 그룹 멤버(계정) 목록을 조회합니다. 
 
 ***Request Body***
@@ -82,7 +42,10 @@
 
 <br>
 
-### 멤버(계정) 등록 <code>POST /api/group/member</code>
+## 멤버(계정) 등록
+
+**`POST /api/group/member`**
+
 - 그룹 멤버(계정)를 등록합니다.
 
 ***Request Body***
@@ -106,7 +69,10 @@
 
 <br>
 
-### 멤버(계정) 수정 <code>PUT /api/group/member/{userId}</code>
+## 멤버(계정) 수정
+
+**`PUT /api/group/member/{userId}`**
+
 - 그룹 멤버(계정)의 정보를 수정합니다.
 
 ***Request Body***
@@ -130,7 +96,10 @@
 
 <br>
 
-### 멤버(계정) 삭제 <code>DELETE /api/group/member/{userId}</code>
+## 멤버(계정) 삭제
+
+**`DELETE /api/group/member/{userId}`**
+
 - 그룹에서 해당 멤버(계정)를 삭제합니다.
 
 ***Response***
@@ -141,7 +110,10 @@
 
 <br>
 
-### 방송 권한 부여 <code>PUT /api/group/member/{userId}/enable</code>
+## 방송 권한 부여
+
+**`PUT /api/group/member/{userId}/enable`**
+
 - 해당 멤버(계정)에게 방송 권한을 부여합니다.
 
 ***Response***
@@ -152,7 +124,10 @@
 
 <br>
 
-### 방송 권한 제거 <code>PUT /api/group/member/{userId}/disable</code>
+## 방송 권한 제거
+
+**`PUT /api/group/member/{userId}/disable`**
+
 - 해당 멤버(계정)의 방송 권한을 제거합니다.
 
 ***Response***
@@ -163,7 +138,10 @@
 
 <br>
 
-### 비밀번호 초기화 <code>PUT /api/group/member/{userId}/password/reset</code>
+## 비밀번호 초기화
+
+**`PUT /api/group/member/{userId}/password/reset`**
+
 - 해당 멤버(계정)의 비밀번호를 초기화 합니다.
 - 초기화하면 임시 비밀번호가 발급됩니다.
 
@@ -176,7 +154,10 @@
 
 <br>
 
-### 비밀번호 이메일 전송 <code>PUT /api/group/member/{userId}/password/send</code>
+## 비밀번호 이메일 전송
+
+**`PUT /api/group/member/{userId}/password/send`**
+
 - 해당 멤버(계정)의 managerEmail로 현재 비밀번호를 전송 합니다.
 
 ***Response***
@@ -184,3 +165,33 @@
 | 이름 | 타입 | 설명 | 비고 |
 | -----------  | ------------ |------------ | ------------ | 
 | userId | String | 그립 내부 사용자 아이디 | 최대 16자 |
+
+---
+
+## 모델
+
+<a id="groupmemberlist"></a>
+<details markdown="1">
+<summary><strong>GroupMemberList</strong></summary>
+
+| 이름 | 타입 | 설명 | 비고 |
+| -----------  | ------------ |------------ | ------------ | 
+| userId | String | 그립 내부 사용자 아이디 | 최대 16자 |
+| userTag | String | 이용자 아이디. 프로필에 보이는 아이디 | 최대 16자 |
+| userName | String | 닉네임. 프로필에 보이는 닉네임 | 최대 30자 |
+| master | Boolean | 그룹 마스터 여부 | |
+| active | Boolean | 방송권한 여부 | |
+| profileUrl | String | 프로필 URL | 최대 300자 |
+| companyName | String | 소속명 | 최대 40자 |
+| managerName | String | 브랜드 담당 매니저 이름 | 최대 20자 |
+| managerEmail | String | 브랜드 담당 매니저 이메일 | 최대 60자 |
+| managerMobile | String | 브랜드 담당 매니저 핸드폰 번호 | 최대 13자 |
+| productCount | Integer | 상품 수 | |
+| contentCount | Integer | 방송 수 | |
+| followerCount | Integer | 팔로워 수 | |
+| lastPublishedAt | Date | 최근 방송일시 | |
+| createdAt | Date | 등록일시 | |
+| memo | String | 관리용 메모 | 최대 200자 |
+| accessKey | String | API AccessKey | 최대 16자 |
+| secretKey | String | API SecretKey | 최대 16자 |
+</details>

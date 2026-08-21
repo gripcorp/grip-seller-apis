@@ -1,4 +1,3 @@
-# API 호출하기
 - Grip 판매자센터 API를 통해서 상품 관리, 주문/반품/교환 조회, 배송 관리, 1:1문의 관리, 리뷰 관리를 할 수 있습니다.
 - 이미지 업로드를 제외한 모든 API의 Content-Type은 `application/json` 입니다.
 - 모든 API는 아래의 Header를 포함해야 합니다.
