@@ -57,6 +57,41 @@
     text-transform: uppercase;
 }
 
+/* 참조 모델 블록: 카드가 참조하는 모델 스키마의 접힌 복제본
+   (원본 정의는 문서 하단 '모델' 섹션 하나 — JS가 카드 안으로 복제) */
+.md-typeset .api-models {
+    margin-top: 1.2em;
+    padding-top: 0.9em;
+    border-top: 1px dashed var(--md-default-fg-color--lightest);
+}
+
+.md-typeset .api-models__title {
+    margin: 0 0 0.5em;
+    color: var(--md-default-fg-color--light);
+    font-size: 0.7em;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.md-typeset .api-models details {
+    margin: 0.4em 0;
+    padding: 0.45em 0.8em;
+    border: 1px solid var(--md-default-fg-color--lightest);
+    border-radius: 0.3rem;
+    background: var(--md-code-bg-color);
+    scroll-margin-top: 4rem;
+}
+
+.md-typeset .api-models summary {
+    cursor: pointer;
+    font-size: 0.8em;
+}
+
+.md-typeset .api-models details[open] > summary {
+    margin-bottom: 0.5em;
+}
+
 /* 불릿 리스트: 기본 disc 대신 테마 컬러의 작은 마커로 교체
    (1-depth: 채운 원, 2-depth 이하: 테두리만 있는 원) */
 .md-typeset ul:not([class]) > li {
