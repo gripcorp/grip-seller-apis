@@ -1,0 +1,76 @@
+# Grip 판매자센터 OPEN API 문서 사이트 (MkDocs Material)
+#
+# 로컬 프리뷰:
+#   pip install mkdocs-material
+#   ./scripts/docs-prep.sh   # 루트 README/CHANGELOG/GUIDELINE/assets를 docs/로 복사(링크 경로 보정)
+#   mkdocs serve
+#
+# 배포: master push 시 .github/workflows/docs.yml이 GitHub Pages로 자동 배포
+
+site_name: Grip 판매자센터 API
+site_description: Grip 판매자센터 OPEN API 연동 가이드 및 레퍼런스
+site_url: https://gripcorp.github.io/grip-seller-apis/
+repo_url: https://github.com/gripcorp/grip-seller-apis
+repo_name: gripcorp/grip-seller-apis
+edit_uri: blob/master/docs/
+
+docs_dir: docs
+
+# GUIDELINE.md의 raw HTML <img src="assets/..."> 상대 경로가 그대로 동작하도록
+# 디렉토리 URL(page/ 형태) 대신 page.html 형태를 사용한다
+use_directory_urls: false
+
+theme:
+  name: material
+  language: ko
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      toggle:
+        icon: material/weather-night
+        name: 다크 모드로 전환
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: 라이트 모드로 전환
+  features:
+    - navigation.top
+    - navigation.footer
+    - search.highlight
+    - search.suggest
+    - toc.follow
+    - content.code.copy
+
+nav:
+  - 홈: index.md
+  - 이용 준비 가이드: guideline.md
+  - API 개요: OVERVIEW.md
+  - 인증 및 보안: auth/README.md
+  - 상품: product/README.md
+  - 주문: order/README.md
+  - 배송: delivery/README.md
+  - 리뷰: review/README.md
+  - 문의: qna/README.md
+  - 그룹: group/README.md
+  - Changelog: changelog.md
+
+markdown_extensions:
+  # slugify: GitHub과 동일한 앵커 생성 규칙 — 문서 내 한글 헤딩 앵커 링크가
+  # GitHub 웹 뷰와 사이트 양쪽에서 동작하도록 맞춘다
+  - toc:
+      permalink: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - tables
+  - admonition
+  - attr_list
+  - md_in_html
+  - pymdownx.highlight
+  - pymdownx.superfences
+
+plugins:
+  - search
