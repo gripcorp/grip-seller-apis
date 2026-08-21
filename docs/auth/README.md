@@ -1,4 +1,5 @@
 - Grip 판매자센터 API를 통해서 상품 관리, 주문/반품/교환 조회, 배송 관리, 1:1문의 관리, 리뷰 관리를 할 수 있습니다.
+- API host는 `https://seller.grip.show` 입니다.
 - 이미지 업로드를 제외한 모든 API의 Content-Type은 `application/json` 입니다.
 - 모든 API는 아래의 Header를 포함해야 합니다.
 
@@ -37,3 +38,11 @@ public String makeFingerprint(String method, String uri, long timestamp) throws 
     return encodedBase64String;
 }
 ```
+
+## HTTP 응답 코드
+- HTTP 응답 코드는 성공이면 `200`이고, 실패면 `500`입니다.
+- 응답이 실패면 응답 결과의 `message`에 실패 사유가 반환됩니다.
+
+## 보안 요구사항
+- GRIP 판매자센터 API는 소중한 정보를 안전하게 보호하기 위해 암호화 통신 프로토콜인 TLS를 사용하고 있습니다.
+- 보안 강화를 위해 TLS 1.2 이상의 환경에서만 정상적으로 동작합니다. API 요청 환경의 TLS 버전을 확인해 주시기 바랍니다.
