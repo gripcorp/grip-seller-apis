@@ -37,6 +37,8 @@ theme:
         icon: material/weather-sunny
         name: 라이트 모드로 전환
   features:
+    # API 레퍼런스 섹션이 접힌 채로 숨지 않도록 기본 펼침
+    - navigation.expand
     - navigation.top
     - navigation.footer
     - search.highlight
@@ -50,12 +52,13 @@ nav:
   - 이용 준비 가이드: guideline.md
   - API 개요: OVERVIEW.md
   - API 호출하기: auth/README.md
-  - 상품 관리: product/README.md
-  - 주문/반품/교환 목록: order/README.md
-  - 배송 관리: delivery/README.md
-  - 리뷰 관리: review/README.md
-  - 1:1 문의 관리: qna/README.md
-  - 그룹 관리: group/README.md
+  - API 레퍼런스:
+      - 상품 관리: product/README.md
+      - 주문/반품/교환 목록: order/README.md
+      - 배송 관리: delivery/README.md
+      - 리뷰 관리: review/README.md
+      - 1:1 문의 관리: qna/README.md
+      - 그룹 관리: group/README.md
   - Changelog: changelog.md
 
 markdown_extensions:
