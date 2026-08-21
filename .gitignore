@@ -27,3 +27,10 @@
 # except .gitignore file
 !/.gitignore
 !/.github
+
+# mkdocs build output + docs-prep.sh 산출물 (원본: 루트 README/CHANGELOG/GUIDELINE/assets)
+/site/
+/docs/index.md
+/docs/changelog.md
+/docs/guideline.md
+/docs/assets/

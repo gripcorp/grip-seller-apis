@@ -1,0 +1,124 @@
+/* API 레퍼런스 전용 스타일.
+   DOM 구조(.api-operation 카드, .api-endpoint 바, .api-method 배지)는
+   javascripts/api-reference.js가 빌드된 페이지에서 만들어 낸다 —
+   markdown 원본은 GitHub 뷰 호환을 위해 순수 문법을 유지한다. */
+
+/* 오퍼레이션 카드: 구분선(hr) 없이도 API 간 경계가 인식되도록 감싼다 */
+.md-typeset section.api-operation {
+    margin: 1.6em 0;
+    padding: 0.4em 1.2em 0.9em;
+    border: 1px solid var(--md-default-fg-color--lightest);
+    border-radius: 0.4rem;
+    background: var(--md-default-bg-color);
+}
+
+.md-typeset section.api-operation > h2 {
+    margin: 0.6em 0 0.8em;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid var(--md-default-fg-color--lightest);
+    font-size: 1.35em;
+}
+
+.md-typeset section.api-operation > h3 {
+    font-size: 1.1em;
+}
+
+/* 엔드포인트 바: 메서드 배지 + 경로 */
+.md-typeset .api-endpoint {
+    display: flex;
+    align-items: center;
+    gap: 0.7em;
+    margin: 0.8em 0 1em;
+    padding: 0.5em 0.9em;
+    background: var(--md-code-bg-color);
+    border-radius: 0.3rem;
+}
+
+.md-typeset .api-endpoint code {
+    padding: 0;
+    background: none;
+    font-size: 0.8em;
+    font-weight: 600;
+    word-break: break-all;
+}
+
+/* HTTP 메서드 배지 */
+.md-typeset .api-method {
+    flex-shrink: 0;
+    min-width: 3.6em;
+    padding: 0.25em 0.55em;
+    border-radius: 0.25rem;
+    color: #fff;
+    font-size: 0.62em;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    line-height: 1.4;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+/* 참조 스키마 블록: 카드가 참조하는 스키마의 접힌 복제본
+   (원본 정의는 문서 하단 '스키마' 섹션 하나 — JS가 카드 안으로 복제) */
+.md-typeset .api-models {
+    margin-top: 1.2em;
+    padding-top: 0.9em;
+    border-top: 1px dashed var(--md-default-fg-color--lightest);
+}
+
+.md-typeset .api-models__title {
+    margin: 0 0 0.5em;
+    color: var(--md-default-fg-color--light);
+    font-size: 0.7em;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.md-typeset .api-models details {
+    margin: 0.4em 0;
+    padding: 0.45em 0.8em;
+    border: 1px solid var(--md-default-fg-color--lightest);
+    border-radius: 0.3rem;
+    background: var(--md-code-bg-color);
+    scroll-margin-top: 4rem;
+}
+
+.md-typeset .api-models summary {
+    cursor: pointer;
+    font-size: 0.8em;
+}
+
+.md-typeset .api-models details[open] > summary {
+    margin-bottom: 0.5em;
+}
+
+/* 불릿 리스트: 기본 disc 대신 테마 컬러의 작은 마커로 교체
+   (1-depth: 채운 원, 2-depth 이하: 테두리만 있는 원) */
+.md-typeset ul:not([class]) > li {
+    position: relative;
+    margin-left: 0;
+    padding-left: 1.1em;
+    list-style: none;
+}
+
+.md-typeset ul:not([class]) > li::before {
+    content: "";
+    position: absolute;
+    top: 0.62em;
+    left: 0;
+    width: 0.38em;
+    height: 0.38em;
+    border-radius: 50%;
+    background: var(--md-primary-fg-color);
+}
+
+.md-typeset ul:not([class]) ul:not([class]) > li::before {
+    background: transparent;
+    border: 1px solid var(--md-primary-fg-color);
+}
+
+.md-typeset .api-method--get    { background: #1e88e5; }
+.md-typeset .api-method--post   { background: #2e9e6b; }
+.md-typeset .api-method--put    { background: #ef8e1c; }
+.md-typeset .api-method--patch  { background: #8e6cc0; }
+.md-typeset .api-method--delete { background: #e53935; }

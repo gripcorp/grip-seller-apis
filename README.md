@@ -10,12 +10,11 @@
 
 ## 목차
 
-1. [API 개요](docs/OVERVIEW.md)
-2. [인증 및 보안](docs/auth/README.md)
-3. API 도메인별 문서
+1. [인증 및 보안](docs/auth/README.md)
+2. API 도메인별 문서
     - [상품 관리 API](docs/product/README.md)
     - [주문 관리 API](docs/order/README.md)
     - [배송/교환/반품 API](docs/delivery/README.md)
     - [1:1 문의 API](docs/qna/README.md)
     - [리뷰 API](docs/review/README.md)
-4. [변경 이력](CHANGELOG.md)
+3. [변경 이력](CHANGELOG.md)

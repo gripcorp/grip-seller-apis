@@ -1,0 +1,90 @@
+# Grip 판매자센터 OPEN API 문서 사이트 (MkDocs Material)
+#
+# 로컬 프리뷰:
+#   pip install mkdocs-material
+#   ./scripts/docs-prep.sh   # 루트 README/CHANGELOG/GUIDELINE/assets를 docs/로 복사(링크 경로 보정)
+#   mkdocs serve
+#
+# 배포: master push 시 .github/workflows/docs.yml이 GitHub Pages로 자동 배포
+
+site_name: Grip 판매자센터 API
+site_description: Grip 판매자센터 OPEN API 연동 가이드 및 레퍼런스
+# NOTE: GitHub Pages 프로젝트 사이트의 경로는 저장소 이름(단일 세그먼트)을 따른다.
+# /developer/catalog 같은 다중 세그먼트 경로로 실제 서빙하려면 커스텀 도메인/프록시
+# 매핑이 필요하다. 빌드 산출물은 상대 경로라 어느 경로에서든 동작한다.
+site_url: https://gripcorp.github.io/developer/catalog/
+repo_url: https://github.com/gripcorp/grip-seller-apis
+repo_name: gripcorp/grip-seller-apis
+edit_uri: blob/master/docs/
+
+docs_dir: docs
+
+# GUIDELINE.md의 raw HTML <img src="assets/..."> 상대 경로가 그대로 동작하도록
+# 디렉토리 URL(page/ 형태) 대신 page.html 형태를 사용한다
+use_directory_urls: false
+
+theme:
+  name: material
+  language: ko
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      toggle:
+        icon: material/weather-night
+        name: 다크 모드로 전환
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: 라이트 모드로 전환
+  features:
+    # API 레퍼런스 섹션이 접힌 채로 숨지 않도록 기본 펼침
+    - navigation.expand
+    - navigation.top
+    - navigation.footer
+    - search.highlight
+    - search.suggest
+    - toc.follow
+    - content.code.copy
+
+# nav 제목은 각 README 원본의 L1 제목을 옮겨온 것 (괄호 부연은 제거) — 본문에는 제목 헤딩 없음
+nav:
+  - 홈: index.md
+  - 이용 준비 가이드: guideline.md
+  - API 호출하기: auth/README.md
+  - API 레퍼런스:
+      - 상품 관리: product/README.md
+      - 주문/반품/교환 목록: order/README.md
+      - 배송 관리: delivery/README.md
+      - 리뷰 관리: review/README.md
+      - 1:1 문의 관리: qna/README.md
+      - 그룹 관리: group/README.md
+  - CHANGELOG: changelog.md
+
+markdown_extensions:
+  # slugify: GitHub과 동일한 앵커 생성 규칙 — 문서 내 한글 헤딩 앵커 링크가
+  # GitHub 웹 뷰와 사이트 양쪽에서 동작하도록 맞춘다
+  - toc:
+      permalink: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - tables
+  - admonition
+  - attr_list
+  - md_in_html
+  - pymdownx.highlight
+  - pymdownx.superfences
+
+plugins:
+  - search
+
+# API 레퍼런스 스타일: 메서드 배지 + 오퍼레이션 카드 (원본 markdown은 순수 문법 유지,
+# 사이트 렌더링 시 JS가 DOM을 구성한다)
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/api-reference.js

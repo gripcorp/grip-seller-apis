@@ -1,34 +1,384 @@
-## 주문/반품/교환 목록
 - 반품 및 교환은 Grip 판매자센터에서 직접 처리해야 합니다. API를 통해서는 조회만 가능합니다.
 - 하나의 주문은 하나 이상의 상품 구매 정보로 구성되므로 '주문 번호'와 '주문 상품 번호'를 키 값으로 사용합니다.
 
-## 제공 API
-- 주문
-  - [주문 개수](#주문-개수-get-apiordercount)
-  - [주문 목록](#주문-목록-get-apiorder)
-  - [주문 취소(판매 취소)](#주문-취소판매-취소-post-apiordercancel)
-- 반품
-  - [반품 개수](#반품-개수-get-apireturncount)
-  - [반품 목록](#반품-목록-get-apireturn)
-  - [반품 접수](#반품-접수-put-apireturnstart)
-  - [반품 상품 확인](#반품-상품-확인-put-apireturnreceive)
-  - [반품 승인](#반품-승인-put-apireturnallow)
-  - [반품 거절](#반품-거절-put-apireturndeny)
-- 교환
-  - [교환 개수](#교환-개수-get-apiexchangecount)
-  - [교환 목록](#교환-목록-get-apiexchange)
-  - [교환 접수](#교환-접수-apiexchangestart)
-  - [교환 상품 확인](#교환-상품-확인-put-apiexchangereceive)
-  - [교환 직접 수령](#교환-직접-수령-put-apiexchangedirect)
-  - [교환 승인](#교환-승인-put-apiexchangeallow)
-  - [교환 거절](#교환-거절-put-apiexchangedeny)
+## 주문 개수
+
+**`GET /api/order/count`**
+
+- 주문 개수를 조회합니다.
+
+***Request Body***
+
+| 이름 | 타입 | 필수 | 설명                                | 비고                                                                                                                                                   |
+| -----------  | ------------ |-----------|-----------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| searchTarget | String | N | 검색 대상                             | buyerNickname: 구매자 닉네임<br>buyerName: 구매자 이름<br>buyerPhoneNumber: 구매자 연락처<br>recipientName: 수령인<br>orderSeq: 주문번호<br>orderProductSeq: 주문상품번호          |
+| searchQuery | String | N | 검색어                               | 최대 40자                                                                                                                                               |
+| searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 복수 상태 가능   | 결제완료: 1, 입금대기중: 2<br>배송준비중(발송준비중): 10, 배송중(발송완료): 11, 발송지연: 12, 배송완료(사용완료): 13<br>반품신청(취소요청): 40, 환불완료: 42<br>교환신청: 50, 판매취소: 60, 주문취소: 80, 구매확정: 90 |
+| searchDate | String | N | 검색할 대상 주문/결제 날짜. default 주문 결제 일시 | orderedAt: 주문결제일시<br>confirmAt: 구매확정일시<br>cancelAt: 주문취소일시                                                                                           |
+| searchStartAt | Date | N | 검색할 주문/결제 시작일시. default 30일 전     |                                                                                                                                                      |
+| searchEndAt | Date | N | 검색할 주문/결제 종료일시. default 오늘        |                                                                                                                                                      |
+
+***Response***
+
+| 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| orderCount | Integer | 주문 개수 |
+
+
+## 주문 목록
+
+**`GET /api/order`**
+
+- 주문 목록을 조회합니다.
+
+***Request Body***
+
+| 이름 | 타입 | 필수 | 설명                                | 비고                                                                                                                                          |
+| -----------  | ------------ |-----------|-----------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
+| start | Integer | N | 페이지 시작 번호(offset). default 0      | 페이지 사이즈가 20이면, 다음 시작 번호는 20                                                                                                                 |
+| length | Integer | N | 페이지 사이즈. default 20, 최대 100       |                                                                                                                                             |
+| searchTarget | String | N | 검색 대상                             | buyerNickname: 구매자 닉네임<br>buyerName: 구매자 이름<br>buyerPhoneNumber: 구매자 연락처<br>recipientName: 수령인<br>orderSeq: 주문번호<br>orderProductSeq: 주문상품번호 |
+| searchQuery | String | N | 검색어                               | 최대 40                                                                                                                                       |
+| searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 복수 상태 가능   | 결제완료: 1, 입금대기중: 2<br>배송준비중(발송준비중): 10, 배송중(발송완료): 11, 발송지연: 12, 배송완료(사용완료): 13<br>반품신청(취소요청): 40, 환불완료: 42<br>교환신청: 50, 판매취소: 60, 주문취소: 80, 구매확정: 90 |
+| searchDate | String | N | 검색할 대상 주문/결제 날짜. default 주문 결제 일시 | orderedAt: 주문결제일시<br>confirmAt: 구매확정일시<br>cancelAt: 주문취소일시                                                                                  |
+| searchStartAt | Date | N | 검색할 주문/결제 시작일시. default 30일 전     |                                                                                                                                             |
+| searchEndAt | Date | N | 검색할 주문/결제 종료일시. default 오늘        |                                                                                                                                             |
+
+***Response***
+
+| 이름 | 타입                                  | 설명 | 
+| -----------  |-------------------------------------|------------ | 
+| orderList | List&lt;[OrderList](#orderlist)&gt; | 주문 목록 |
+
+
+## 주문 취소(판매 취소)
+
+**`POST /api/order/cancel`**
+
+- 재고 부족과 같은 사유로 판매자가 주문을 취소합니다.
+
+***Request Body***
+
+| 이름 | 타입                                | 필수 | 설명 | 비고                                                                                                                                                       |
+| -----------  |-----------------------------------|-----------|------------ |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| orderKeys | List&lt;[OrderKey](#orderkey)&gt; | Y | 대상 주문 |                                                                                                                                                          |
+| reasonType | Integer                           | Y | 주문 취소 유형 | 고객요청-단순변심: 1<br>고객요청-서비스불만족: 2<br>재고부족: 3<br>상품문제발생: 4<br>배송문제발생: 5<br>배송지연: 11<br>다른 사이트보다 비쌈: 12<br>판매자 안내로 취소: 13<br>단순 변심: 14<br>주문 실수: 15<br>기타: 16 |
+| reason | String                            | Y | 주문 취소 사유 | 최대 50자                                                                                                                                                   |
+
+***Response***
+
+| 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| affected | Integer | 주문 취소 성공한 주문 수 |
+
+
+## 주문 취소(판매 취소) 결과 확인
+
+**`POST /api/order/cancel/result`**
+
+| 이름 | 타입                                | 필수 | 설명 | 비고 |
+| -----------  |-----------------------------------|-----------|------------ | --------------- |
+| orderKeys | List&lt;[OrderKey](#orderkey)&gt; | Y | 대상 주문 | |
+
+***Response***
+
+| 이름 | 타입                                      | 설명 | 
+| -----------  |-----------------------------------------|------------ | 
+| result | List&lt;[OrderResult](#orderresult)&gt; | 주문 취소 요청 결과 |
+
+
+## 반품 개수
+
+**`GET /api/return/count`**
+
+- 반품 개수를 조회합니다.
+
+***Request Body***
+
+| 이름 | 타입 | 필수 | 설명                              | 비고                                                                                                                                                                   |
+| -----------  | ------------ |-----------|---------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| searchTarget | String | N | 검색 대상                           | buyerNickname: 구매자 닉네임<br>buyerName: 구매자 이름<br>buyerPhoneNumber: 구매자 연락처<br>recipientName: 수령인<br>orderSeq: 주문번호<br>orderProductSeq: 주문상품번호<br>trackingNumber: 운송장번호 |
+| searchQuery | String | N | 검색어                             | 최대 40자                                                                                                                                                               |
+| searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 복수 상태 가능 | 반품신청: 40, 반품진행중(상품대기): 41, 반품진행중(상품확인): 42<br>반품완료(환불완료): 44, 반품완료(환불대기): 46<br>반품취소(구매자): 47, 반품취소(판매자): 48                                                         |
+| searchDate | String | N | 검색할 대상 날짜. default 반품신청일시       | orderedAt: 주문결제일시<br>requestReturnAt: 반품신청일시<br>cancelReturnAt: 반품취소일시                                                                   |
+| searchStartAt | Date | N | 검색할 반품신청 시작일시. default 30일 전    |                                                                                                                                                                      |
+| searchEndAt | Date | N | 검색할 반품신청 종료일시. default 오늘       |                                                                                                                                                                      |
+
+***Response***
+
+| 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| returnCount | Integer | 반품 개수 |
+
+
+## 반품 목록
+
+**`GET /api/return`**
+
+- 반품 목록을 조회합니다.
+
+***Request Body***
+
+| 이름 | 타입 | 필수 | 설명                             | 비고 |
+| -----------  | ------------ |-----------|--------------------------------| --------------- |
+| start | Integer | N | 페이지 시작 번호(offset). default 0      | 페이지 사이즈가 20이면, 다음 시작 번호는 20 |
+| length | Integer | N | 페이지 사이즈. default 20                |  |
+| searchTarget | String | N | 검색 대상                          | buyerNickname: 구매자 닉네임<br>buyerName: 구매자 이름<br>buyerPhoneNumber: 구매자 연락처<br>recipientName: 수령인<br>orderSeq: 주문번호<br>orderProductSeq: 주문상품번호<br>trackingNumber: 운송장번호 |
+| searchQuery | String | N | 검색어                            | 최대 40자 |
+| searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 복수 상태 가능 | 반품신청: 40, 반품진행중(상품대기): 41, 반품진행중(상품확인): 42<br>반품완료(환불완료): 44, 반품완료(환불대기): 46<br>반품취소(구매자): 47, 반품취소(판매자): 48                                                         |
+| searchDate | String | N | 검색할 대상 날짜. default 반품신청일시       | orderedAt: 주문결제일시<br>requestReturnAt: 반품신청일시<br>cancelReturnAt: 반품취소일시                                                                   |
+| searchStartAt | Date | N | 검색할 반품신청 시작일시. default 30일 전       | |
+| searchEndAt | Date | N | 검색할 반품신청 종료일시. default 오늘          | |
+
+***Response***
+
+| 이름 | 타입                                    | 설명 | 
+| -----------  |---------------------------------------|------------ | 
+| returnList | List&lt;[ReturnList](#returnlist)&gt; | 반품 목록 |
+
+
+## 반품 접수
+
+**`PUT /api/return/start`**
+
+- 구매자의 반품 요청을 접수합니다.
+- 구매자에게 반품 방법을 안내하는 과정입니다.
+
+***Request Body***
+
+| 이름 | 타입                    | 필수 | 설명 | 비고 |
+| -----------  |-----------------------|-----------|------------ | --------------- |
+| orderKey | [OrderKey](#orderkey) | Y | 대상 주문 | |
+| message | String                | Y | 반품 접수 안내 메시지 | 최대 1,000자 |
+
+***Response***
+
+| 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| ret | Boolean | 성공여부 |
+
+
+## 반품 상품 확인
+
+**`PUT /api/return/receive`**
+
+- 구매자가 반품한 상품이 판매자에게 도착했다는 것을 의미합니다.
+
+***Request Body***
+
+| 이름 | 타입                    | 필수 | 설명 | 비고 |
+| -----------  |-----------------------|-----------|------------ | --------------- |
+| orderKey | [OrderKey](#orderkey) | Y | 대상 주문 | |
+| receiveProduct | Boolean               | Y |  |  |
+
+***Response***
+
+| 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| ret | Boolean | 성공여부 |
+
+
+## 반품 승인
+
+**`PUT /api/return/allow`**
+
+- 반품을 승인합니다.
+- 구매자에게 환불이 진행됩니다.
+- 가상계좌로 결제한 고객인 경우에는 구매자가 환불계좌를 입력해야 환불이 완료됩니다.
+
+***Request Body***
+
+| 이름 | 타입                    | 필수 | 설명 | 비고 |
+| -----------  |-----------------------|-----------|------------ | --------------- |
+| orderKey | [OrderKey](#orderkey) | Y | 대상 주문 | |
+
+***Response***
+
+| 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| ret | Boolean | 성공여부 |
+
+
+## 반품 거절
+
+**`PUT /api/return/deny`**
+
+- 반품을 거절합니다.
+
+***Request Body***
+
+| 이름 | 타입                    | 필수 | 설명 | 비고 |
+| -----------  |-----------------------|-----------|------------ | --------------- |
+| orderKey | [OrderKey](#orderkey) | Y | 대상 주문 | |
+| reason | String                | Y | 반품 거절 사유 | 최대 200자 |
+
+***Response***
+
+| 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| ret | Boolean | 성공여부 |
+
+
+## 교환 개수
+
+**`GET /api/exchange/count`**
+
+- 교환 개수를 조회합니다.
+
+***Request Body***
+
+| 이름 | 타입 | 필수 | 설명                             | 비고                                                                                                                                                                   |
+| -----------  | ------------ |-----------|--------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| searchTarget | String | N | 검색 대상                          | buyerNickname: 구매자 닉네임<br>buyerName: 구매자 이름<br>buyerPhoneNumber: 구매자 연락처<br>recipientName: 수령인<br>orderSeq: 주문번호<br>orderProductSeq: 주문상품번호 |
+| searchQuery | String | N | 검색어                            | 최대 40자                                                                                                                                                               |
+| searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 복수 상태 가능 | 교환신청: 50, 교환진행중: 51, 교환취소(판매자): 52<br>교환(배송중): 53, 교환(배송완료): 54, 교환취소(구매자): 55                                                                                       |
+| searchDate | String | N | 검색할 날짜 대상. default 교환신청일시 | orderedAt: 주문결제일시<br>requestChangeAt: 교환신청일시<br>cancelChangeAt: 교환취소일시                                                                                                     |
+| searchStartAt | Date | N | 검색할 교환신청 시작일시. default 30일 전       |                                                                                                                                                                      |
+| searchEndAt | Date | N | 검색할 교환신청 종료일시. default 오늘          |                                                                                                                                                                      |
+
+***Response***
+
+| 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| exchangeCount | Integer | 교환 개수 |
+
+
+## 교환 목록
+
+**`GET /api/exchange`**
+
+- 교환 목록을 조회합니다.
+
+***Request Body***
+
+| 이름 | 타입 | 필수 | 설명                             | 비고                                                                                                                                                                   |
+| -----------  | ------------ |-----------|--------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| start | Integer | N | 페이지 시작 번호(offset). default 0      | 페이지 사이즈가 20이면, 다음 시작 번호는 20                                                                                                                                          |
+| length | Integer | N | 페이지 사이즈. default 20                |                                                                                                                                                                      |
+| searchTarget | String | N | 검색 대상                          | buyerNickname: 구매자 닉네임<br>buyerName: 구매자 이름<br>buyerPhoneNumber: 구매자 연락처<br>recipientName: 수령인<br>orderSeq: 주문번호<br>orderProductSeq: 주문상품번호 |
+| searchQuery | String | N | 검색어                            | 최대 40                                                                                                                                                                |
+| searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 여러개 가능  | 교환신청: 50, 교환진행중: 51, 교환취소(판매자): 52<br>교환(배송중): 53, 교환(배송완료): 54, 교환취소(구매자): 55                                                                                       |
+| searchDate | String | N | 검색할 날짜 대상. default requestChangeAt | orderedAt: 주문결제일시<br>requestChangeAt: 교환신청일시<br>cancelChangeAt: 교환취소일시                                                                                                     |
+| searchStartAt | Date | N | 검색할 교환신청 시작일시. default 30일 전       |                                                                                                                                                                      |
+| searchEndAt | Date | N | 검색할 교환신청 종료일시. default 오늘          |                                                                                                                                                                      |
+
+***Response***
+
+| 이름 | 타입                                        | 설명 | 
+| -----------  |-------------------------------------------|------------ | 
+| exchangeList | List&lt;[ExchangeList](#exchangelist)&gt; | 교환 목록 |
+
+## 교환 접수
+
+**`PUT /api/exchange/start`**
+
+- 구매자의 교환 요청을 접수합니다.
+- 구매자에게 교환 방법을 안내하는 과정입니다.
+
+***Request Body***
+
+| 이름 | 타입                    | 필수 | 설명 | 비고 |
+| -----------  |-----------------------|-----------|------------ | --------------- |
+| orderKey | [OrderKey](#orderkey) | Y | 대상 주문 | |
+| message | String                | Y | 교환 접수 안내 메시지 | 최대 1,000자 |
+
+***Response***
+
+| 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| ret | Boolean | 성공여부 |
+
+
+## 교환 상품 확인
+
+**`PUT /api/exchange/receive`**
+
+- 구매자가 교환한 상품이 판매자에게 도착했다는 것을 의미합니다.
+
+***Request Body***
+
+
+| 이름 | 타입                    | 필수 | 설명 | 비고 |
+| -----------  |-----------------------|-----------|------------ | --------------- |
+| orderKey | [OrderKey](#orderkey) | Y | 대상 주문 | |
+| receiveProduct | Boolean               | Y |  |  |
+
+***Response***
+
+| 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| ret | Boolean | 성공여부 |
+
+
+## 교환 직접 수령
+
+**`PUT /api/exchange/direct`**
+
+- 교환 상품을 직접 수령한 경우에 사용합니다.
+- 교환 직접 수령을 하면 구매자는 '배송완료' 안내를 받게 됩니다.
+
+***Request Body***
+
+| 이름 | 타입                    | 필수 | 설명 | 비고 |
+| -----------  |-----------------------|-----------|------------ | --------------- |
+| orderKey | [OrderKey](#orderkey) | Y | 대상 주문 | |
+| changeMemo | String                | N | 교환 메모 | 최대 200자. 판매자가 확인하기 위한 메모 |
+
+***Response***
+
+| 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| ret | Boolean | 성공여부 |
+
+
+## 교환 승인
+
+**`PUT /api/exchange/allow`**
+
+- 교환을 승인합니다.
+- 구매자에게 교환을 진행합니다. 교환 배송정보가 필요합니다.
+
+***Request Body***
+
+| 이름 | 타입                    | 필수 | 설명 | 비고 |
+| -----------  |-----------------------|-----------|------------ | --------------- |
+| orderKey | [OrderKey](#orderkey) | Y | 대상 주문 | |
+| changeMemo | String                | N | 교환 메모 | 최대 200자. 판매자가 확인하기 위한 메모 |
+| deliveryCompanySeq | Integer               | Y | 택배회사 번호 | |
+| trackingNumber | String                | Y | 운송장 번호 | |
+
+***Response***
+
+| 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| ret | Boolean | 성공여부 |
+
+
+## 교환 거절
+
+**`PUT /api/exchange/deny`**
+
+- 교환을 거절합니다.
+
+***Request Body***
+
+| 이름 | 타입                    | 필수 | 설명 | 비고 |
+| -----------  |-----------------------|-----------|------------ | --------------- |
+| orderKey | [OrderKey](#orderkey) | Y | 대상 주문 | |
+| reason | String                | Y | 교환 거절 사유 | 최대 200자 |
+
+***Response***
+
+| 이름 | 타입 | 설명 | 
+| -----------  | ------------ |------------ | 
+| ret | Boolean | 성공여부 |
 
 ---
 
-## 모델
+## 스키마
 
 <a id="orderkey"></a>
-<details>
+<details markdown="1">
 <summary><strong>OrderKey</strong></summary>
 
 | 이름 | 타입 | 필수 | 설명 | 비고 |
@@ -38,7 +388,7 @@
 </details>
 
 <a id="orderproductstate"></a>
-<details>
+<details markdown="1">
 <summary><strong>OrderProductState</strong></summary>
 
 | 설명 | 값 | 비고 |
@@ -80,7 +430,7 @@
 </details>
 
 <a id="paymentmethod"></a>
-<details>
+<details markdown="1">
 <summary><strong>PaymentMethod</strong></summary>
 
 | 설명       | 값  | 비고 |
@@ -97,7 +447,7 @@
 </details>
 
 <a id="orderresult"></a>
-<details>
+<details markdown="1">
 <summary><strong>OrderResult</strong></summary>
 
 | 이름 | 타입 | 설명 | 비고 |
@@ -109,7 +459,7 @@
 </details>
 
 <a id="orderlist"></a>
-<details>
+<details markdown="1">
 <summary><strong>OrderList</strong></summary>
 
 | 이름                              | 타입                                      | 설명 | 비고 |
@@ -146,7 +496,7 @@
 </details>
 
 <a id="returnlist"></a>
-<details>
+<details markdown="1">
 <summary><strong>ReturnList</strong></summary>
 
 | 이름                              | 타입                                      | 설명                                                                                                            | 비고 |
@@ -186,7 +536,7 @@
 </details>
 
 <a id="exchangelist"></a>
-<details>
+<details markdown="1">
 <summary><strong>ExchangeList</strong></summary>
 
 | 이름                              | 타입                                      | 설명                                                                           | 비고 |
@@ -221,342 +571,3 @@
 | recipientAddress                | String                                  | 수령인 주소                                                                       | 최대 200자 |
 | clearanceCode                   | String                                  | 개인 통관 번호                                                                     | 최대 16자 |
 </details>
-
----
-
-### 주문 개수 <code>GET /api/order/count</code>
-- 주문 개수를 조회합니다.
-
-***Request Body***
-
-| 이름 | 타입 | 필수 | 설명                                | 비고                                                                                                                                                   |
-| -----------  | ------------ |-----------|-----------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
-| searchTarget | String | N | 검색 대상                             | buyerNickname: 구매자 닉네임<br>buyerName: 구매자 이름<br>buyerPhoneNumber: 구매자 연락처<br>recipientName: 수령인<br>orderSeq: 주문번호<br>orderProductSeq: 주문상품번호          |
-| searchQuery | String | N | 검색어                               | 최대 40자                                                                                                                                               |
-| searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 복수 상태 가능   | 결제완료: 1, 입금대기중: 2<br>배송준비중(발송준비중): 10, 배송중(발송완료): 11, 발송지연: 12, 배송완료(사용완료): 13<br>반품신청(취소요청): 40, 환불완료: 42<br>교환신청: 50, 판매취소: 60, 주문취소: 80, 구매확정: 90 |
-| searchDate | String | N | 검색할 대상 주문/결제 날짜. default 주문 결제 일시 | orderedAt: 주문결제일시<br>confirmAt: 구매확정일시<br>cancelAt: 주문취소일시                                                                                           |
-| searchStartAt | Date | N | 검색할 주문/결제 시작일시. default 30일 전     |                                                                                                                                                      |
-| searchEndAt | Date | N | 검색할 주문/결제 종료일시. default 오늘        |                                                                                                                                                      |
-
-***Response***
-
-| 이름 | 타입 | 설명 | 
-| -----------  | ------------ |------------ | 
-| orderCount | Integer | 주문 개수 |
-
-<br>
-
-### 주문 목록 <code>GET /api/order</code>
-- 주문 목록을 조회합니다.
-
-***Request Body***
-
-| 이름 | 타입 | 필수 | 설명                                | 비고                                                                                                                                          |
-| -----------  | ------------ |-----------|-----------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
-| start | Integer | N | 페이지 시작 번호(offset). default 0      | 페이지 사이즈가 20이면, 다음 시작 번호는 20                                                                                                                 |
-| length | Integer | N | 페이지 사이즈. default 20, 최대 100       |                                                                                                                                             |
-| searchTarget | String | N | 검색 대상                             | buyerNickname: 구매자 닉네임<br>buyerName: 구매자 이름<br>buyerPhoneNumber: 구매자 연락처<br>recipientName: 수령인<br>orderSeq: 주문번호<br>orderProductSeq: 주문상품번호 |
-| searchQuery | String | N | 검색어                               | 최대 40                                                                                                                                       |
-| searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 복수 상태 가능   | 결제완료: 1, 입금대기중: 2<br>배송준비중(발송준비중): 10, 배송중(발송완료): 11, 발송지연: 12, 배송완료(사용완료): 13<br>반품신청(취소요청): 40, 환불완료: 42<br>교환신청: 50, 판매취소: 60, 주문취소: 80, 구매확정: 90 |
-| searchDate | String | N | 검색할 대상 주문/결제 날짜. default 주문 결제 일시 | orderedAt: 주문결제일시<br>confirmAt: 구매확정일시<br>cancelAt: 주문취소일시                                                                                  |
-| searchStartAt | Date | N | 검색할 주문/결제 시작일시. default 30일 전     |                                                                                                                                             |
-| searchEndAt | Date | N | 검색할 주문/결제 종료일시. default 오늘        |                                                                                                                                             |
-
-***Response***
-
-| 이름 | 타입                                  | 설명 | 
-| -----------  |-------------------------------------|------------ | 
-| orderList | List&lt;[OrderList](#orderlist)&gt; | 주문 목록 |
-
-<br>
-
-### 주문 취소(판매 취소) <code>POST /api/order/cancel</code>
-- 재고 부족과 같은 사유로 판매자가 주문을 취소합니다.
-
-***Request Body***
-
-| 이름 | 타입                                | 필수 | 설명 | 비고                                                                                                                                                       |
-| -----------  |-----------------------------------|-----------|------------ |----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| orderKeys | List&lt;[OrderKey](#orderkey)&gt; | Y | 대상 주문 |                                                                                                                                                          |
-| reasonType | Integer                           | Y | 주문 취소 유형 | 고객요청-단순변심: 1<br>고객요청-서비스불만족: 2<br>재고부족: 3<br>상품문제발생: 4<br>배송문제발생: 5<br>배송지연: 11<br>다른 사이트보다 비쌈: 12<br>판매자 안내로 취소: 13<br>단순 변심: 14<br>주문 실수: 15<br>기타: 16 |
-| reason | String                            | Y | 주문 취소 사유 | 최대 50자                                                                                                                                                   |
-
-***Response***
-
-| 이름 | 타입 | 설명 | 
-| -----------  | ------------ |------------ | 
-| affected | Integer | 주문 취소 성공한 주문 수 |
-
-<br>
-
-### 주문 취소(판매 취소) <code>POST /api/order/cancel/result</code>
-
-| 이름 | 타입                                | 필수 | 설명 | 비고 |
-| -----------  |-----------------------------------|-----------|------------ | --------------- |
-| orderKeys | List&lt;[OrderKey](#orderkey)&gt; | Y | 대상 주문 | |
-
-***Response***
-
-| 이름 | 타입                                      | 설명 | 
-| -----------  |-----------------------------------------|------------ | 
-| result | List&lt;[OrderResult](#orderresult)&gt; | 주문 취소 요청 결과 |
-
-<br>
-
-### 반품 개수 <code>GET /api/return/count</code>
-- 반품 개수를 조회합니다.
-
-***Request Body***
-
-| 이름 | 타입 | 필수 | 설명                              | 비고                                                                                                                                                                   |
-| -----------  | ------------ |-----------|---------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| searchTarget | String | N | 검색 대상                           | buyerNickname: 구매자 닉네임<br>buyerName: 구매자 이름<br>buyerPhoneNumber: 구매자 연락처<br>recipientName: 수령인<br>orderSeq: 주문번호<br>orderProductSeq: 주문상품번호<br>trackingNumber: 운송장번호 |
-| searchQuery | String | N | 검색어                             | 최대 40자                                                                                                                                                               |
-| searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 복수 상태 가능 | 반품신청: 40, 반품진행중(상품대기): 41, 반품진행중(상품확인): 42<br>반품완료(환불완료): 44, 반품완료(환불대기): 46<br>반품취소(구매자): 47, 반품취소(판매자): 48                                                         |
-| searchDate | String | N | 검색할 대상 날짜. default 반품신청일시       | orderedAt: 주문결제일시<br>requestReturnAt: 반품신청일시<br>cancelReturnAt: 반품취소일시                                                                   |
-| searchStartAt | Date | N | 검색할 반품신청 시작일시. default 30일 전    |                                                                                                                                                                      |
-| searchEndAt | Date | N | 검색할 반품신청 종료일시. default 오늘       |                                                                                                                                                                      |
-
-***Response***
-
-| 이름 | 타입 | 설명 | 
-| -----------  | ------------ |------------ | 
-| returnCount | Integer | 반품 개수 |
-
-<br>
-
-### 반품 목록 <code>GET /api/return</code>
-- 반품 목록을 조회합니다.
-
-***Request Body***
-
-| 이름 | 타입 | 필수 | 설명                             | 비고 |
-| -----------  | ------------ |-----------|--------------------------------| --------------- |
-| start | Integer | N | 페이지 시작 번호(offset). default 0      | 페이지 사이즈가 20이면, 다음 시작 번호는 20 |
-| length | Integer | N | 페이지 사이즈. default 20                |  |
-| searchTarget | String | N | 검색 대상                          | buyerNickname: 구매자 닉네임<br>buyerName: 구매자 이름<br>buyerPhoneNumber: 구매자 연락처<br>recipientName: 수령인<br>orderSeq: 주문번호<br>orderProductSeq: 주문상품번호<br>trackingNumber: 운송장번호 |
-| searchQuery | String | N | 검색어                            | 최대 40자 |
-| searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 복수 상태 가능 | 반품신청: 40, 반품진행중(상품대기): 41, 반품진행중(상품확인): 42<br>반품완료(환불완료): 44, 반품완료(환불대기): 46<br>반품취소(구매자): 47, 반품취소(판매자): 48                                                         |
-| searchDate | String | N | 검색할 대상 날짜. default 반품신청일시       | orderedAt: 주문결제일시<br>requestReturnAt: 반품신청일시<br>cancelReturnAt: 반품취소일시                                                                   |
-| searchStartAt | Date | N | 검색할 반품신청 시작일시. default 30일 전       | |
-| searchEndAt | Date | N | 검색할 반품신청 종료일시. default 오늘          | |
-
-***Response***
-
-| 이름 | 타입                                    | 설명 | 
-| -----------  |---------------------------------------|------------ | 
-| returnList | List&lt;[ReturnList](#returnlist)&gt; | 반품 목록 |
-
-<br>
-
-### 반품 접수 <code>PUT /api/return/start</code>
-- 구매자의 반품 요청을 접수합니다.
-- 구매자에게 반품 방법을 안내하는 과정입니다.
-
-***Request Body***
-
-| 이름 | 타입                    | 필수 | 설명 | 비고 |
-| -----------  |-----------------------|-----------|------------ | --------------- |
-| orderKey | [OrderKey](#orderkey) | Y | 대상 주문 | |
-| message | String                | Y | 반품 접수 안내 메시지 | 최대 1,000자 |
-
-***Response***
-
-| 이름 | 타입 | 설명 | 
-| -----------  | ------------ |------------ | 
-| ret | Boolean | 성공여부 |
-
-<br>
-
-### 반품 상품 확인 <code>PUT /api/return/receive</code>
-- 구매자가 반품한 상품이 판매자에게 도착했다는 것을 의미합니다.
-
-***Request Body***
-
-| 이름 | 타입                    | 필수 | 설명 | 비고 |
-| -----------  |-----------------------|-----------|------------ | --------------- |
-| orderKey | [OrderKey](#orderkey) | Y | 대상 주문 | |
-| receiveProduct | Boolean               | Y |  |  |
-
-***Response***
-
-| 이름 | 타입 | 설명 | 
-| -----------  | ------------ |------------ | 
-| ret | Boolean | 성공여부 |
-
-<br>
-
-### 반품 승인 <code>PUT /api/return/allow</code>
-- 반품을 승인합니다.
-- 구매자에게 환불이 진행됩니다.
-- 가상계좌로 결제한 고객인 경우에는 구매자가 환불계좌를 입력해야 환불이 완료됩니다.
-
-***Request Body***
-
-| 이름 | 타입                    | 필수 | 설명 | 비고 |
-| -----------  |-----------------------|-----------|------------ | --------------- |
-| orderKey | [OrderKey](#orderkey) | Y | 대상 주문 | |
-
-***Response***
-
-| 이름 | 타입 | 설명 | 
-| -----------  | ------------ |------------ | 
-| ret | Boolean | 성공여부 |
-
-<br>
-
-### 반품 거절 <code>PUT /api/return/deny</code>
-- 반품을 거절합니다.
-
-***Request Body***
-
-| 이름 | 타입                    | 필수 | 설명 | 비고 |
-| -----------  |-----------------------|-----------|------------ | --------------- |
-| orderKey | [OrderKey](#orderkey) | Y | 대상 주문 | |
-| reason | String                | Y | 반품 거절 사유 | 최대 200자 |
-
-***Response***
-
-| 이름 | 타입 | 설명 | 
-| -----------  | ------------ |------------ | 
-| ret | Boolean | 성공여부 |
-
-<br>
-
-### 교환 개수 <code>GET /api/exchange/count</code>
-- 교환 개수를 조회합니다.
-
-***Request Body***
-
-| 이름 | 타입 | 필수 | 설명                             | 비고                                                                                                                                                                   |
-| -----------  | ------------ |-----------|--------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| searchTarget | String | N | 검색 대상                          | buyerNickname: 구매자 닉네임<br>buyerName: 구매자 이름<br>buyerPhoneNumber: 구매자 연락처<br>recipientName: 수령인<br>orderSeq: 주문번호<br>orderProductSeq: 주문상품번호 |
-| searchQuery | String | N | 검색어                            | 최대 40자                                                                                                                                                               |
-| searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 복수 상태 가능 | 교환신청: 50, 교환진행중: 51, 교환취소(판매자): 52<br>교환(배송중): 53, 교환(배송완료): 54, 교환취소(구매자): 55                                                                                       |
-| searchDate | String | N | 검색할 날짜 대상. default 교환신청일시 | orderedAt: 주문결제일시<br>requestChangeAt: 교환신청일시<br>cancelChangeAt: 교환취소일시                                                                                                     |
-| searchStartAt | Date | N | 검색할 교환신청 시작일시. default 30일 전       |                                                                                                                                                                      |
-| searchEndAt | Date | N | 검색할 교환신청 종료일시. default 오늘          |                                                                                                                                                                      |
-
-***Response***
-
-| 이름 | 타입 | 설명 | 
-| -----------  | ------------ |------------ | 
-| exchangeCount | Integer | 교환 개수 |
-
-<br>
-
-### 교환 목록 <code>GET /api/exchange</code>
-- 교환 목록을 조회합니다.
-
-***Request Body***
-
-| 이름 | 타입 | 필수 | 설명                             | 비고                                                                                                                                                                   |
-| -----------  | ------------ |-----------|--------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| start | Integer | N | 페이지 시작 번호(offset). default 0      | 페이지 사이즈가 20이면, 다음 시작 번호는 20                                                                                                                                          |
-| length | Integer | N | 페이지 사이즈. default 20                |                                                                                                                                                                      |
-| searchTarget | String | N | 검색 대상                          | buyerNickname: 구매자 닉네임<br>buyerName: 구매자 이름<br>buyerPhoneNumber: 구매자 연락처<br>recipientName: 수령인<br>orderSeq: 주문번호<br>orderProductSeq: 주문상품번호 |
-| searchQuery | String | N | 검색어                            | 최대 40                                                                                                                                                                |
-| searchStatus | String | N | 검색할 주문 상태. 콤마(,)로 구분해서 여러개 가능  | 교환신청: 50, 교환진행중: 51, 교환취소(판매자): 52<br>교환(배송중): 53, 교환(배송완료): 54, 교환취소(구매자): 55                                                                                       |
-| searchDate | String | N | 검색할 날짜 대상. default requestChangeAt | orderedAt: 주문결제일시<br>requestChangeAt: 교환신청일시<br>cancelChangeAt: 교환취소일시                                                                                                     |
-| searchStartAt | Date | N | 검색할 교환신청 시작일시. default 30일 전       |                                                                                                                                                                      |
-| searchEndAt | Date | N | 검색할 교환신청 종료일시. default 오늘          |                                                                                                                                                                      |
-
-***Response***
-
-| 이름 | 타입                                        | 설명 | 
-| -----------  |-------------------------------------------|------------ | 
-| exchangeList | List&lt;[ExchangeList](#exchangelist)&gt; | 교환 목록 |
-
-### 교환 접수 <code>/api/exchange/start</code>
-- 구매자의 교환 요청을 접수합니다.
-- 구매자에게 교환 방법을 안내하는 과정입니다.
-
-***Request Body***
-
-| 이름 | 타입                    | 필수 | 설명 | 비고 |
-| -----------  |-----------------------|-----------|------------ | --------------- |
-| orderKey | [OrderKey](#orderkey) | Y | 대상 주문 | |
-| message | String                | Y | 교환 접수 안내 메시지 | 최대 1,000자 |
-
-***Response***
-
-| 이름 | 타입 | 설명 | 
-| -----------  | ------------ |------------ | 
-| ret | Boolean | 성공여부 |
-
-<br>
-
-### 교환 상품 확인 <code>PUT /api/exchange/receive</code>
-- 구매자가 교환한 상품이 판매자에게 도착했다는 것을 의미합니다.
-
-***Request Body***
-
-
-| 이름 | 타입                    | 필수 | 설명 | 비고 |
-| -----------  |-----------------------|-----------|------------ | --------------- |
-| orderKey | [OrderKey](#orderkey) | Y | 대상 주문 | |
-| receiveProduct | Boolean               | Y |  |  |
-
-***Response***
-
-| 이름 | 타입 | 설명 | 
-| -----------  | ------------ |------------ | 
-| ret | Boolean | 성공여부 |
-
-<br>
-
-### 교환 직접 수령 <code>PUT /api/exchange/direct</code>
-- 교환 상품을 직접 수령한 경우에 사용합니다.
-- 교환 직접 수령을 하면 구매자는 '배송완료' 안내를 받게 됩니다.
-
-***Request Body***
-
-| 이름 | 타입                    | 필수 | 설명 | 비고 |
-| -----------  |-----------------------|-----------|------------ | --------------- |
-| orderKey | [OrderKey](#orderkey) | Y | 대상 주문 | |
-| changeMemo | String                | N | 교환 메모 | 최대 200자. 판매자가 확인하기 위한 메모 |
-
-***Response***
-
-| 이름 | 타입 | 설명 | 
-| -----------  | ------------ |------------ | 
-| ret | Boolean | 성공여부 |
-
-<br>
-
-### 교환 승인 <code>PUT /api/exchange/allow</code>
-- 교환을 승인합니다.
-- 구매자에게 교환을 진행합니다. 교환 배송정보가 필요합니다.
-
-***Request Body***
-
-| 이름 | 타입                    | 필수 | 설명 | 비고 |
-| -----------  |-----------------------|-----------|------------ | --------------- |
-| orderKey | [OrderKey](#orderkey) | Y | 대상 주문 | |
-| changeMemo | String                | N | 교환 메모 | 최대 200자. 판매자가 확인하기 위한 메모 |
-| deliveryCompanySeq | Integer               | Y | 택배회사 번호 | |
-| trackingNumber | String                | Y | 운송장 번호 | |
-
-***Response***
-
-| 이름 | 타입 | 설명 | 
-| -----------  | ------------ |------------ | 
-| ret | Boolean | 성공여부 |
-
-<br>
-
-### 교환 거절 <code>PUT /api/exchange/deny</code>
-- 교환을 거절합니다.
-
-***Request Body***
-
-| 이름 | 타입                    | 필수 | 설명 | 비고 |
-| -----------  |-----------------------|-----------|------------ | --------------- |
-| orderKey | [OrderKey](#orderkey) | Y | 대상 주문 | |
-| reason | String                | Y | 교환 거절 사유 | 최대 200자 |
-
-***Response***
-
-| 이름 | 타입 | 설명 | 
-| -----------  | ------------ |------------ | 
-| ret | Boolean | 성공여부 |
