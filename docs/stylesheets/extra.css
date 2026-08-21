@@ -57,6 +57,31 @@
     text-transform: uppercase;
 }
 
+/* 불릿 리스트: 기본 disc 대신 테마 컬러의 작은 마커로 교체
+   (1-depth: 채운 원, 2-depth 이하: 테두리만 있는 원) */
+.md-typeset ul:not([class]) > li {
+    position: relative;
+    margin-left: 0;
+    padding-left: 1.1em;
+    list-style: none;
+}
+
+.md-typeset ul:not([class]) > li::before {
+    content: "";
+    position: absolute;
+    top: 0.62em;
+    left: 0;
+    width: 0.38em;
+    height: 0.38em;
+    border-radius: 50%;
+    background: var(--md-primary-fg-color);
+}
+
+.md-typeset ul:not([class]) ul:not([class]) > li::before {
+    background: transparent;
+    border: 1px solid var(--md-primary-fg-color);
+}
+
 .md-typeset .api-method--get    { background: #1e88e5; }
 .md-typeset .api-method--post   { background: #2e9e6b; }
 .md-typeset .api-method--put    { background: #ef8e1c; }
