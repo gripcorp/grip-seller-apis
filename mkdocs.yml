@@ -75,3 +75,11 @@ markdown_extensions:
 
 plugins:
   - search
+
+# API 레퍼런스 스타일: 메서드 배지 + 오퍼레이션 카드 (원본 markdown은 순수 문법 유지,
+# 사이트 렌더링 시 JS가 DOM을 구성한다)
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/api-reference.js
