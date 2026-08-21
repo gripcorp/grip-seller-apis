@@ -50,7 +50,6 @@ theme:
 nav:
   - 홈: index.md
   - 이용 준비 가이드: guideline.md
-  - API 개요: OVERVIEW.md
   - API 호출하기: auth/README.md
   - API 레퍼런스:
       - 상품 관리: product/README.md
