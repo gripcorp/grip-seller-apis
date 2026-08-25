@@ -53,7 +53,7 @@ public String makeFingerprint(String method, String uri, long timestamp) throws 
       }
       ```
     - `status`/`error`는 HTTP 상태, `code`는 오류 식별 코드, `message`는 안내 메시지입니다. 프로그램 분기가 필요한 경우 문구가 변경될 수 있는 `message` 대신 `code`를 사용해 주세요.
-- 기존 오류 응답(HTTP `500` + `message`)에서 `4xx` 체계로 **API 도메인 단위 점진 전환 중**입니다. (2026.08.21 ~ 09.03 예정)
+- 기존 오류 응답(HTTP `500` + `message`)에서 `4xx` 체계로 **API 도메인 단위 점진 전환 중**입니다. (2026.08.21 ~ 09.04 예정)
     - 전환 기간 중에는 동일한 요청이 `500` 또는 `4xx` 어느 쪽으로든 응답될 수 있으므로 두 방식을 모두 처리해 주세요.
     - 도메인별 적용 일정과 상세 변경 내용은 변경 이력(Changelog) 문서를 참고해 주세요.
 
