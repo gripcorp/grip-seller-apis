@@ -5,7 +5,7 @@
 #   ./scripts/docs-prep.sh   # 루트 README/CHANGELOG/GUIDELINE/assets를 docs/로 복사(링크 경로 보정)
 #   mkdocs serve
 #
-# 배포: master push 시 .github/workflows/docs.yml이 GitHub Pages로 자동 배포
+# 배포: main push 시 .github/workflows/docs.yml이 GitHub Pages로 자동 배포
 
 site_name: Grip 판매자센터 API
 site_description: Grip 판매자센터 OPEN API 연동 가이드 및 레퍼런스
@@ -16,7 +16,7 @@ site_description: Grip 판매자센터 OPEN API 연동 가이드 및 레퍼런�
 site_url: https://gripcorp.github.io/grip-seller-apis/
 repo_url: https://github.com/gripcorp/grip-seller-apis
 repo_name: gripcorp/grip-seller-apis
-edit_uri: blob/master/docs/
+edit_uri: blob/main/docs/
 
 docs_dir: docs
 
